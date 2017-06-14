@@ -2,7 +2,6 @@ package ir.aut.view;
 
 import javax.swing.*;
 import java.awt.*;
-
 /**
  * Created by Milad on 6/14/2017.
  */
@@ -15,13 +14,19 @@ public class SeaPanel extends JPanel {
         GridLayout manager = new GridLayout(10 , 10);
         this.setLayout(manager);
 
-        for (int i = 0 ; i < 100 ; i++){
-            JLabel x = new JLabel();
-            x.setText(Integer.toString(i));
-            x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            this.add(x);
+        for (int i = 1 ; i <= 10 ; i++){
+            for (int j = 1 ; j <= 10 ; j++) {
+                SeaCell x = new SeaCell(i , j);
+                x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                if (i == 10)
+                    x.setSheep(true);
+
+                SeaCell.total.put(x.getCor() , x);
+                this.add(x);
+            }
         }
 
         this.setVisible(true);
     }
+
 }
