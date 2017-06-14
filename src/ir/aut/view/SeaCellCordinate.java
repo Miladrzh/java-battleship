@@ -17,8 +17,7 @@ public class SeaCellCordinate {
     public boolean equals(Object obj) {
 
         SeaCellCordinate x = (SeaCellCordinate)obj;
-        System.out.println(x);
-        System.out.println(this);
+
         if (x.xCor == this.xCor && x.yCor == this.yCor)
             return true;
         return false;

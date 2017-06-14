@@ -50,8 +50,6 @@ public class SeaCell extends JLabel {
             return;
         if (y > 10 || y < 1)
             return;
-//        System.out.println(x + "  " + y);
-        System.out.println("hello");
         SeaCell nei = total.get(new SeaCellCordinate(x , y));
         if (nei == null)
             return;
