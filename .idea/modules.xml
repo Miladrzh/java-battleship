@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../FinalProject/FinalProject.iml" filepath="$PROJECT_DIR$/../FinalProject/FinalProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BattleShip.iml" filepath="$PROJECT_DIR$/.idea/BattleShip.iml" />
+      <module fileurl="file://C:\Users\Lenovo\IdeaProjects\hi\FinalProject\FinalProject.iml" filepath="C:\Users\Lenovo\IdeaProjects\hi\FinalProject\FinalProject.iml" />
     </modules>
   </component>
 </project>
