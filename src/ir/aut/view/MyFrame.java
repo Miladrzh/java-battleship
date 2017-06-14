@@ -9,7 +9,7 @@ public class MyFrame extends JFrame {
     public static void main(String[] args) {
         System.out.println("sdddddd");
         System.out.println("djdlfjsdlfkjsdlfkj");
-        System.out.println("djdlfjsdlfkjsdlfkj");
+        System.out.println("djdlfjsdlfkjsdlfkj");we fewfwfewfwefe
 
     }
 }
