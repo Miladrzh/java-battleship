@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f0e05e48-adbd-41ba-8f3f-5dc3ce8d7dda" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/aut/view/MyFrame.java" afterPath="$PROJECT_DIR$/src/ir/aut/view/MyFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -714,7 +713,7 @@
       <option name="presentableId" value="Default" />
       <updated>1497350536395</updated>
       <workItem from="1497350542040" duration="1377000" />
-      <workItem from="1497436708032" duration="1502000" />
+      <workItem from="1497436708032" duration="1574000" />
     </task>
     <task id="LOCAL-00001" summary="Testin again">
       <created>1497352464169</created>
@@ -730,11 +729,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497437369817</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="PleaseWaitFrame class">
+      <created>1497438262872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497438262872</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5640000" />
+    <option name="totallyTimeSpent" value="5712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -783,7 +789,8 @@
     </ignored-roots>
     <MESSAGE value="Testin again" />
     <MESSAGE value="sldjflsdjflsjflwejf" />
-    <option name="LAST_COMMIT_MESSAGE" value="sldjflsdjflsjflwejf" />
+    <MESSAGE value="PleaseWaitFrame class" />
+    <option name="LAST_COMMIT_MESSAGE" value="PleaseWaitFrame class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
