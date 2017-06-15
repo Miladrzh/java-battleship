@@ -97,10 +97,7 @@ public class SeaPanel extends JPanel {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            mousePoint = e.getPoint();
-            System.out.println(RECT_SIZE);
-            System.out.println(e.getPoint());
-            repaint();
+
         }
 
     }

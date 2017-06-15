@@ -19,7 +19,9 @@ public class SeaCell extends JLabel {
     public SeaCell(int xCor, int yCor) {
         super();
         this.cor = new SeaCellCordinate(xCor, yCor);
-        this.addMouseListener(new CellListener());
+        CellListener cellListener = new CellListener();
+        this.addMouseListener(cellListener);
+        this.addMouseMotionListener(cellListener);
     }
 
     public SeaCellCordinate getCor() {
@@ -95,6 +97,14 @@ public class SeaCell extends JLabel {
             } else {
                 setMiss((SeaCell) e.getSource());
             }
+        }
+
+        public void mouseMoved(MouseEvent e){
+
+            master.mousePoint = ((SeaCell)e.getSource()).getLocation();
+            System.out.println(master.RECT_SIZE);
+            System.out.println(e.getPoint());
+            master.repaint();
         }
     }
 }
