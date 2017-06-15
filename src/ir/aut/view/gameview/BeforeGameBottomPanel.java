@@ -2,9 +2,7 @@ package ir.aut.view.gameview;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 /**
  * Created by Milad on 6/15/2017.
@@ -91,10 +89,11 @@ public class BeforeGameBottomPanel extends JPanel {
         this.add(oneLbl);
 
         MouseHandler mh = new MouseHandler();
-        block4.addMouseListener(mh);
-        block3.addMouseListener(mh);
-        block2.addMouseListener(mh);
-        block1.addMouseListener(mh);
+        fourLbl.addMouseListener(mh);
+        threeLbl.addMouseListener(mh);
+        twoLbl.addMouseListener(mh);
+        twoLbl.addMouseListener(mh);
+
         this.setVisible(true);
     }
 
@@ -121,21 +120,21 @@ public class BeforeGameBottomPanel extends JPanel {
         this.master = master;
     }
 
-    private class MouseHandler extends MouseAdapter {
+    private class MouseHandler extends MouseAdapter implements MouseListener, MouseMotionListener {
         @Override
         public void mousePressed(MouseEvent e) {
-            if (e.getSource() == block4) {
+            if (e.getSource() == fourLbl) {
                 SeaPanel.RECT_SIZE = 4;
-                fourLbl.setText("x" + (Character.getNumericValue(fourLbl.getText().charAt(1)) - 1));
-            } else if (e.getSource() == block3) {
+                block4.setText("x" + (Character.getNumericValue(block4.getText().charAt(1)) - 1));
+            } else if (e.getSource() == threeLbl) {
                 SeaPanel.RECT_SIZE = 3;
-                threeLbl.setText("x" + (Character.getNumericValue(threeLbl.getText().charAt(1)) - 1));
-            } else if (e.getSource() == block2) {
+                block3.setText("x" + (Character.getNumericValue(block3.getText().charAt(1)) - 1));
+            } else if (e.getSource() == twoLbl) {
                 SeaPanel.RECT_SIZE = 2;
-                twoLbl.setText("x" + (Character.getNumericValue(twoLbl.getText().charAt(1)) - 1));
-            } else if (e.getSource() == block1) {
+                block2.setText("x" + (Character.getNumericValue(block2.getText().charAt(1)) - 1));
+            } else if (e.getSource() == oneLbl) {
                 SeaPanel.RECT_SIZE = 1;
-                oneLbl.setText("x" + (Character.getNumericValue(oneLbl.getText().charAt(1)) - 1));
+                block1.setText("x" + (Character.getNumericValue(block1.getText().charAt(1)) - 1));
             }
         }
     }

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +69,7 @@ public class SeaPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         g.setColor(Color.blue);
         if (!rectangles.isEmpty()) {
             for (Rectangle anRectangle : rectangles) {
@@ -79,9 +81,10 @@ public class SeaPanel extends JPanel {
         rectHeight *= RECT_SIZE;
         if (mousePoint != null)
             g.fillRect(mousePoint.x, mousePoint.y, rectWidth, rectHeight);
+
     }
 
-    private class MouseHandler extends MouseAdapter implements MouseMotionListener {
+    private class MouseHandler extends MouseAdapter implements MouseMotionListener,MouseListener {
         @Override
         public void mouseReleased(MouseEvent e) {
             rectangles.add(new Rectangle(mousePoint.x, mousePoint.y, rectWidth, rectHeight));
@@ -89,12 +92,14 @@ public class SeaPanel extends JPanel {
             RECT_SIZE = 0;
             rectHeight = 0;
             rectWidth = 0;
+            mousePoint=null;
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseMoved(MouseEvent e) {
             mousePoint = e.getPoint();
-            System.out.println("hello3333");
+            System.out.println(RECT_SIZE);
+            System.out.println(e.getPoint());
             repaint();
         }
 
