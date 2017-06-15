@@ -18,5 +18,6 @@ public class Main {
 //        jFrame.add(gameChatPanel);
 //        jFrame.setVisible(true);
 //        jFrame.setSize(350, 700);
+        System.out.println();
     }
 }
