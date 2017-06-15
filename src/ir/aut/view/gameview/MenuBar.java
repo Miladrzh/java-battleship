@@ -1,6 +1,7 @@
-package ir.aut.view;
+package ir.aut.view.gameview;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,15 +17,20 @@ public class MenuBar extends JMenuBar implements ActionListener {
     private JMenuItem chatHistory;
     private JMenuItem wikiPedia;
 
-    public MenuBar() {
+    public MenuBar(int xCor, int yCor, int xSize, int ySize) {
         file = new JMenu("File");
         help = new JMenu("Help");
         chatHistory = new JMenuItem("Chat History");
         wikiPedia = new JMenuItem("Wikipedia");
+        this.setBackground(new Color(102,158,200));
         file.add(chatHistory);
         help.add(wikiPedia);
+        add(file);
+        add(help);
         chatHistory.addActionListener(this);
         wikiPedia.addActionListener(this);
+        this.setLocation(xCor, yCor);
+        this.setSize(xSize, ySize);
     }
 
     @Override
