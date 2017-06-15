@@ -51,8 +51,11 @@ public class SeaPanel extends JPanel {
                 this.add(x);
             }
         }
+        MouseHandler handler = new MouseHandler();
+        addMouseMotionListener(handler);
+        addMouseListener(handler);
         this.setVisible(true);
-        addMouseMotionListener(new MouseHandler());
+
     }
 
     public boolean hit(SeaCellCordinate cor) {
@@ -82,6 +85,7 @@ public class SeaPanel extends JPanel {
         @Override
         public void mouseReleased(MouseEvent e) {
             rectangles.add(new Rectangle(mousePoint.x, mousePoint.y, rectWidth, rectHeight));
+            System.out.println("we");
             RECT_SIZE = 0;
             rectHeight = 0;
             rectWidth = 0;
@@ -94,10 +98,5 @@ public class SeaPanel extends JPanel {
             repaint();
         }
 
-        @Override
-        public void mouseMoved(MouseEvent e) {
-            System.out.println("hello");
-
-        }
     }
 }
