@@ -18,4 +18,8 @@ public class GameFrame extends JFrame {
         this.setVisible(true);
 
     }
+
+    public static void changeBottomPanel(){
+
+    }
 }
