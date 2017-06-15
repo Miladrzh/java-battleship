@@ -5,8 +5,12 @@ package ir.aut.view.gameview;
  */
 public class MasterSeaPanel {
     SeaPanel seaPanel;
-    public MasterSeaPanel (int xCor, int yCor, int xSize, int ySize){
-        seaPanel = new SeaPanel(xCor , yCor , xSize , ySize);
+    boolean enemy;
+    public MasterSeaPanel (int xCor, int yCor, int xSize, int ySize , boolean enemy){
+        if (enemy)
+            seaPanel = new EnemySeaPanel(xCor , yCor , xSize , ySize);
+        else
+            seaPanel = new MySeaPanel(xCor,yCor,xSize,ySize);
         for (int i = 1 ; i <= 10 ; i++){
             for (int j = 1 ; j <= 10 ; j++){
                 SeaCellCordinate tmp = new SeaCellCordinate(i , j);

@@ -7,9 +7,9 @@ import javax.swing.*;
  */
 public class GameFrame extends JFrame {
     public MasterSeaPanel enemyMasterSea;
-    public SeaPanel enemySea;
+    public EnemySeaPanel enemySea;
     public MasterSeaPanel myMasterSea;
-    public SeaPanel mySea;
+    public MySeaPanel mySea;
     public MenuBar menuBar;
     public InGameBottomPanel inGameBottomPanel;
     public BeforeGameBottomPanel beforeGameBottomPanel;
@@ -18,10 +18,10 @@ public class GameFrame extends JFrame {
     public GameFrame(int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
 
-        myMasterSea = new MasterSeaPanel(92, 65, 438, 438);
-        enemyMasterSea = new MasterSeaPanel(92 , 65 , 438 , 438);
-        mySea = myMasterSea.seaPanel;
-        enemySea = enemyMasterSea.seaPanel;
+        myMasterSea = new MasterSeaPanel(92, 65, 438, 438 , false);
+        enemyMasterSea = new MasterSeaPanel(92 , 65 , 438 , 438 , true);
+        mySea = (MySeaPanel)myMasterSea.seaPanel;
+        enemySea = (EnemySeaPanel)enemyMasterSea.seaPanel;
         enemySea.setVisible(false);
 
         menuBar = new MenuBar(0, 0, 666, 30);
@@ -51,13 +51,15 @@ public class GameFrame extends JFrame {
         System.out.println("change");
         inGameBottomPanel.setVisible(true);
         beforeGameBottomPanel.setVisible(false);
+        enemySea.setVisible(true);
+        mySea.setVisible(false);
     }
 
     public void resetBeforeBottomPanel() {
         beforeGameBottomPanel.setVisible(false);
         mySea.setVisible(false);
 
-        mySea = new SeaPanel(92, 65, 438, 438);
+        mySea = new MySeaPanel(92, 65, 438, 438);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
         beforeGameBottomPanel.setMaster(this);
 

@@ -2,22 +2,22 @@ package ir.aut.view.gameview;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Milad on 6/14/2017.
  */
-public class SeaPanel extends JPanel {
+public abstract class SeaPanel extends JPanel {
     static int RECT_SIZE = 0;
     int rectWidth, rectHeight;
     ArrayList<Rectangle> rectangles;
     Point mousePoint;
-    public HashMap<SeaCellCordinate, SeaCell> total = new HashMap<>();
+    protected HashMap<SeaCellCordinate, SeaCell> total = new HashMap<>();
+
+    public SeaPanel (){
+
+    }
 
     public SeaPanel(int xCor, int yCor, int xSize, int ySize) {
         super();
@@ -35,28 +35,7 @@ public class SeaPanel extends JPanel {
             this.add(x);
         }
 
-        for (int i = 1; i <= 10; i++) {
-            for (int j = 0; j <= 10; j++) {
-                if (j == 0) {
-                    JLabel x = new JLabel();
-                    x.setText("        " + Integer.toString(i));
-                    this.add(x);
-                    continue;
-                }
-                SeaCell x = new SeaCell(i, j);
-                x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                if (i == 10)
-                    x.setSheep(true);
-
-                total.put(x.getCor(), x);
-                this.add(x);
-            }
-        }
-        MouseHandler handler = new MouseHandler();
-        addMouseMotionListener(handler);
-        addMouseListener(handler);
         this.setVisible(true);
-
     }
 
     public boolean hit(SeaCellCordinate cor) {
@@ -81,24 +60,6 @@ public class SeaPanel extends JPanel {
         rectHeight *= RECT_SIZE;
         if (mousePoint != null)
             g.fillRect(mousePoint.x, mousePoint.y, rectWidth, rectHeight);
-
-    }
-
-    private class MouseHandler extends MouseAdapter implements MouseMotionListener,MouseListener {
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            rectangles.add(new Rectangle(mousePoint.x, mousePoint.y, rectWidth, rectHeight));
-            System.out.println("we");
-            RECT_SIZE = 0;
-            rectHeight = 0;
-            rectWidth = 0;
-            mousePoint=null;
-        }
-
-        @Override
-        public void mouseMoved(MouseEvent e) {
-
-        }
 
     }
 }
