@@ -7,7 +7,8 @@ import java.awt.*;
  */
 public class Rotator {
 
-    public static Rectangle rotate90(int x, int y, int width, int height) {
+    public static Rectangle rotate90(Rectangle r) {
+        int x = r.x , y = r.y , width = r.width , height = r.height;
         int x2 = x + width, y2 = y + height;
         int resX = -y, resY = x, resX1 = -y2, resY1 = x2;
         Rectangle ret = new Rectangle(Math.min(resX, resX1), Math.min(resY, resY1), Math.abs(resX - resX1), Math.abs(resY - resY1));
