@@ -1,5 +1,6 @@
 import ir.aut.view.gameview.GameChatPanel;
 import ir.aut.view.gameview.GameFrame;
+import ir.aut.view.gameview.MasterGameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,14 +10,13 @@ import java.awt.*;
  */
 public class Main {
     public static void main(String[] args) {
-//        GameFrame field = new GameFrame(50 , 10 , 1000 , 700);
-        GameChatPanel gameChatPanel = new GameChatPanel("reza", 0, 0, 332, 690);
-////        gameChatPanel
+        MasterGameFrame field = new MasterGameFrame(50, 10, 1000, 700);
+
 //        field.add(gameChatPanel);
-        JFrame jFrame = new JFrame("milad");
-        jFrame.setLayout(null);
-        jFrame.add(gameChatPanel);
-        jFrame.setVisible(true);
-        jFrame.setSize(350, 700);
+//        JFrame jFrame = new JFrame("milad");
+//        jFrame.setLayout(null);
+//        jFrame.add(gameChatPanel);
+//        jFrame.setVisible(true);
+//        jFrame.setSize(350, 700);
     }
 }

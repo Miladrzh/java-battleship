@@ -51,9 +51,9 @@ public class BeforeGameBottomPanel extends JPanel {
         block2 = new JLabel("x3");
         block1 = new JLabel("x4");
         block4.setBounds(200, 10, 30, 20);
-        block3.setBounds(200, 40, 30, 20);
-        block2.setBounds(200, 70, 30, 20);
-        block1.setBounds(200, 100, 30, 20);
+        block3.setBounds(200, 38, 30, 20);
+        block2.setBounds(200, 68, 30, 20);
+        block1.setBounds(200, 93, 30, 20);
         this.add(block1);
         this.add(block2);
         this.add(block3);

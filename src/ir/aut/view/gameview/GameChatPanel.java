@@ -21,13 +21,13 @@ public class GameChatPanel extends JPanel implements ActionListener {
     public GameChatPanel(String enemyName, int xCor, int yCor, int xSize, int ySize) {
 //        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setLayout(null);
-        chatToLbl = new JLabel("Chat to " + enemyName);
+        chatToLbl = new JLabel("  Chat to: " + enemyName);
         chatToLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         chatPanel = new ChatPanel(enemyName);
         typeTextField = new JTextField("Type here ...", 50);
         chatToLbl.setBounds(0, 0, xSize, ySize / 12);
-        chatPanel.setBounds(0, ySize / 12, xSize, ySize * 5 / 6);
-        typeTextField.setBounds(0, ySize * 11 / 12, xSize, ySize / 12);
+        chatPanel.setBounds(0, ySize / 12, xSize, ySize * 3 / 4);
+        typeTextField.setBounds(0, ySize * 5 / 6, xSize, ySize / 12);
         add(chatToLbl);
 //        add(Box.createRigidArea(new Dimension(0, 4)));
         add(chatPanel);
