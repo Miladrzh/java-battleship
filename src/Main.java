@@ -19,6 +19,7 @@ public class Main {
             x = inp.nextInt();
             y = inp.nextInt();
             field.gameFrame.mySea.hit(new SeaCellCordinate(x , y));
+
         }
     }
 }
