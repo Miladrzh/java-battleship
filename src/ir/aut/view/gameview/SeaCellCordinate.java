@@ -1,4 +1,4 @@
-package ir.aut.view;
+package ir.aut.view.gameview;
 
 /**
  * Created by Milad on 6/14/2017.

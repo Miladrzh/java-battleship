@@ -1,4 +1,4 @@
-package ir.aut.view;
+package ir.aut.view.gameview;
 
 import javax.swing.*;
 import java.awt.*;

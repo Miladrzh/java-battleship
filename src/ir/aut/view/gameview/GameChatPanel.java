@@ -1,4 +1,7 @@
-package ir.aut.view;
+package ir.aut.view.gameview;
+
+import ir.aut.view.ChatPanel;
+import ir.aut.view.MessagePanel;
 
 import javax.swing.*;
 import java.awt.*;

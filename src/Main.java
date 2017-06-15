@@ -1,6 +1,4 @@
-import ir.aut.view.GameFrame;
-
-import java.awt.*;
+import ir.aut.view.gameview.GameFrame;
 
 /**
  * Created by Milad on 6/14/2017.
