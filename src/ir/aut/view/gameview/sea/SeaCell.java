@@ -1,12 +1,7 @@
-package ir.aut.view.gameview;
+package ir.aut.view.gameview.sea;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.HashMap;
 
 /**
  * Created by Milad on 6/14/2017.
@@ -16,7 +11,8 @@ public abstract class SeaCell extends JLabel {
     public SeaCellCordinate cor;
     public SeaPanel master;
 
-    public SeaCell(){}
+    public SeaCell() {
+    }
 
     public SeaCell(int xCor, int yCor) {
         super();

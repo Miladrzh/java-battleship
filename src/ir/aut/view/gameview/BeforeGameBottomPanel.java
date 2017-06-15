@@ -1,5 +1,7 @@
 package ir.aut.view.gameview;
 
+import ir.aut.view.gameview.sea.SeaPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -92,31 +94,15 @@ public class BeforeGameBottomPanel extends JPanel {
         fourLbl.addMouseListener(mh);
         threeLbl.addMouseListener(mh);
         twoLbl.addMouseListener(mh);
-        twoLbl.addMouseListener(mh);
+        oneLbl.addMouseListener(mh);
 
         this.setVisible(true);
     }
 
 
-    public void setBlock4(String s) {
-        block4.setText(s);
-    }
-
-    public void setBlock3(String s) {
-        block3.setText(s);
-    }
-
-    public void setBlock2(String s) {
-        block2.setText(s);
-    }
-
-    public void setBlock1(String s) {
-        block1.setText(s);
-    }
-
     public void setMaster(GameFrame master) {
         if (master == null)
-            System.out.println("wer");
+            return;
         this.master = master;
     }
 
@@ -135,6 +121,22 @@ public class BeforeGameBottomPanel extends JPanel {
             } else if (e.getSource() == oneLbl) {
                 SeaPanel.RECT_SIZE = 1;
                 block1.setText("x" + (Character.getNumericValue(block1.getText().charAt(1)) - 1));
+            }
+            if (Character.getNumericValue(block4.getText().charAt(1)) == 0) {
+                fourLbl.setVisible(false);
+                block4.setVisible(false);
+            }
+            if (Character.getNumericValue(block3.getText().charAt(1)) == 0) {
+                block3.setVisible(false);
+                threeLbl.setVisible(false);
+            }
+            if (Character.getNumericValue(block2.getText().charAt(1)) == 0) {
+                block2.setVisible(false);
+                twoLbl.setVisible(false);
+            }
+            if (Character.getNumericValue(block1.getText().charAt(1)) == 0) {
+                block1.setVisible(false);
+                oneLbl.setVisible(false);
             }
         }
     }

@@ -12,6 +12,7 @@ public class InGameBottomPanel extends JPanel {
     private JLabel enemy;
     private JButton leaveButton;
     private GameFrame master;
+
     public InGameBottomPanel(String enemyName, int xCor, int yCor, int xSize, int ySize) {
         you = new JLabel("You");
         enemy = new JLabel(enemyName);

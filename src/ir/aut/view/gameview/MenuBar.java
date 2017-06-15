@@ -22,7 +22,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
         help = new JMenu("Help");
         chatHistory = new JMenuItem("Chat History");
         wikiPedia = new JMenuItem("Wikipedia");
-        this.setBackground(new Color(102,158,200));
+        this.setBackground(new Color(102, 158, 200));
         file.add(chatHistory);
         help.add(wikiPedia);
         add(file);

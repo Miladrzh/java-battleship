@@ -1,11 +1,6 @@
-import ir.aut.tools.Rotator;
-import ir.aut.view.gameview.GameChatPanel;
-import ir.aut.view.gameview.GameFrame;
 import ir.aut.view.gameview.MasterGameFrame;
-import ir.aut.view.gameview.SeaCellCordinate;
+import ir.aut.view.gameview.sea.SeaCellCordinate;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Scanner;
 
 /**
