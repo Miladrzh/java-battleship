@@ -2,11 +2,13 @@ package ir.aut.view.gameview;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * Created by Milad on 6/14/2017.
  */
 public class SeaPanel extends JPanel {
+    public HashMap< SeaCellCordinate , SeaCell > total = new HashMap<>();
     public SeaPanel(int xCor, int yCor, int xSize, int ySize) {
         super();
         this.setBackground(new Color(228, 245, 240));
@@ -35,12 +37,18 @@ public class SeaPanel extends JPanel {
                 if (i == 10)
                     x.setSheep(true);
 
-                SeaCell.total.put(x.getCor(), x);
+                total.put(x.getCor(), x);
                 this.add(x);
             }
         }
-
         this.setVisible(true);
     }
 
+    public boolean hit(SeaCellCordinate cor){
+        SeaCell now = total.get(cor);
+        if (now == null)
+            return false;
+        now.hit();
+        return true;
+    }
 }
