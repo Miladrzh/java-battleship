@@ -11,8 +11,8 @@ import java.awt.event.MouseMotionListener;
  */
 public class MySeaCell extends SeaCell {
 
-    public MySeaCell (int xCor, int yCor){
-        super(xCor , yCor);
+    public MySeaCell(int xCor, int yCor) {
+        super(xCor, yCor);
         CellListener cellListener = new CellListener();
         this.addMouseListener(cellListener);
         this.addMouseMotionListener(cellListener);
@@ -30,13 +30,14 @@ public class MySeaCell extends SeaCell {
             master.RECT_SIZE = 0;
             master.rectHeight = 0;
             master.rectWidth = 0;
-            master.mousePoint=null;
+            master.mousePoint = null;
+            master.requestFocus();
 
         }
 
-        public void mouseMoved(MouseEvent e){
+        public void mouseMoved(MouseEvent e) {
 
-            master.mousePoint = ((SeaCell)e.getSource()).getLocation();
+            master.mousePoint = ((SeaCell) e.getSource()).getLocation();
             master.repaint();
         }
     }
