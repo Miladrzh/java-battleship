@@ -14,15 +14,20 @@ import java.util.HashMap;
 public class SeaCell extends JLabel {
     private boolean sheep = false;
     public SeaCellCordinate cor;
-    static HashMap < SeaCellCordinate , SeaCell > total = new HashMap<>();
-    public SeaCell(int xCor , int yCor) {
+    public SeaPanel master;
+
+    public SeaCell(int xCor, int yCor) {
         super();
-        this.cor = new SeaCellCordinate(xCor , yCor);
+        this.cor = new SeaCellCordinate(xCor, yCor);
         this.addMouseListener(new CellListener());
     }
 
-    public SeaCellCordinate getCor(){
+    public SeaCellCordinate getCor() {
         return cor;
+    }
+
+    public void setMaster(SeaPanel master) {
+        this.master = master;
     }
 
     public boolean isSheep() {
@@ -45,33 +50,48 @@ public class SeaCell extends JLabel {
         return true;
     }
 
-    public void setClean(int x , int y){
+    public void setClean(int x, int y) {
         if (x > 10 || x < 1)
             return;
         if (y > 10 || y < 1)
             return;
-        SeaCell nei = total.get(new SeaCellCordinate(x , y));
+        SeaCell nei = master.total.get(new SeaCellCordinate(x, y));
         if (nei == null)
             return;
 
         nei.setOpaque(true);
-        nei.setBackground(new Color(200 , 188, 19));
+        nei.setBackground(new Color(200, 188, 19));
+    }
+
+    public void hit() {
+        if (this.isSheep()) {
+            setHit(this);
+            int x = this.cor.xCor;
+            int y = this.cor.yCor;
+            setClean(x + 1, y + 1);
+            setClean(x + 1, y - 1);
+            setClean(x - 1, y + 1);
+            setClean(x - 1, y - 1);
+        } else {
+            setMiss(this);
+        }
     }
 
     public class CellListener extends MouseAdapter implements MouseListener, MouseMotionListener {
         public CellListener() {
 
         }
+
         @Override
         public void mouseClicked(MouseEvent e) {
             if (((SeaCell) e.getSource()).isSheep()) {
                 setHit((SeaCell) e.getSource());
                 int x = ((SeaCell) e.getSource()).cor.xCor;
                 int y = ((SeaCell) e.getSource()).cor.yCor;
-                setClean(x + 1 , y + 1);
-                setClean(x + 1 , y - 1);
-                setClean(x - 1 , y + 1);
-                setClean(x - 1 , y - 1);
+                setClean(x + 1, y + 1);
+                setClean(x + 1, y - 1);
+                setClean(x - 1, y + 1);
+                setClean(x - 1, y - 1);
             } else {
                 setMiss((SeaCell) e.getSource());
             }

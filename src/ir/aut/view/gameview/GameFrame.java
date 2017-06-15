@@ -6,15 +6,17 @@ import javax.swing.*;
  * Created by Milad on 6/14/2017.
  */
 public class GameFrame extends JFrame {
-    SeaPanel sea;
-    MenuBar menuBar;
-    InGameBottomPanel inGameBottomPanel;
-    BeforeGameBottomPanel beforeGameBottomPanel;
-    GameChatPanel gameChatPanel;
+    public MasterSeaPanel myMasterSea;
+    public SeaPanel mySea;
+    public MenuBar menuBar;
+    public InGameBottomPanel inGameBottomPanel;
+    public BeforeGameBottomPanel beforeGameBottomPanel;
+    public GameChatPanel gameChatPanel;
 
     public GameFrame(int xCor, int yCor, int xSize, int ySize) {
         super();
-        sea = new SeaPanel(92, 65, 438, 438);
+        myMasterSea = new MasterSeaPanel(92, 65, 438, 438);
+        mySea = myMasterSea.seaPanel;
         menuBar = new MenuBar(0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel("reza", 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
@@ -24,7 +26,7 @@ public class GameFrame extends JFrame {
         this.setLayout(null);
         this.setLocation(xCor, yCor);
         this.setSize(xSize, ySize);
-        this.add(sea);
+        this.add(mySea);
         this.add(menuBar);
         this.add(inGameBottomPanel);
         this.add(beforeGameBottomPanel);
@@ -42,13 +44,13 @@ public class GameFrame extends JFrame {
 
     public void resetBeforeBottomPanel() {
         beforeGameBottomPanel.setVisible(false);
-        sea.setVisible(false);
+        mySea.setVisible(false);
 
-        sea = new SeaPanel(92, 65, 438, 438);
+        mySea = new SeaPanel(92, 65, 438, 438);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
         beforeGameBottomPanel.setMaster(this);
 
-        this.add(sea);
+        this.add(mySea);
         this.add(beforeGameBottomPanel);
     }
 
