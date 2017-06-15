@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 public class BeforeGameBottomPanel extends JPanel {
     public JButton reset, ready;
     public JLabel block4, block3, block2, block1;
+    public JLabel fourLbl, threeLbl, twoLbl, oneLbl;
+
     private GameFrame master;
+
     public BeforeGameBottomPanel(int xCor, int yCor, int xSize, int ySize) {
         super();
         this.setLayout(null);
@@ -50,17 +53,59 @@ public class BeforeGameBottomPanel extends JPanel {
         block3 = new JLabel("x2");
         block2 = new JLabel("x3");
         block1 = new JLabel("x4");
-        block4.setBounds(200, 10, 30, 20);
-        block3.setBounds(200, 38, 30, 20);
-        block2.setBounds(200, 68, 30, 20);
-        block1.setBounds(200, 93, 30, 20);
+        fourLbl = new JLabel();
+        threeLbl = new JLabel();
+        twoLbl = new JLabel();
+        oneLbl = new JLabel();
+
+        block4.setBounds(180, 10, 30, 20);
+        block3.setBounds(180, 35, 30, 20);
+        block2.setBounds(180, 65, 30, 20);
+        block1.setBounds(180, 90, 30, 20);
+        fourLbl.setBounds(10, 10, 150, 20);
+        threeLbl.setBounds(10, 35, 112, 20);
+        twoLbl.setBounds(10, 65, 75, 20);
+        oneLbl.setBounds(10, 90, 35, 20);
+        fourLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        threeLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        twoLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        oneLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        fourLbl.setOpaque(true);
+        threeLbl.setOpaque(true);
+        twoLbl.setOpaque(true);
+        oneLbl.setOpaque(true);
+        fourLbl.setBackground(new Color(102, 158, 200));
+        threeLbl.setBackground(new Color(102, 158, 200));
+        twoLbl.setBackground(new Color(102, 158, 200));
+        oneLbl.setBackground(new Color(102, 158, 200));
+
         this.add(block1);
         this.add(block2);
         this.add(block3);
         this.add(block4);
-
+        this.add(fourLbl);
+        this.add(threeLbl);
+        this.add(twoLbl);
+        this.add(oneLbl);
 
         this.setVisible(true);
+    }
+
+
+    public void setBlock4(String s) {
+        block4.setText(s);
+    }
+
+    public void setBlock3(String s) {
+        block3.setText(s);
+    }
+
+    public void setBlock2(String s) {
+        block2.setText(s);
+    }
+
+    public void setBlock1(String s) {
+        block1.setText(s);
     }
 
     public void setMaster(GameFrame master) {
