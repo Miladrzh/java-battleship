@@ -1,5 +1,4 @@
-import ir.aut.view.InGameButtonPanel;
-import ir.aut.view.gameview.GameFrame;
+import ir.aut.view.gameview.InGameButtonPanel;
 
 import javax.swing.*;
 
