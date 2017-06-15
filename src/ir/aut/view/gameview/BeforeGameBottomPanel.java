@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 public class BeforeGameBottomPanel extends JPanel {
     public JButton reset, ready;
     public JLabel block4, block3, block2, block1;
-
+    private GameFrame master;
     public BeforeGameBottomPanel(int xCor, int yCor, int xSize, int ySize) {
         super();
         this.setLayout(null);
@@ -22,6 +22,12 @@ public class BeforeGameBottomPanel extends JPanel {
         reset.setSize(80, 30);
         reset.setLocation(465, 80);
         reset.setVisible(true);
+        reset.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                master.resetBeforeBottomPanel();
+            }
+        });
         this.add(reset);
 
         // Ready Button
@@ -32,7 +38,9 @@ public class BeforeGameBottomPanel extends JPanel {
         ready.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameFrame.changeBottomPanel();
+                if (master == null)
+                    System.out.println("Sdfds");
+                master.changeBottomPanel();
             }
         });
         this.add(ready);
@@ -53,5 +61,11 @@ public class BeforeGameBottomPanel extends JPanel {
 
 
         this.setVisible(true);
+    }
+
+    public void setMaster(GameFrame master) {
+        if (master == null)
+            System.out.println("wer");
+        this.master = master;
     }
 }
