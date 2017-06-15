@@ -7,7 +7,7 @@ import java.awt.*;
  * Created by Lenovo on 6/15/2017.
  */
 public class MessagePanel extends JPanel {
-    public static final int MY = 0;
+    public static final int ME = 0;
     public static final int ENEMY = 1;
     private JLabel titleLbl;
     private JLabel messageLbl;
