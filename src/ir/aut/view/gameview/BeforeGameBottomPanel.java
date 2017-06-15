@@ -3,6 +3,8 @@ package ir.aut.view.gameview;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Milad on 6/15/2017.
@@ -88,6 +90,11 @@ public class BeforeGameBottomPanel extends JPanel {
         this.add(twoLbl);
         this.add(oneLbl);
 
+        MouseHandler mh = new MouseHandler();
+        block4.addMouseListener(mh);
+        block3.addMouseListener(mh);
+        block2.addMouseListener(mh);
+        block1.addMouseListener(mh);
         this.setVisible(true);
     }
 
@@ -112,5 +119,24 @@ public class BeforeGameBottomPanel extends JPanel {
         if (master == null)
             System.out.println("wer");
         this.master = master;
+    }
+
+    private class MouseHandler extends MouseAdapter {
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if (e.getSource() == block4) {
+                SeaPanel.RECT_SIZE = 4;
+                fourLbl.setText("x" + (Character.getNumericValue(fourLbl.getText().charAt(1)) - 1));
+            } else if (e.getSource() == block3) {
+                SeaPanel.RECT_SIZE = 3;
+                threeLbl.setText("x" + (Character.getNumericValue(threeLbl.getText().charAt(1)) - 1));
+            } else if (e.getSource() == block2) {
+                SeaPanel.RECT_SIZE = 2;
+                twoLbl.setText("x" + (Character.getNumericValue(twoLbl.getText().charAt(1)) - 1));
+            } else if (e.getSource() == block1) {
+                SeaPanel.RECT_SIZE = 1;
+                oneLbl.setText("x" + (Character.getNumericValue(oneLbl.getText().charAt(1)) - 1));
+            }
+        }
     }
 }
