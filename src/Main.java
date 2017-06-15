@@ -1,3 +1,4 @@
+import ir.aut.tools.Rotator;
 import ir.aut.view.gameview.GameChatPanel;
 import ir.aut.view.gameview.GameFrame;
 import ir.aut.view.gameview.MasterGameFrame;
@@ -19,7 +20,16 @@ public class Main {
             x = inp.nextInt();
             y = inp.nextInt();
             field.gameFrame.mySea.hit(new SeaCellCordinate(x , y));
-
+            field.gameFrame.showEnemySea();
         }
+
+//        while (true){
+//            int x , y , x2 , y2;
+//            x = inp.nextInt();
+//            y = inp.nextInt();
+//            x2 = inp.nextInt();
+//            y2 = inp.nextInt();
+//            System.out.println(Rotator.rotate90(x , y , x2 , y2));
+//        }
     }
 }
