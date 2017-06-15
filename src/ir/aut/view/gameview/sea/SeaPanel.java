@@ -1,4 +1,4 @@
-package ir.aut.view.gameview;
+package ir.aut.view.gameview.sea;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +9,13 @@ import java.util.HashMap;
  * Created by Milad on 6/14/2017.
  */
 public abstract class SeaPanel extends JPanel {
-    static int RECT_SIZE = 0;
+    public static int RECT_SIZE = 0;
     int rectWidth, rectHeight;
     ArrayList<Rectangle> rectangles;
     Point mousePoint;
     protected HashMap<SeaCellCordinate, SeaCell> total = new HashMap<>();
 
-    public SeaPanel (){
+    public SeaPanel() {
 
     }
 

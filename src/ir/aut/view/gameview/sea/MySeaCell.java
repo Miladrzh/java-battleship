@@ -1,4 +1,4 @@
-package ir.aut.view.gameview;
+package ir.aut.view.gameview.sea;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -27,7 +27,6 @@ public class MySeaCell extends SeaCell {
         @Override
         public void mouseClicked(MouseEvent e) {
             master.rectangles.add(new Rectangle(master.mousePoint.x, master.mousePoint.y, master.rectWidth, master.rectHeight));
-            System.out.println("we");
             master.RECT_SIZE = 0;
             master.rectHeight = 0;
             master.rectWidth = 0;
@@ -38,8 +37,6 @@ public class MySeaCell extends SeaCell {
         public void mouseMoved(MouseEvent e){
 
             master.mousePoint = ((SeaCell)e.getSource()).getLocation();
-            System.out.println(master.RECT_SIZE);
-            System.out.println(e.getPoint());
             master.repaint();
         }
     }
