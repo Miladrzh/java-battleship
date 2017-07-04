@@ -12,6 +12,12 @@ public class ChatMessage extends BaseMessage {
     public ChatMessage(String name, String messageText) {
         this.name = name;
         this.textMessage = messageText;
+        serialize();
+    }
+
+    public ChatMessage(byte[] b) {
+        mSerialized = b;
+        deserialize();
     }
 
     @Override

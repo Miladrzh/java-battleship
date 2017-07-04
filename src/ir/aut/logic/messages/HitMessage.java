@@ -6,11 +6,17 @@ import java.nio.ByteBuffer;
  * Created by Milad on 7/4/2017.
  */
 public class HitMessage extends BaseMessage {
-    int xCore, yCore;
+    int xCor, yCor;
 
     public HitMessage(int xCore, int yCore) {
-        this.xCore = xCore;
-        this.yCore = yCore;
+        this.xCor = xCore;
+        this.yCor = yCore;
+        serialize();
+    }
+
+    public HitMessage(byte[] b) {
+        mSerialized = b;
+        deserialize();
     }
 
     @Override
@@ -20,8 +26,8 @@ public class HitMessage extends BaseMessage {
         byteBuffer.putInt(messageLength);
         byteBuffer.put(MessageTypes.PROTOCOL_VERSION);
         byteBuffer.put(MessageTypes.HIT);
-        byteBuffer.putInt(xCore);
-        byteBuffer.putInt(yCore);
+        byteBuffer.putInt(xCor);
+        byteBuffer.putInt(yCor);
         mSerialized = byteBuffer.array();
     }
 
@@ -31,8 +37,8 @@ public class HitMessage extends BaseMessage {
         int messageLength = byteBuffer.getInt();
         byte protocolVersion = byteBuffer.get();
         byte messageType = byteBuffer.get();
-        xCore = byteBuffer.getInt();
-        yCore = byteBuffer.getInt();
+        xCor = byteBuffer.getInt();
+        yCor = byteBuffer.getInt();
     }
 
     @Override
