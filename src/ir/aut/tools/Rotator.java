@@ -17,7 +17,5 @@ public class Rotator {
         r.width = r.height;
         r.height = tmp;
         return r;
-
-
     }
 }
