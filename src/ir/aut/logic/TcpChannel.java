@@ -13,11 +13,11 @@ public class TcpChannel {
     private ObjectOutputStream mOutputStream;
     private ObjectInputStream mInputStream;
 
-    public TcpChannel(SocketAddress socketAddress, int timeout){
+    public TcpChannel(SocketAddress socketAddress, int timeout) {
 //        mSocket = new Socket();
     }
 
-    public TcpChannel(Socket socket, int timeout){
+    public TcpChannel(Socket socket, int timeout) {
         mSocket = socket;
 
         try {
@@ -35,9 +35,9 @@ public class TcpChannel {
     /**
      * Try to read specific count from input stream.
      */
-    public byte[] read(final int count){
+    public byte[] read(final int count) {
         byte[] x = new byte[count];
-        for (int i = 0 ; i < count ; i++){
+        for (int i = 0; i < count; i++) {
             try {
                 x[i] = mInputStream.readByte();
             } catch (IOException e) {
@@ -50,7 +50,7 @@ public class TcpChannel {
     /**
      * Write bytes on output stream.
      */
-    public void write(byte[] data){
+    public void write(byte[] data) {
 
     }
 
@@ -58,14 +58,14 @@ public class TcpChannel {
     /**
      * Check socket’s connectivity.
      */
-    public boolean isConnected(){
+    public boolean isConnected() {
         return mSocket.isConnected();
     }
 
     /**
      * Try to close socket and input-output streams.
      */
-    public void closeChannel(){
+    public void closeChannel() {
         try {
             mInputStream.close();
         } catch (IOException e) {
