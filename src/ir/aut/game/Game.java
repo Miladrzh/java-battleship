@@ -1,6 +1,7 @@
 package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
+import ir.aut.logic.messages.ApplyStatusMessage;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
@@ -14,6 +15,7 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
     ConnectionModeFrame connectionModeFrame;
     WaitingForConnectionFrame waitingForConnectionFrame;
     PleaseWaitFrame pleaseWaitFrame;
+    String name = "";
 
     public Game() {
 
@@ -57,5 +59,15 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
     @Override
     public void applyRejected() {
         this.start();
+    }
+
+    @Override
+    public void setNameOfPlayer(String x) {
+        name = x;
+    }
+
+    public void hostResponse(String ip , ApplyStatusMessage message){
+        messageManager.send(ip , message);
+        waitingForConnectionFrame.validate();
     }
 }

@@ -53,9 +53,10 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
+
                     modeFrameMaster.startWaitForConnectionFrame();
                 }
-
+                modeFrameMaster.setNameOfPlayer(nameText.getText());
             }
         });
         exitButton = new JButton("Exit");
