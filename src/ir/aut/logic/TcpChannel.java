@@ -3,6 +3,7 @@ package ir.aut.logic;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.SocketException;
 
 /**
  * Created by Milad on 7/4/2017.
@@ -14,11 +15,33 @@ public class TcpChannel {
     private ObjectInputStream mInputStream;
 
     public TcpChannel(SocketAddress socketAddress, int timeout) {
-//        mSocket = new Socket();
+        mSocket = new Socket();
+        try {
+            mSocket.connect(socketAddress , timeout);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            mInputStream = new ObjectInputStream(mSocket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            mOutputStream = new ObjectOutputStream(mSocket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public TcpChannel(Socket socket, int timeout) {
         mSocket = socket;
+
+        try {
+            socket.setSoTimeout(timeout);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
 
         try {
             mInputStream = new ObjectInputStream(mSocket.getInputStream());
@@ -51,7 +74,11 @@ public class TcpChannel {
      * Write bytes on output stream.
      */
     public void write(byte[] data) {
-
+        try {
+            mOutputStream.write(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

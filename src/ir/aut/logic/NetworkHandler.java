@@ -51,7 +51,10 @@ public class NetworkHandler {
     private class ReceivedMessageConsumer extends Thread {
 
         /**
-         * While channel is connected and stop is not called:           * if there exists message in receivedQueue, then create a message object           *      from appropriate class based on message type byte and pass it through onMessageReceived           * else if receivedQueue is empty, then sleep 100 ms.
+         * While channel is connected and stop is not called:
+         * if there exists message in receivedQueue, then create a message object
+         * from appropriate class based on message type byte and pass it through onMessageReceived
+         * else if receivedQueue is empty, then sleep 100 ms.
          */
         @Override
         public void run() {
