@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
  * Created by Milad on 7/5/2017.
  */
 public class ApplyStatusMessage extends BaseMessage {
-    byte status;
+    public byte status;
 
     public ApplyStatusMessage(byte status) {
         this.status = status;

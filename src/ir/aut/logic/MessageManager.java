@@ -1,6 +1,7 @@
 package ir.aut.logic;
 
 import ir.aut.game.GameInterface;
+import ir.aut.logic.messages.ApplyStatusMessage;
 import ir.aut.logic.messages.BaseMessage;
 import ir.aut.logic.messages.MessageTypes;
 
@@ -46,8 +47,17 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         this.gameInterface = gameInterface;
     }
 
-    public void sendRequestGame(String to, BaseMessage message){
+    public void send(String to, BaseMessage message){
+        for (NetworkHandler i:mNetworkHandlerList){
+            if (i.getID().equals(to)){
+                i.sendMessage(message);
+                break;
+            }
+        }
+    }
 
+    public void send(BaseMessage message){
+        currentNetwork.sendMessage(message);
     }
 
     // type 5
@@ -59,6 +69,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
             gameInterface.applyAccepted();
         }
     }
+
 //    /**
 //     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
 //     * Create a RequestLoginMessage object and sent it through the appropriate network handler.

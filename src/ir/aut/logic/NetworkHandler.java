@@ -38,6 +38,10 @@ public class NetworkHandler extends Thread {
         id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
+    public String getID() {
+        return id;
+    }
+
     /**
      * Add serialized bytes of message to the sendQueue.
      */
