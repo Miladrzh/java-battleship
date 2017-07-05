@@ -1,5 +1,6 @@
 package ir.aut.view.gameview;
 
+import ir.aut.game.GameFrameCallBack;
 import ir.aut.view.gameview.sea.EnemySeaPanel;
 import ir.aut.view.gameview.sea.MasterSeaPanel;
 import ir.aut.view.gameview.sea.MySeaPanel;
@@ -18,10 +19,11 @@ public class GameFrame extends JFrame {
     public InGameBottomPanel inGameBottomPanel;
     public BeforeGameBottomPanel beforeGameBottomPanel;
     public GameChatPanel gameChatPanel;
+    private GameFrameCallBack gameFrameCallBack;
 
-    public GameFrame(int xCor, int yCor, int xSize, int ySize) {
+    public GameFrame(GameFrameCallBack gameFrameCallBack , int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
-
+        this.gameFrameCallBack = gameFrameCallBack;
         myMasterSea = new MasterSeaPanel(92, 65, 438, 438, false);
         enemyMasterSea = new MasterSeaPanel(92, 65, 438, 438, true);
         mySea = (MySeaPanel) myMasterSea.seaPanel;

@@ -2,6 +2,7 @@ package ir.aut.logic;
 
 import ir.aut.game.GameInterface;
 import ir.aut.logic.messages.BaseMessage;
+import ir.aut.logic.messages.MessageTypes;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -49,6 +50,15 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     }
 
+    // type 5
+    public void consumeApplyStatusMessage(ApplyStatusMessage message){
+        if (message.status == 1){
+            gameInterface.applyRejected();
+        }
+        else{
+            gameInterface.applyAccepted();
+        }
+    }
 //    /**
 //     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
 //     * Create a RequestLoginMessage object and sent it through the appropriate network handler.
@@ -79,10 +89,9 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     @Override
     public void onMessageReceived(BaseMessage baseMessage) {
         switch (baseMessage.getMessageType()) {
-            case MessageTypes.REQUEST_GAME:
-                consumeRequestLogin((RequestLoginMessage) baseMessage);
+            case MessageTypes.APPLY_STATUS:
+                consumeApplyStatusMessage((ApplyStatusMessage) baseMessage);
                 break;
-            case
         }
     }
 
