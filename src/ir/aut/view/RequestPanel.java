@@ -1,21 +1,24 @@
 package ir.aut.view;
 
-import com.oracle.xmlns.internal.webservices.jaxws_databinding.JavaMethod;
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
+import ir.aut.game.WaitForConnectionCallBack;
+import ir.aut.logic.messages.ApplyStatusMessage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Lenovo on 6/14/2017.
  */
 public class RequestPanel extends JPanel {
+    private WaitForConnectionCallBack waitForConnectionCallBack;
     private JLabel nameLbl;
     private JLabel ipLbl;
     private JButton reject;
     private JButton accept;
 
-    public RequestPanel(String name, String ip) {
+    public RequestPanel(WaitForConnectionCallBack waitForConnectionCallBack, String name, String ip) {
         setLayout(new GridLayout(3, 1, 10, 10));
         nameLbl = new JLabel(name);
         ipLbl = new JLabel(ip);
@@ -29,5 +32,21 @@ public class RequestPanel extends JPanel {
         add(ipLbl);
         add(buttonPanel);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.waitForConnectionCallBack = waitForConnectionCallBack;
+        ActionHandler actionHandler = new ActionHandler();
+        accept.addActionListener(actionHandler);
+        reject.addActionListener(actionHandler);
+    }
+
+    private class ActionHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == accept) {
+                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 1));
+            } else {
+                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 0));
+                RequestPanel.this.setVisible(false);
+            }
+        }
     }
 }
