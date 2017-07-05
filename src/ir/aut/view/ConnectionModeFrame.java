@@ -4,7 +4,6 @@ import ir.aut.game.ModeFrameCallback;
 import ir.aut.logic.MessageManager;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
