@@ -1,6 +1,7 @@
 package ir.aut.logic;
 
 import ir.aut.logic.messages.BaseMessage;
+import ir.aut.logic.messages.MessageTypes;
 
 import java.net.ServerSocket;
 import java.util.List;
@@ -16,12 +17,15 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      * Instantiate server socket handler and start it. (Call this constructor in host mode)
      */
     public MessageManager(int port) {
+        mServerSocketHandler = new ServerSocketHandler(port, this, this);
     }
 
     /**
      * Instantiate a network handler and start it. (Call this constructor in guest mode)
      */
-    public MessageManager(String ip, int port)
+    public MessageManager(String ip, int port) {
+
+    }
 
     /**
      * IMPORTANT: Request login is an example message and doesn’t relate to this project!
