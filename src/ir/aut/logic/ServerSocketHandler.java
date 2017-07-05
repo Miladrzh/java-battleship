@@ -5,8 +5,8 @@ package ir.aut.logic;
  */
 public class ServerSocketHandler extends Thread {
 
-    public ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback){}
-
+    public ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback) {
+    }
 
 
     /**

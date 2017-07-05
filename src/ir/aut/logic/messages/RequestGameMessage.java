@@ -18,7 +18,7 @@ public class RequestGameMessage extends BaseMessage {
         serialize();
     }
 
-    public RequestGameMessage(byte[] b){
+    public RequestGameMessage(byte[] b) {
         mSerialized = b;
         deserialize();
     }
@@ -60,6 +60,6 @@ public class RequestGameMessage extends BaseMessage {
 
     @Override
     public byte getMessageType() {
-        return (byte)1;
+        return (byte) 1;
     }
 }

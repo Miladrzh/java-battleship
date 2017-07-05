@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 /**
  * Created by Milad on 7/4/2017.
  */
-public class FeedbackMessage extends BaseMessage{
+public class FeedbackMessage extends BaseMessage {
     public int xCor;
     public int yCor;
     public int status;
@@ -17,7 +17,7 @@ public class FeedbackMessage extends BaseMessage{
         serialize();
     }
 
-    public FeedbackMessage(byte[] b){
+    public FeedbackMessage(byte[] b) {
         mSerialized = b;
         deserialize();
     }
@@ -49,6 +49,6 @@ public class FeedbackMessage extends BaseMessage{
 
     @Override
     public byte getMessageType() {
-        return (byte)4;
+        return (byte) 4;
     }
 }

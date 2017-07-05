@@ -17,7 +17,7 @@ public class TcpChannel {
     public TcpChannel(SocketAddress socketAddress, int timeout) {
         mSocket = new Socket();
         try {
-            mSocket.connect(socketAddress , timeout);
+            mSocket.connect(socketAddress, timeout);
         } catch (IOException e) {
             e.printStackTrace();
         }
