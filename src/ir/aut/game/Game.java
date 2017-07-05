@@ -4,11 +4,12 @@ import ir.aut.logic.MessageManager;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
+import ir.aut.view.gameview.GameFrame;
 
 /**
  * Created by Milad on 7/5/2017.
  */
-public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForConnectionCallBack,GameInterface {
+public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForConnectionCallBack,GameInterface,GameFrameCallBack {
     MessageManager messageManager;
     ConnectionModeFrame connectionModeFrame;
     WaitingForConnectionFrame waitingForConnectionFrame;
@@ -46,5 +47,15 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
     public void setMessageManager(MessageManager messageManager) {
         this.messageManager = messageManager;
         messageManager.setGameInterface(this);
+    }
+
+    @Override
+    public void applyAccepted() {
+        GameFrame gameFrame = new GameFrame(this , 50 , 50 ,1000 , 700);
+    }
+
+    @Override
+    public void applyRejected() {
+        this.start();
     }
 }
