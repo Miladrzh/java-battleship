@@ -13,6 +13,7 @@ import java.util.Queue;
  * Created by Milad on 7/5/2017.
  */
 public class NetworkHandler extends Thread {
+    String id;
     private TcpChannel mTcpChannel;
     private Queue<byte[]> mSendQueue;
     private Queue<byte[]> mReceivedQueue;
@@ -20,11 +21,13 @@ public class NetworkHandler extends Thread {
     INetworkHandlerCallback iNetworkHandlerCallback;
 
     public NetworkHandler(SocketAddress socketAddress, INetworkHandlerCallback iNetworkHandlerCallback) {
+
         mTcpChannel = new TcpChannel(socketAddress, 100);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
+        id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
     public NetworkHandler(Socket socket, INetworkHandlerCallback iNetworkHandlerCallback) {
@@ -33,6 +36,7 @@ public class NetworkHandler extends Thread {
         mSendQueue = new LinkedList<>();
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
+        id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
     /**

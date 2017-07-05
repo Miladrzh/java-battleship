@@ -10,7 +10,7 @@ import java.net.SocketException;
  */
 
 public class TcpChannel {
-    private Socket mSocket;
+    public Socket mSocket;
     private ObjectOutputStream mOutputStream;
     private ObjectInputStream mInputStream;
 
