@@ -17,7 +17,7 @@ public class Main {
             field.gameFrame.mySea.hit(new SeaCellCordinate(x , y));
             field.gameFrame.showEnemySea();
         }
-sdfdfvddfv
+
 //        while (true){
 //            int x , y , x2 , y2;
 //            x = inp.nextInt();
