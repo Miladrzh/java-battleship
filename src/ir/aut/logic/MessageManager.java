@@ -1,5 +1,6 @@
 package ir.aut.logic;
 
+import ir.aut.game.GameInterface;
 import ir.aut.logic.messages.BaseMessage;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.List;
  * Created by Milad on 7/4/2017.
  */
 public class MessageManager implements INetworkHandlerCallback, IServerSocketHandlerCallback {
+    private GameInterface gameInterface;
     private ServerSocketHandler mServerSocketHandler;
     private List<NetworkHandler> mNetworkHandlerList;
     private NetworkHandler currentNetwork;
@@ -37,6 +39,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setGameInterface(GameInterface gameInterface) {
+        this.gameInterface = gameInterface;
     }
 
     public void sendRequestGame(String to, BaseMessage message){
@@ -72,12 +78,12 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      */
     @Override
     public void onMessageReceived(BaseMessage baseMessage) {
-//        switch (baseMessage.getMessageType()) {
-//            case MessageTypes.REQUEST_GAME:
-//                consumeRequestLogin((RequestLoginMessage) baseMessage);
-//                break;
-//            case
-//        }
+        switch (baseMessage.getMessageType()) {
+            case MessageTypes.REQUEST_GAME:
+                consumeRequestLogin((RequestLoginMessage) baseMessage);
+                break;
+            case
+        }
     }
 
     @Override

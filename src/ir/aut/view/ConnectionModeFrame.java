@@ -1,5 +1,8 @@
 package ir.aut.view;
 
+import ir.aut.game.ModeFrameCallback;
+import ir.aut.logic.MessageManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +12,8 @@ import java.awt.event.ActionListener;
  * Created by Lenovo on 6/14/2017.
  */
 public class ConnectionModeFrame extends JFrame implements ActionListener {
+
+    private ModeFrameCallback modeFrameMaster;
     private JLabel nameLbl;
     private JLabel portLbl;
     private JLabel ipLbl;
@@ -22,15 +27,16 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
     private JTextField ipText;
     private JTextField portText2;
 
-    public ConnectionModeFrame() {
+    public ConnectionModeFrame(ModeFrameCallback modeFrameMaster) {
         super("Select Connection Mode");
+        this.modeFrameMaster = modeFrameMaster;
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(330, 320);
         nameLbl = new JLabel("Name : ");
         hostButton = new JRadioButton("Host", true);
         portLbl = new JLabel("Port : ");
-        guestButton = new JRadioButton("Gust");
+        guestButton = new JRadioButton("Guest");
         ipLbl = new JLabel("IP : ");
         portLbl2 = new JLabel("Port : ");
         nameText = new JTextField(20);
@@ -38,6 +44,20 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
         portText2 = new JTextField(20);
         ipText = new JTextField(20);
         startButton = new JButton("start");
+        startButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeFrameMaster.closeModeFrame();
+                if (guestButton.isSelected()) {
+                    modeFrameMaster.setMessageManager(new MessageManager(ipText.getText() , Integer.parseInt(portText2.getText())));
+                    modeFrameMaster.startPleaseWaitFrame();
+                } else {
+                    modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
+                    modeFrameMaster.startWaitForConnectionFrame();
+                }
+
+            }
+        });
         exitButton = new JButton("Exit");
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(guestButton);

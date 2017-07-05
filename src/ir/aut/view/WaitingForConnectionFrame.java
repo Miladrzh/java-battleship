@@ -1,5 +1,7 @@
 package ir.aut.view;
 
+import ir.aut.game.WaitForConnectionCallBack;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,9 +10,11 @@ import java.awt.*;
  */
 public class WaitingForConnectionFrame extends JFrame {
     private JLabel rcv;
+    private WaitForConnectionCallBack waitForConnectionCallBack;
 
-    public WaitingForConnectionFrame() {
+    public WaitingForConnectionFrame(WaitForConnectionCallBack waitForConnectionCallBack) {
         super("Waiting For Connection... ");
+        this.waitForConnectionCallBack = waitForConnectionCallBack;
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         //Todo: add JScrollPane
 //        add(new JScrollPane(getContentPane()));
