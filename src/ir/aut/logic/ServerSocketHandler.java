@@ -34,14 +34,12 @@ public class ServerSocketHandler extends Thread {
     @Override
     public void run() {
         while (!serverSocket.isClosed()) {
-            if (serverSocket.isClosed()) {
                 try {
                     Socket jadid = serverSocket.accept();
                     iServerSocketHandlerCallback.onNewConnectionReceived(new NetworkHandler(jadid , iNetworkHandlerCallback));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         }
     }
 

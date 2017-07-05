@@ -3,7 +3,11 @@ package ir.aut.logic;
 import ir.aut.logic.messages.BaseMessage;
 import ir.aut.logic.messages.MessageTypes;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,13 +22,21 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      */
     public MessageManager(int port) {
         mServerSocketHandler = new ServerSocketHandler(port, this, this);
+        mServerSocketHandler.start();
+        mNetworkHandlerList = new LinkedList<>();
     }
 
     /**
      * Instantiate a network handler and start it. (Call this constructor in guest mode)
      */
     public MessageManager(String ip, int port) {
-
+        try {
+            NetworkHandler now = new NetworkHandler(new Socket(InetAddress.getByName(ip) , port) , this);
+            now.start();
+            mNetworkHandlerList =
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
