@@ -96,22 +96,25 @@ public class NetworkHandler extends Thread {
                 if (!mReceivedQueue.isEmpty()) {
                     byte[] message = mReceivedQueue.remove();
                     switch (message[5]) {
-                        case 1: {
+                        case 1:
                             iNetworkHandlerCallback.onMessageReceived(new RequestGameMessage(message));
                             break;
-                        }
-                        case 2: {
+
+                        case 2:
                             iNetworkHandlerCallback.onMessageReceived(new ChatMessage(message));
                             break;
-                        }
-                        case 3: {
+
+                        case 3:
                             iNetworkHandlerCallback.onMessageReceived(new HitMessage(message));
                             break;
-                        }
-                        case 4: {
+
+                        case 4:
                             iNetworkHandlerCallback.onMessageReceived(new FeedbackMessage(message));
                             break;
-                        }
+
+                        case 5:
+                            iNetworkHandlerCallback.onMessageReceived(new ApplyStatusMessage(message));
+                            break;
                         default: {
                             System.out.println("tu network handler run consumer ridim!");
                         }
