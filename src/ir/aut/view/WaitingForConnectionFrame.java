@@ -27,7 +27,7 @@ public class WaitingForConnectionFrame extends JFrame {
     }
 
     public void addToFrame(String name, String ip) {
-        add(new RequestPanel(name, ip));
+        add(new RequestPanel(waitForConnectionCallBack,name, ip));
         add(Box.createRigidArea(new Dimension(0, 10)));
         validate();
     }

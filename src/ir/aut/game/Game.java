@@ -5,12 +5,13 @@ import ir.aut.logic.messages.ApplyStatusMessage;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
-import ir.aut.view.gameview.GameFrame;
+import ir.aut.view.gameview.MasterGameFrame;
 
 /**
  * Created by Milad on 7/5/2017.
  */
-public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForConnectionCallBack,GameInterface,GameFrameCallBack {
+public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack {
+    MasterGameFrame masterGameFrame;
     MessageManager messageManager;
     ConnectionModeFrame connectionModeFrame;
     WaitingForConnectionFrame waitingForConnectionFrame;
@@ -29,19 +30,19 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
         connectionModeFrame = new ConnectionModeFrame(this);
     }
 
-    public void closeModeFrame(){
+    public void closeModeFrame() {
         connectionModeFrame.setVisible(false);
     }
 
-    public void startWaitForConnectionFrame(){
+    public void startWaitForConnectionFrame() {
         waitingForConnectionFrame = new WaitingForConnectionFrame(this);
     }
 
-    public void startPleaseWaitFrame(){
+    public void startPleaseWaitFrame() {
         pleaseWaitFrame = new PleaseWaitFrame(this);
     }
 
-    public void cancelPleaseWaitFrame (){
+    public void cancelPleaseWaitFrame() {
         pleaseWaitFrame.setVisible(false);
     }
 
@@ -53,7 +54,7 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
 
     @Override
     public void applyAccepted() {
-        GameFrame gameFrame = new GameFrame(this , 50 , 50 ,1000 , 700);
+        masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
     }
 
     @Override
@@ -66,8 +67,8 @@ public class Game implements ModeFrameCallback,PleaseWaitFrameCallBack,WaitForCo
         name = x;
     }
 
-    public void hostResponse(String ip , ApplyStatusMessage message){
-        messageManager.send(ip , message);
+    public void hostResponse(String ip, ApplyStatusMessage message) {
+        messageManager.send(ip, message);
         waitingForConnectionFrame.validate();
     }
 }
