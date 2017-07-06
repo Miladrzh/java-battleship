@@ -23,7 +23,6 @@ public class ServerSocketHandler extends Thread {
         }
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         this.iServerSocketHandlerCallback = iServerSocketHandlerCallback;
-
     }
 
 
@@ -35,8 +34,10 @@ public class ServerSocketHandler extends Thread {
     @Override
     public void run() {
         while (!serverSocket.isClosed()) {
-                try {
+            System.out.println("ewfwaefewfewfwefwefwefewfewfewfefwefewfewfewfewfewfefwefwef");
+            try {
                     Socket jadid = serverSocket.accept();
+                    System.out.println("accepted");
                     iServerSocketHandlerCallback.onNewConnectionReceived(new NetworkHandler(jadid , iNetworkHandlerCallback));
                 } catch (IOException e) {
                     e.printStackTrace();

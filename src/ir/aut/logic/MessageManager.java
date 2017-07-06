@@ -38,6 +38,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
             if(this==null)
                 System.out.println("salmmmmmm");
             System.out.println("dwdwdqw");
+            System.out.println(ip);
             NetworkHandler now = new NetworkHandler(new Socket(InetAddress.getByName(ip), port), this);
             currentNetwork = now;
             currentNetwork.start();
@@ -94,6 +95,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 //    @Override
     public void onNewConnectionReceived(NetworkHandler networkHandler) {
         mNetworkHandlerList.add(networkHandler);
+        System.out.println("hj;jiosfknewlsfkefnesfklednklfaenkflnae");
     }
 
     /**

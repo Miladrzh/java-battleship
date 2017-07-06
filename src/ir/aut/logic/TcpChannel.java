@@ -11,8 +11,8 @@ import java.net.SocketException;
 
 public class TcpChannel {
     public Socket mSocket;
-    private ObjectOutputStream mOutputStream;
-    private ObjectInputStream mInputStream;
+    private OutputStream mOutputStream;
+    private InputStream mInputStream;
 
     public TcpChannel(SocketAddress socketAddress, int timeout) {
         mSocket = new Socket();
@@ -45,12 +45,12 @@ public class TcpChannel {
 
         try {
             if(mSocket.isConnected())
-                mInputStream = new ObjectInputStream(mSocket.getInputStream());
+                mInputStream = mSocket.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            mOutputStream = new ObjectOutputStream(mSocket.getOutputStream());
+            mOutputStream = mSocket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class TcpChannel {
         byte[] x = new byte[count];
         for (int i = 0; i < count; i++) {
             try {
-                x[i] = mInputStream.readByte();
+                mInputStream.read(x);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,6 +77,7 @@ public class TcpChannel {
     public void write(byte[] data) {
         try {
             mOutputStream.write(data);
+            mOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

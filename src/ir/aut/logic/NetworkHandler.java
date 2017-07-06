@@ -82,7 +82,9 @@ public class NetworkHandler extends Thread {
         byte[] messageBytes = mTcpChannel.read(4);
         ByteBuffer messageBytesBuffer = ByteBuffer.wrap(messageBytes);
         int length = messageBytesBuffer.getInt();
-        messageBytesBuffer.put(mTcpChannel.read(length - 4));
+        System.out.println(length);
+        if (length > 4)
+            messageBytesBuffer.put(mTcpChannel.read(length - 4));
         return messageBytesBuffer.array();
     }
 
