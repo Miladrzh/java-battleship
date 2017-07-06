@@ -52,6 +52,9 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     public void send(String to, BaseMessage message) {
         for (NetworkHandler i : mNetworkHandlerList) {
             to = "/".concat(to);
+            System.out.println(to);
+            System.out.println(i.getID());
+            System.out.println();
             if (i.getID().equals(to)) {
                 System.out.println("ip is equal");
                 currentNetwork = i;
