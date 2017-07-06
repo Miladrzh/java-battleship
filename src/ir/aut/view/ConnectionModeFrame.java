@@ -46,16 +46,18 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
         startButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modeFrameMaster.closeModeFrame();
+
                 if (guestButton.isSelected()) {
                     modeFrameMaster.setMessageManager(new MessageManager(ipText.getText() , Integer.parseInt(portText2.getText())));
+                    System.out.println(ipText.getText() + " " + Integer.parseInt(portText2.getText()));
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
-
+                    System.out.println(ipText.getText() + " " + nameText.getText());
                     modeFrameMaster.startWaitForConnectionFrame();
                 }
                 modeFrameMaster.setNameOfPlayer(nameText.getText());
+                modeFrameMaster.closeModeFrame();
             }
         });
         exitButton = new JButton("Exit");

@@ -17,6 +17,7 @@ public class ServerSocketHandler extends Thread {
     public ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback) {
         try {
             serverSocket = new ServerSocket(port);
+            System.out.println(serverSocket.getInetAddress() + "  " + serverSocket.getLocalPort());
         } catch (IOException e) {
             e.printStackTrace();
         }

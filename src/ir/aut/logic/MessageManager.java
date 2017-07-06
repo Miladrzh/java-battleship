@@ -19,6 +19,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     private ServerSocketHandler mServerSocketHandler;
     private List<NetworkHandler> mNetworkHandlerList;
     private NetworkHandler currentNetwork;
+
     /**
      * Instantiate server socket handler and start it. (Call this constructor in host mode)
      */
@@ -34,7 +35,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      */
     public MessageManager(String ip, int port) {
         try {
-            NetworkHandler now = new NetworkHandler(new Socket(InetAddress.getByName(ip) , port) , this);
+            if(this==null)
+                System.out.println("salmmmmmm");
+            System.out.println("dwdwdqw");
+            NetworkHandler now = new NetworkHandler(new Socket(InetAddress.getByName(ip), port), this);
             currentNetwork = now;
             currentNetwork.start();
             mNetworkHandlerList = new LinkedList<>();
@@ -47,25 +51,24 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         this.gameInterface = gameInterface;
     }
 
-    public void send(String to, BaseMessage message){
-        for (NetworkHandler i:mNetworkHandlerList){
-            if (i.getID().equals(to)){
+    public void send(String to, BaseMessage message) {
+        for (NetworkHandler i : mNetworkHandlerList) {
+            if (i.getID().equals(to)) {
                 i.sendMessage(message);
                 break;
             }
         }
     }
 
-    public void send(BaseMessage message){
+    public void send(BaseMessage message) {
         currentNetwork.sendMessage(message);
     }
 
     // type 5
-    public void consumeApplyStatusMessage(ApplyStatusMessage message){
-        if (message.status == 1){
+    public void consumeApplyStatusMessage(ApplyStatusMessage message) {
+        if (message.status == 1) {
             gameInterface.applyRejected();
-        }
-        else{
+        } else {
             gameInterface.applyAccepted();
         }
     }
@@ -89,7 +92,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      * Add network handler to the list.
      */
 //    @Override
-    public void onNewConnectionReceived(NetworkHandler networkHandler){
+    public void onNewConnectionReceived(NetworkHandler networkHandler) {
         mNetworkHandlerList.add(networkHandler);
     }
 

@@ -44,7 +44,8 @@ public class TcpChannel {
         }
 
         try {
-            mInputStream = new ObjectInputStream(mSocket.getInputStream());
+            if(mSocket.isConnected())
+                mInputStream = new ObjectInputStream(mSocket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
