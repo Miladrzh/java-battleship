@@ -80,6 +80,8 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     public void hostResponse(String ip, ApplyStatusMessage message) {
         messageManager.send(ip, message);
+        if (message.status == 1)
+            masterGameFrame = new MasterGameFrame(this , 50 , 50 , 1000 , 700);
         waitingForConnectionFrame.validate();
     }
 }

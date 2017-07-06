@@ -51,7 +51,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     public void send(String to, BaseMessage message) {
         for (NetworkHandler i : mNetworkHandlerList) {
+            to = "/".concat(to);
             if (i.getID().equals(to)) {
+                System.out.println("ip is equal");
+                currentNetwork = i;
                 i.sendMessage(message);
                 break;
             }
@@ -69,7 +72,8 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     // type 5
     public void consumeApplyStatusMessage(ApplyStatusMessage message) {
-        if (message.status == 1) {
+        System.out.println("miad tu consume apply status");
+        if (message.status == 0) {
             gameInterface.applyRejected();
         } else {
             gameInterface.applyAccepted();
