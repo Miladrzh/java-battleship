@@ -2,8 +2,10 @@ package ir.aut.logic;
 
 import ir.aut.logic.messages.*;
 
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -27,7 +29,11 @@ public class NetworkHandler extends Thread {
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
         mConsumerThread.start();
-        id = mTcpChannel.mSocket.getInetAddress().toString();
+        try {
+            id = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     public NetworkHandler(Socket socket, INetworkHandlerCallback iNetworkHandlerCallback) {
@@ -37,7 +43,11 @@ public class NetworkHandler extends Thread {
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
         mConsumerThread.start();
-        id = mTcpChannel.mSocket.getInetAddress().toString();
+        try {
+            id = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getID() {
