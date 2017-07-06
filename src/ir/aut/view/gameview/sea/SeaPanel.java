@@ -9,7 +9,8 @@ import java.util.HashMap;
  * Created by Milad on 6/14/2017.
  */
 public abstract class SeaPanel extends JPanel {
-    public static int RECT_SIZE = 0;
+    public static int rectSize = 0;
+    boolean verticalPainting;
     int rectWidth, rectHeight;
     ArrayList<Rectangle> rectangles;
     Point mousePoint;
@@ -57,9 +58,12 @@ public abstract class SeaPanel extends JPanel {
         }
         rectWidth = total.get(new SeaCellCordinate(1, 1)).getWidth();
         rectHeight = total.get(new SeaCellCordinate(1, 1)).getHeight();
-        rectHeight *= RECT_SIZE;
+        if (verticalPainting) {
+            rectHeight *= rectSize;
+        } else {
+            rectWidth *= rectSize;
+        }
         if (mousePoint != null)
             g.fillRect(mousePoint.x, mousePoint.y, rectWidth, rectHeight);
-
     }
 }

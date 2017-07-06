@@ -110,16 +110,16 @@ public class BeforeGameBottomPanel extends JPanel {
         @Override
         public void mousePressed(MouseEvent e) {
             if (e.getSource() == fourLbl) {
-                SeaPanel.RECT_SIZE = 4;
+                SeaPanel.rectSize = 4;
                 block4.setText("x" + (Character.getNumericValue(block4.getText().charAt(1)) - 1));
             } else if (e.getSource() == threeLbl) {
-                SeaPanel.RECT_SIZE = 3;
+                SeaPanel.rectSize = 3;
                 block3.setText("x" + (Character.getNumericValue(block3.getText().charAt(1)) - 1));
             } else if (e.getSource() == twoLbl) {
-                SeaPanel.RECT_SIZE = 2;
+                SeaPanel.rectSize = 2;
                 block2.setText("x" + (Character.getNumericValue(block2.getText().charAt(1)) - 1));
             } else if (e.getSource() == oneLbl) {
-                SeaPanel.RECT_SIZE = 1;
+                SeaPanel.rectSize = 1;
                 block1.setText("x" + (Character.getNumericValue(block1.getText().charAt(1)) - 1));
             }
             if (Character.getNumericValue(block4.getText().charAt(1)) == 0) {

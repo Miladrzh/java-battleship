@@ -20,7 +20,6 @@ public class NetworkHandler extends Thread {
     INetworkHandlerCallback iNetworkHandlerCallback;
 
     public NetworkHandler(SocketAddress socketAddress, INetworkHandlerCallback iNetworkHandlerCallback) {
-
         mTcpChannel = new TcpChannel(socketAddress, 1000);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();

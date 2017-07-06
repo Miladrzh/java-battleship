@@ -1,12 +1,9 @@
 package ir.aut.view.gameview.sea;
 
-import ir.aut.tools.Rotator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Created by Milad on 6/15/2017.
@@ -22,13 +19,13 @@ public class MySeaPanel extends SeaPanel {
                     this.add(x);
                     continue;
                 }
-                SeaCell x = new MySeaCell(i, j);
-                x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                SeaCell mySeaCell = new MySeaCell(i, j);
+                mySeaCell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 if (i == 10)
-                    x.setSheep(true);
+                    mySeaCell.setSheep(true);
 
-                total.put(x.getCor(), x);
-                this.add(x);
+                total.put(mySeaCell.getCor(), mySeaCell);
+                this.add(mySeaCell);
             }
         }
         addKeyListener(new KeyHandler());
@@ -38,9 +35,7 @@ public class MySeaPanel extends SeaPanel {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_R) {
-                Rectangle oldRec = rectangles.get(rectangles.size() - 1);
-                rectangles.remove(rectangles.size() - 1);
-                rectangles.add(Rotator.rotate90(oldRec));
+                verticalPainting = !verticalPainting;
                 repaint();
             }
         }

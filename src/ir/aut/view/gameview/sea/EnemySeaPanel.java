@@ -18,13 +18,13 @@ public class EnemySeaPanel extends SeaPanel {
                     this.add(x);
                     continue;
                 }
-                SeaCell x = new EnemySeaCell(i, j);
-                x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                SeaCell enemySeaCell = new EnemySeaCell(i, j);
+                enemySeaCell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 if (i == 10)
-                    x.setSheep(true);
+                    enemySeaCell.setSheep(true);
 
-                total.put(x.getCor(), x);
-                this.add(x);
+                total.put(enemySeaCell.getCor(), enemySeaCell);
+                this.add(enemySeaCell);
             }
         }
     }
