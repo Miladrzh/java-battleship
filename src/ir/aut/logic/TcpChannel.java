@@ -1,6 +1,8 @@
 package ir.aut.logic;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketException;
@@ -44,14 +46,12 @@ public class TcpChannel {
 
         try {
             socket.setSoTimeout(timeout);
-            System.out.println("timeoutset");
         } catch (SocketException e) {
             e.printStackTrace();
         }
 
         try {
             if(mSocket.isConnected()) {
-                System.out.println("Input stream get");
                 mInputStream = mSocket.getInputStream();
             }
         } catch (IOException e) {
@@ -85,7 +85,6 @@ public class TcpChannel {
      */
     public void write(byte[] data) {
         try {
-            System.out.println("message namusan write shod");
             mOutputStream.write(data);
             mOutputStream.flush();
         } catch (IOException e) {

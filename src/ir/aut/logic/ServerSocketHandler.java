@@ -3,7 +3,6 @@ package ir.aut.logic;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.chrono.IsoChronology;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -17,7 +16,6 @@ public class ServerSocketHandler extends Thread {
     public ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback) {
         try {
             serverSocket = new ServerSocket(port);
-            System.out.println(serverSocket.getInetAddress() + "  " + serverSocket.getLocalPort());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,14 +32,12 @@ public class ServerSocketHandler extends Thread {
     @Override
     public void run() {
         while (!serverSocket.isClosed()) {
-            System.out.println("ewfwaefewfewfwefwefwefewfewfewfefwefewfewfewfewfewfefwefwef");
             try {
-                    Socket jadid = serverSocket.accept();
-                    System.out.println("accepted");
-                    iServerSocketHandlerCallback.onNewConnectionReceived(new NetworkHandler(jadid , iNetworkHandlerCallback));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Socket jadid = serverSocket.accept();
+                iServerSocketHandlerCallback.onNewConnectionReceived(new NetworkHandler(jadid, iNetworkHandlerCallback));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

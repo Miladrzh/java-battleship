@@ -55,13 +55,12 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void sendRequest(String ip, String name) {
-        messageManager.send(new RequestGameMessage(ip , name));
+        messageManager.send(new RequestGameMessage(ip, name));
     }
 
     @Override
     public void addRequest(String ip, String name) {
-        waitingForConnectionFrame.addToFrame(name , ip);
-        System.out.println("nime yes");
+        waitingForConnectionFrame.addToFrame(name, ip);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Main {
         Game game = new Game();
         game.start();
         try {
-            System.out.println(InetAddress.getLocalHost());
+            System.out.println(InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

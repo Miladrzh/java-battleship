@@ -61,12 +61,10 @@ public class NetworkHandler extends Thread {
 
             if (mTcpChannel.isConnected() && !mSendQueue.isEmpty()) {
                 mTcpChannel.write(mSendQueue.remove());
-                System.out.println("send queue is not empty");
             } else {
                 try {
                     byte[] x = this.readChannel();
                     if (x != null && x.length > 0) {
-                        System.out.println("message added to received queue");
                         mReceivedQueue.add(x);
                     }
                 } catch (Throwable throwable) {
@@ -90,14 +88,12 @@ public class NetworkHandler extends Thread {
         byte[] messageBytes = mTcpChannel.read(4);
         ByteBuffer messageBytesBuffer = ByteBuffer.wrap(messageBytes);
         int length = messageBytesBuffer.getInt();
-        System.out.println(length);
         if (length > 4) {
             ByteBuffer retByteBuffer = ByteBuffer.allocate(length);
             retByteBuffer.put(messageBytes);
             retByteBuffer.put(mTcpChannel.read(length - 4));
             return retByteBuffer.array();
-        }
-        else
+        } else
             return null;
     }
 
@@ -114,10 +110,8 @@ public class NetworkHandler extends Thread {
             while (mTcpChannel.isConnected() && NetworkHandler.this.isAlive()) {
                 if (!mReceivedQueue.isEmpty()) {
                     byte[] message = mReceivedQueue.remove();
-                    System.out.println("removed from received queue" + " " + message.length);
                     switch (message[5]) {
                         case 1:
-                            System.out.println((new RequestGameMessage(message)).name);
                             iNetworkHandlerCallback.onMessageReceived(new RequestGameMessage(message));
                             break;
 
@@ -136,9 +130,6 @@ public class NetworkHandler extends Thread {
                         case 5:
                             iNetworkHandlerCallback.onMessageReceived(new ApplyStatusMessage(message));
                             break;
-                        default: {
-                            System.out.println("tu network handler run consumer ridim!");
-                        }
                     }
                 } else {
                     try {
