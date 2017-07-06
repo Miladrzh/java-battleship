@@ -23,12 +23,12 @@ public class TcpChannel {
         }
 
         try {
-            mInputStream = new ObjectInputStream(mSocket.getInputStream());
+            mInputStream = mSocket.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            mOutputStream = new ObjectOutputStream(mSocket.getOutputStream());
+            mOutputStream = mSocket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }

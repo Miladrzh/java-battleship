@@ -55,16 +55,19 @@ public class NetworkHandler extends Thread {
      * else if readChannel() is returning bytes, then add it to receivedQueue.
      */
     public void run() {
-        byte[] x = new byte[0];
-        try {
-            x = this.readChannel();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        if (mTcpChannel.isConnected() && !mSendQueue.isEmpty()) {
-            mTcpChannel.write(mSendQueue.remove());
-        } else if (x != null) {
-            mReceivedQueue.add(x);
+        while (mTcpChannel.isConnected() && this.isAlive()) {
+
+            if (mTcpChannel.isConnected() && !mSendQueue.isEmpty()) {
+                mTcpChannel.write(mSendQueue.remove());
+            } else {
+                try {
+                    byte[] x = this.readChannel();
+                    if (x == null)
+                        mReceivedQueue.add(x);
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }
+            }
         }
     }
 
@@ -79,7 +82,7 @@ public class NetworkHandler extends Thread {
      * Try to read some bytes from the channel.
      */
     private byte[] readChannel() throws Throwable {
-        byte[] messageBytes = mTcpChannel.read(4);
+        byte[] messageBytes = mTcpChannel.read(1);
         ByteBuffer messageBytesBuffer = ByteBuffer.wrap(messageBytes);
         int length = messageBytesBuffer.getInt();
         System.out.println(length);
@@ -98,7 +101,7 @@ public class NetworkHandler extends Thread {
          */
         @Override
         public void run() {
-            if (mTcpChannel.isConnected() && NetworkHandler.this.isAlive()) {
+            while (mTcpChannel.isConnected() && NetworkHandler.this.isAlive()) {
                 if (!mReceivedQueue.isEmpty()) {
                     byte[] message = mReceivedQueue.remove();
                     switch (message[5]) {
