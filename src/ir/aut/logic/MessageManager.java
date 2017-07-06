@@ -4,6 +4,8 @@ import ir.aut.game.GameInterface;
 import ir.aut.logic.messages.ApplyStatusMessage;
 import ir.aut.logic.messages.BaseMessage;
 import ir.aut.logic.messages.MessageTypes;
+import ir.aut.logic.messages.RequestGameMessage;
+import ir.aut.view.gameview.GameFrame;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -54,6 +56,8 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     public void send(String to, BaseMessage message) {
         for (NetworkHandler i : mNetworkHandlerList) {
+            System.out.println("network is:");
+            System.out.println(i.getID());
             if (i.getID().equals(to)) {
                 i.sendMessage(message);
                 break;
@@ -62,7 +66,13 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     }
 
     public void send(BaseMessage message) {
+        System.out.println("now we are in current network");
         currentNetwork.sendMessage(message);
+    }
+
+    // type 1
+    void consumeRequestMessage(RequestGameMessage message){
+        gameInterface.addRequest(message.ip , message.name);
     }
 
     // type 5
@@ -95,6 +105,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 //    @Override
     public void onNewConnectionReceived(NetworkHandler networkHandler) {
         mNetworkHandlerList.add(networkHandler);
+        networkHandler.start();
         System.out.println("hj;jiosfknewlsfkefnesfklednklfaenkflnae");
     }
 
@@ -104,9 +115,14 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      */
     @Override
     public void onMessageReceived(BaseMessage baseMessage) {
+
         switch (baseMessage.getMessageType()) {
             case MessageTypes.APPLY_STATUS:
                 consumeApplyStatusMessage((ApplyStatusMessage) baseMessage);
+                break;
+            case MessageTypes.REQUEST_GAME:
+                consumeRequestMessage((RequestGameMessage)baseMessage);
+                System.out.println("reqyest game switch case");
                 break;
         }
     }

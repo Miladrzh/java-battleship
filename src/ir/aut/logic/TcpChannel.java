@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
 /**
  * Created by Milad on 7/4/2017.
@@ -21,7 +22,11 @@ public class TcpChannel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        try {
+            mSocket.setSoTimeout(timeout);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
         try {
             mInputStream = mSocket.getInputStream();
         } catch (IOException e) {
@@ -39,13 +44,16 @@ public class TcpChannel {
 
         try {
             socket.setSoTimeout(timeout);
+            System.out.println("timeoutset");
         } catch (SocketException e) {
             e.printStackTrace();
         }
 
         try {
-            if(mSocket.isConnected())
+            if(mSocket.isConnected()) {
+                System.out.println("Input stream get");
                 mInputStream = mSocket.getInputStream();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,12 +69,13 @@ public class TcpChannel {
      */
     public byte[] read(final int count) {
         byte[] x = new byte[count];
-        for (int i = 0; i < count; i++) {
-            try {
-                mInputStream.read(x);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            mInputStream.read(x);
+        } catch (SocketTimeoutException ste){
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
         return x;
     }
@@ -76,6 +85,7 @@ public class TcpChannel {
      */
     public void write(byte[] data) {
         try {
+            System.out.println("message namusan write shod");
             mOutputStream.write(data);
             mOutputStream.flush();
         } catch (IOException e) {

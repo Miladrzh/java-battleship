@@ -2,6 +2,7 @@ package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
 import ir.aut.logic.messages.ApplyStatusMessage;
+import ir.aut.logic.messages.RequestGameMessage;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
@@ -50,6 +51,17 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     public void setMessageManager(MessageManager messageManager) {
         this.messageManager = messageManager;
         messageManager.setGameInterface(this);
+    }
+
+    @Override
+    public void sendRequest(String ip, String name) {
+        messageManager.send(new RequestGameMessage(ip , name));
+    }
+
+    @Override
+    public void addRequest(String ip, String name) {
+        waitingForConnectionFrame.addToFrame(name , ip);
+        System.out.println("nime yes");
     }
 
     @Override

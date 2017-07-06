@@ -12,4 +12,5 @@ public interface ModeFrameCallback {
     void startWaitForConnectionFrame();
     void startPleaseWaitFrame();
     void setNameOfPlayer(String x);
+    void sendRequest(String ip , String name);
 }

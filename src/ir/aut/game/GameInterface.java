@@ -6,4 +6,5 @@ package ir.aut.game;
 public interface GameInterface {
     void applyAccepted();
     void applyRejected();
+    void addRequest(String ip , String name);
 }

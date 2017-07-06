@@ -21,20 +21,22 @@ public class NetworkHandler extends Thread {
 
     public NetworkHandler(SocketAddress socketAddress, INetworkHandlerCallback iNetworkHandlerCallback) {
 
-        mTcpChannel = new TcpChannel(socketAddress, 100);
+        mTcpChannel = new TcpChannel(socketAddress, 1000);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
+        mConsumerThread.start();
         id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
     public NetworkHandler(Socket socket, INetworkHandlerCallback iNetworkHandlerCallback) {
-        mTcpChannel = new TcpChannel(socket, 100);
+        mTcpChannel = new TcpChannel(socket, 1000);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();
         mReceivedQueue = new LinkedList<>();
         mConsumerThread = new ReceivedMessageConsumer();
+        mConsumerThread.start();
         id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
@@ -59,11 +61,14 @@ public class NetworkHandler extends Thread {
 
             if (mTcpChannel.isConnected() && !mSendQueue.isEmpty()) {
                 mTcpChannel.write(mSendQueue.remove());
+                System.out.println("send queue is not empty");
             } else {
                 try {
                     byte[] x = this.readChannel();
-                    if (x == null)
+                    if (x != null && x.length > 0) {
+                        System.out.println("message added to received queue");
                         mReceivedQueue.add(x);
+                    }
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();
                 }
@@ -82,13 +87,18 @@ public class NetworkHandler extends Thread {
      * Try to read some bytes from the channel.
      */
     private byte[] readChannel() throws Throwable {
-        byte[] messageBytes = mTcpChannel.read(1);
+        byte[] messageBytes = mTcpChannel.read(4);
         ByteBuffer messageBytesBuffer = ByteBuffer.wrap(messageBytes);
         int length = messageBytesBuffer.getInt();
         System.out.println(length);
-        if (length > 4)
-            messageBytesBuffer.put(mTcpChannel.read(length - 4));
-        return messageBytesBuffer.array();
+        if (length > 4) {
+            ByteBuffer retByteBuffer = ByteBuffer.allocate(length);
+            retByteBuffer.put(messageBytes);
+            retByteBuffer.put(mTcpChannel.read(length - 4));
+            return retByteBuffer.array();
+        }
+        else
+            return null;
     }
 
     private class ReceivedMessageConsumer extends Thread {
@@ -104,8 +114,10 @@ public class NetworkHandler extends Thread {
             while (mTcpChannel.isConnected() && NetworkHandler.this.isAlive()) {
                 if (!mReceivedQueue.isEmpty()) {
                     byte[] message = mReceivedQueue.remove();
+                    System.out.println("removed from received queue" + " " + message.length);
                     switch (message[5]) {
                         case 1:
+                            System.out.println((new RequestGameMessage(message)).name);
                             iNetworkHandlerCallback.onMessageReceived(new RequestGameMessage(message));
                             break;
 
