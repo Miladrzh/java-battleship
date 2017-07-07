@@ -155,7 +155,9 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     public void ready() {
         if (iAmReady)
             masterGameFrame.gameFrame.changePanelStates();
-        else
+        else {
             JOptionPane.showMessageDialog(null, "Your opponent is ready!", "Notification", JOptionPane.PLAIN_MESSAGE);
+            enemyIsReady = true;
+        }
     }
 }
