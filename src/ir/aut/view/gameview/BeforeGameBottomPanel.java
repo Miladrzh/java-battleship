@@ -121,6 +121,7 @@ public class BeforeGameBottomPanel extends JPanel {
                 SeaPanel.rectSize = 1;
                 block1.setText("x" + (Character.getNumericValue(block1.getText().charAt(1)) - 1));
             }
+            master.mySea.requestFocus();
             int block1Value = Character.getNumericValue(block1.getText().charAt(1));
             int block2Value = Character.getNumericValue(block2.getText().charAt(1));
             int block3Value = Character.getNumericValue(block3.getText().charAt(1));

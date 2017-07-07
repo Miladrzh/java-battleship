@@ -9,12 +9,14 @@ import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
 import ir.aut.view.gameview.MasterGameFrame;
+import ir.aut.view.gameview.sea.EnemySeaCell;
 import ir.aut.view.gameview.sea.SeaCellCordinate;
 
 /**
  * Created by Milad on 7/5/2017.
  */
 public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
+    int hitShips;
     MasterGameFrame masterGameFrame;
     MessageManager messageManager;
     ConnectionModeFrame connectionModeFrame;
@@ -23,7 +25,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     String name = "";
 
     public Game() {
-
+        EnemySeaCell.guiInterface = this;
     }
 
     public void start() {
@@ -100,20 +102,30 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
             messageManager.send(new FeedbackMessage(i, j, 1));
         } else {
             messageManager.send(new FeedbackMessage(i, j, 0));
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            masterGameFrame.gameFrame.changePanelStates();
         }
     }
 
     @Override
     public void attackFeedback(int i, int j, boolean isShip) {
-        if (isShip)
+        if (isShip) {
             masterGameFrame.gameFrame.enemySea.setShip(new SeaCellCordinate(i, j));
-        masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            hitShips++;
         }
-        masterGameFrame.gameFrame.changePanelStates();
+        masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
+        //Todo: game wins method
+        if (!isShip) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            masterGameFrame.gameFrame.changePanelStates();
+        }
     }
 }
-

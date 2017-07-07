@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener;
  * Created by Milad on 6/15/2017.
  */
 public class EnemySeaCell extends SeaCell {
-    GuiInterface guiInterface;
+    public static GuiInterface guiInterface;
 
     public EnemySeaCell(int xCor, int yCor) {
         super(xCor, yCor);
@@ -28,11 +28,10 @@ public class EnemySeaCell extends SeaCell {
         public CellListener() {
         }
 
-
         @Override
         public void mouseClicked(MouseEvent e) {
             SeaCellCordinate cor = ((SeaCell) e.getSource()).cor;
-            guiInterface.hit(cor.xCor, cor.yCor);
+            EnemySeaCell.guiInterface.hit(cor.xCor, cor.yCor);
 
 //            if (((SeaCell) e.getSource()).isShip()) {
 //                setHit((SeaCell) e.getSource());
