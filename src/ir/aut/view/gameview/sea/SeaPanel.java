@@ -35,16 +35,13 @@ public abstract class SeaPanel extends JPanel {
             x.setText("      " + Character.toString(i));
             this.add(x);
         }
-
+        verticalPainting = true;
         this.setVisible(true);
     }
 
     public boolean hit(SeaCellCordinate cor) {
         SeaCell now = total.get(cor);
-        if (now == null)
-            return false;
-        now.hit();
-        return true;
+        return now.hit();
     }
 
     @Override

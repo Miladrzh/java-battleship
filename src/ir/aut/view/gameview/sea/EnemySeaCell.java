@@ -23,7 +23,8 @@ public class EnemySeaCell extends SeaCell {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (((SeaCell) e.getSource()).isSheep()) {
+
+            if (((SeaCell) e.getSource()).isShip()) {
                 setHit((SeaCell) e.getSource());
                 int x = ((SeaCell) e.getSource()).cor.xCor;
                 int y = ((SeaCell) e.getSource()).cor.yCor;

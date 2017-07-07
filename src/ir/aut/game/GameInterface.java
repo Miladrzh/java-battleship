@@ -5,6 +5,12 @@ package ir.aut.game;
  */
 public interface GameInterface {
     void applyAccepted();
+
     void applyRejected();
-    void addRequest(String ip , String name);
+
+    void addRequest(String ip, String name);
+
+    void hit(int i, int j);
+
+    void attackFeedback(int i, int j, boolean isShip);
 }

@@ -21,7 +21,7 @@ public class GameFrame extends JFrame {
     public GameChatPanel gameChatPanel;
     private GameFrameCallBack gameFrameCallBack;
 
-    public GameFrame(GameFrameCallBack gameFrameCallBack , int xCor, int yCor, int xSize, int ySize) {
+    public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
         this.gameFrameCallBack = gameFrameCallBack;
         myMasterSea = new MasterSeaPanel(92, 65, 438, 438, false);

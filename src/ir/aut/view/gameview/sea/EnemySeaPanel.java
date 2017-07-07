@@ -20,12 +20,14 @@ public class EnemySeaPanel extends SeaPanel {
                 }
                 SeaCell enemySeaCell = new EnemySeaCell(i, j);
                 enemySeaCell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                if (i == 10)
-                    enemySeaCell.setSheep(true);
 
                 total.put(enemySeaCell.getCor(), enemySeaCell);
                 this.add(enemySeaCell);
             }
         }
+    }
+
+    public void setShip(SeaCellCordinate seaCellCordinate) {
+        total.get(seaCellCordinate).setShip(true);
     }
 }

@@ -43,8 +43,7 @@ public class BeforeGameBottomPanel extends JPanel {
         ready.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (master == null)
-                    System.out.println("Sdfds");
+                master.mySea.disableAllCells();
                 master.changeBottomPanel();
             }
         });
@@ -95,12 +94,12 @@ public class BeforeGameBottomPanel extends JPanel {
         threeLbl.addMouseListener(mh);
         twoLbl.addMouseListener(mh);
         oneLbl.addMouseListener(mh);
-
+        ready.setEnabled(false);
         this.setVisible(true);
     }
 
 
-    public void setMaster(GameFrame master) {
+    void setMaster(GameFrame master) {
         if (master == null)
             return;
         this.master = master;
@@ -122,21 +121,28 @@ public class BeforeGameBottomPanel extends JPanel {
                 SeaPanel.rectSize = 1;
                 block1.setText("x" + (Character.getNumericValue(block1.getText().charAt(1)) - 1));
             }
-            if (Character.getNumericValue(block4.getText().charAt(1)) == 0) {
+            int block1Value = Character.getNumericValue(block1.getText().charAt(1));
+            int block2Value = Character.getNumericValue(block2.getText().charAt(1));
+            int block3Value = Character.getNumericValue(block3.getText().charAt(1));
+            int block4Value = Character.getNumericValue(block4.getText().charAt(1));
+            if (block4Value == 0) {
                 fourLbl.setVisible(false);
                 block4.setVisible(false);
             }
-            if (Character.getNumericValue(block3.getText().charAt(1)) == 0) {
+            if (block3Value == 0) {
                 block3.setVisible(false);
                 threeLbl.setVisible(false);
             }
-            if (Character.getNumericValue(block2.getText().charAt(1)) == 0) {
+            if (block2Value == 0) {
                 block2.setVisible(false);
                 twoLbl.setVisible(false);
             }
-            if (Character.getNumericValue(block1.getText().charAt(1)) == 0) {
+            if (block1Value == 0) {
                 block1.setVisible(false);
                 oneLbl.setVisible(false);
+            }
+            if (block4Value == 0 && block3Value == 0 && block2Value == 0 && block1Value == 0) {
+                ready.setEnabled(true);
             }
         }
     }

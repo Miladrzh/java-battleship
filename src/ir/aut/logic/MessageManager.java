@@ -1,10 +1,7 @@
 package ir.aut.logic;
 
 import ir.aut.game.GameInterface;
-import ir.aut.logic.messages.ApplyStatusMessage;
-import ir.aut.logic.messages.BaseMessage;
-import ir.aut.logic.messages.MessageTypes;
-import ir.aut.logic.messages.RequestGameMessage;
+import ir.aut.logic.messages.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -36,8 +33,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
      */
     public MessageManager(String ip, int port) {
         try {
-            NetworkHandler now = new NetworkHandler(new Socket(InetAddress.getByName(ip), port), this);
-            currentNetwork = now;
+            currentNetwork = new NetworkHandler(new Socket(InetAddress.getByName(ip), port), this);
             currentNetwork.start();
             mNetworkHandlerList = new LinkedList<>();
         } catch (IOException e) {
@@ -73,8 +69,18 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         gameInterface.addRequest(message.ip, message.name);
     }
 
+    //type 3
+    void consumeHitMessage(HitMessage message) {
+        gameInterface.hit(message.getxCor(), message.getyCor());
+    }
+
+    //type 4
+    void consumeFeedbackMessage(FeedbackMessage message) {
+        gameInterface.attackFeedback(message.xCor, message.yCor, message.status == 1);
+    }
+
     // type 5
-    public void consumeApplyStatusMessage(ApplyStatusMessage message) {
+    void consumeApplyStatusMessage(ApplyStatusMessage message) {
         System.out.println("miad tu consume apply status");
         if (message.status == 0) {
             gameInterface.applyRejected();
@@ -82,6 +88,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
             gameInterface.applyAccepted();
         }
     }
+
 
 //    /**
 //     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
@@ -120,6 +127,12 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
                 break;
             case MessageTypes.REQUEST_GAME:
                 consumeRequestMessage((RequestGameMessage) baseMessage);
+                break;
+            case MessageTypes.HIT:
+                consumeHitMessage((HitMessage) baseMessage);
+                break;
+            case MessageTypes.FEEDBACK:
+                consumeFeedbackMessage((FeedbackMessage) baseMessage);
                 break;
         }
     }
