@@ -31,6 +31,7 @@ public class MySeaCell extends SeaCell {
             ((SeaCell) e.getSource()).setShip(true);
             int x = ((SeaCell) e.getSource()).cor.xCor;
             int y = ((SeaCell) e.getSource()).cor.yCor;
+
             if (rec.height > rec.width) {
                 switch (master.rectSize) {
                     case 4:
@@ -50,6 +51,8 @@ public class MySeaCell extends SeaCell {
                         master.total.get(new SeaCellCordinate(x + 1, y)).setShip(true);
                 }
             }
+
+
             master.rectSize = 0;
             master.rectHeight = 0;
             master.rectWidth = 0;
@@ -58,9 +61,10 @@ public class MySeaCell extends SeaCell {
             master.requestFocus();
         }
 
-        public void mouseMoved(MouseEvent e) {
-            master.mousePoint = ((SeaCell) e.getSource()).getLocation();
-            master.repaint();
-        }
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        master.mousePoint = ((SeaCell) e.getSource()).getLocation();
+        master.repaint();
     }
 }

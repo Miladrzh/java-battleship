@@ -21,8 +21,6 @@ public class MySeaPanel extends SeaPanel {
                 }
                 SeaCell mySeaCell = new MySeaCell(i, j);
                 mySeaCell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                if (i == 10)
-                    mySeaCell.setShip(true);
 
                 total.put(mySeaCell.getCor(), mySeaCell);
                 this.add(mySeaCell);
