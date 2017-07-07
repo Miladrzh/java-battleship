@@ -12,14 +12,15 @@ import java.util.Queue;
  * Created by Milad on 7/5/2017.
  */
 public class NetworkHandler extends Thread {
-    String id;
+    private String id;
     private TcpChannel mTcpChannel;
     private Queue<byte[]> mSendQueue;
     private Queue<byte[]> mReceivedQueue;
     private ReceivedMessageConsumer mConsumerThread;
-    INetworkHandlerCallback iNetworkHandlerCallback;
+    private INetworkHandlerCallback iNetworkHandlerCallback;
 
     public NetworkHandler(SocketAddress socketAddress, INetworkHandlerCallback iNetworkHandlerCallback) {
+        //todo : this is this ?
         mTcpChannel = new TcpChannel(socketAddress, 1000);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();
@@ -29,7 +30,7 @@ public class NetworkHandler extends Thread {
         id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
-    public NetworkHandler(Socket socket, INetworkHandlerCallback iNetworkHandlerCallback) {
+    NetworkHandler(Socket socket, INetworkHandlerCallback iNetworkHandlerCallback) {
         mTcpChannel = new TcpChannel(socket, 1000);
         this.iNetworkHandlerCallback = iNetworkHandlerCallback;
         mSendQueue = new LinkedList<>();
@@ -39,14 +40,14 @@ public class NetworkHandler extends Thread {
         id = mTcpChannel.mSocket.getInetAddress().toString();
     }
 
-    public String getID() {
+    String getID() {
         return id;
     }
 
     /**
      * Add serialized bytes of message to the sendQueue.
      */
-    public void sendMessage(BaseMessage baseMessage) {
+    void sendMessage(BaseMessage baseMessage) {
         mSendQueue.add(baseMessage.getSerialized());
     }
 
@@ -77,6 +78,7 @@ public class NetworkHandler extends Thread {
      * Kill the thread and close the channel.
      */
     public void stopSelf() {
+        //todo: what is this ?
         this.interrupt();
     }
 
@@ -128,6 +130,12 @@ public class NetworkHandler extends Thread {
 
                         case 5:
                             iNetworkHandlerCallback.onMessageReceived(new ApplyStatusMessage(message));
+                            break;
+                        case 6:
+                            iNetworkHandlerCallback.onMessageReceived(new ReadyMessage());
+                            break;
+                        case 7:
+                            iNetworkHandlerCallback.onMessageReceived(new YouLoseMessage());
                             break;
                     }
                 } else {

@@ -9,11 +9,11 @@ import java.net.Socket;
  */
 public class ServerSocketHandler extends Thread {
 
-    ServerSocket serverSocket;
-    INetworkHandlerCallback iNetworkHandlerCallback;
-    IServerSocketHandlerCallback iServerSocketHandlerCallback;
+    private ServerSocket serverSocket;
+    private INetworkHandlerCallback iNetworkHandlerCallback;
+    private IServerSocketHandlerCallback iServerSocketHandlerCallback;
 
-    public ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback) {
+    ServerSocketHandler(int port, INetworkHandlerCallback iNetworkHandlerCallback, IServerSocketHandlerCallback iServerSocketHandlerCallback) {
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
@@ -45,6 +45,7 @@ public class ServerSocketHandler extends Thread {
      * Kill the thread and close the server socket.
      */
     public void stopSelf() {
+        //todo: what is this ?
         try {
             serverSocket.close();
         } catch (IOException e) {

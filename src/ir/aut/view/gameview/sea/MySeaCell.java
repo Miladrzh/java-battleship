@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener;
  */
 public class MySeaCell extends SeaCell {
 
-    public MySeaCell(int xCor, int yCor) {
+    MySeaCell(int xCor, int yCor) {
         super(xCor, yCor);
         CellListener cellListener = new CellListener();
         this.addMouseListener(cellListener);
@@ -20,7 +20,7 @@ public class MySeaCell extends SeaCell {
 
 
     public class CellListener extends MouseAdapter implements MouseListener, MouseMotionListener {
-        public CellListener() {
+        CellListener() {
 
         }
 
@@ -31,29 +31,34 @@ public class MySeaCell extends SeaCell {
             ((SeaCell) e.getSource()).setShip(true);
             int x = ((SeaCell) e.getSource()).cor.xCor;
             int y = ((SeaCell) e.getSource()).cor.yCor;
-
-            if (rec.height > rec.width) {
-                switch (master.rectSize) {
+            SeaCell tmp;
+            if (rec.height < rec.width) {
+                switch (SeaPanel.rectSize) {
                     case 4:
-                        master.total.get(new SeaCellCordinate(x, y + 3)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x, y + 3));
+                        if (tmp != null) tmp.setShip(true);
                     case 3:
-                        master.total.get(new SeaCellCordinate(x, y + 2)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x, y + 2));
+                        if (tmp != null) tmp.setShip(true);
                     case 2:
-                        master.total.get(new SeaCellCordinate(x, y + 1)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x, y + 1));
+                        if (tmp != null) tmp.setShip(true);
                 }
             } else {
-                switch (master.rectSize) {
+                switch (SeaPanel.rectSize) {
                     case 4:
-                        master.total.get(new SeaCellCordinate(x + 3, y)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x + 3, y));
+                        if (tmp != null) tmp.setShip(true);
                     case 3:
-                        master.total.get(new SeaCellCordinate(x + 2, y)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x + 2, y));
+                        if (tmp != null) tmp.setShip(true);
                     case 2:
-                        master.total.get(new SeaCellCordinate(x + 1, y)).setShip(true);
+                        tmp = master.total.get(new SeaCellCordinate(x + 1, y));
+                        if (tmp != null) tmp.setShip(true);
                 }
             }
 
-
-            master.rectSize = 0;
+            SeaPanel.rectSize = 0;
             master.rectHeight = 0;
             master.rectWidth = 0;
             master.verticalPainting = true;
@@ -61,10 +66,9 @@ public class MySeaCell extends SeaCell {
             master.requestFocus();
         }
 
-    }
-
-    public void mouseMoved(MouseEvent e) {
-        master.mousePoint = ((SeaCell) e.getSource()).getLocation();
-        master.repaint();
+        public void mouseMoved(MouseEvent e) {
+            master.mousePoint = ((SeaCell) e.getSource()).getLocation();
+            master.repaint();
+        }
     }
 }

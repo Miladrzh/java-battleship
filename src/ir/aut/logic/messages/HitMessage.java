@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
  * Created by Milad on 7/4/2017.
  */
 public class HitMessage extends BaseMessage {
-   private  int xCor, yCor;
+    private int xCor, yCor;
 
     public HitMessage(int xCore, int yCore) {
         this.xCor = xCore;

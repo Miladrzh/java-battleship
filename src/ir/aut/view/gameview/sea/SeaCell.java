@@ -8,18 +8,18 @@ import java.awt.*;
  */
 public abstract class SeaCell extends JLabel {
     private boolean isShip = false;
-    public SeaCellCordinate cor;
-    public SeaPanel master;
+    SeaCellCordinate cor;
+    SeaPanel master;
 
     public SeaCell() {
     }
 
-    public SeaCell(int xCor, int yCor) {
+    SeaCell(int xCor, int yCor) {
         super();
         this.cor = new SeaCellCordinate(xCor, yCor);
     }
 
-    public SeaCellCordinate getCor() {
+    SeaCellCordinate getCor() {
         return cor;
     }
 
@@ -27,43 +27,42 @@ public abstract class SeaCell extends JLabel {
         this.master = master;
     }
 
-    public boolean isShip() {
+    private boolean isShip() {
         return isShip;
     }
 
-    public void setShip(boolean ship) {
+    void setShip(boolean ship) {
         this.isShip = ship;
+        setBorder(BorderFactory.createLineBorder(Color.BLUE));
     }
 
-    public boolean setHit(SeaCell source) {
+    private boolean setHit(SeaCell source) {
         setEnabled(false);
         source.setOpaque(true);
         source.setBackground(new Color(50, 124, 13));
         return true;
     }
 
-    public boolean setMiss(SeaCell source) {
+    private boolean setMiss(SeaCell source) {
         setEnabled(false);
         source.setOpaque(true);
         source.setBackground(new Color(255, 0, 0));
         return true;
     }
 
-    public void setClean(int x, int y) {
+    private void setClean(int x, int y) {
         setEnabled(false);
-        if (x > 10 || x < 1)
-            return;
-        if (y > 10 || y < 1)
-            return;
-        SeaCell nei = master.total.get(new SeaCellCordinate(x, y));
-        if (nei == null)
-            return;
+        if (!(x > 10 || x < 1 || y > 10 || y < 1)) {
+            SeaCell nei = master.total.get(new SeaCellCordinate(x, y));
+            if (nei == null)
+                return;
 
-        nei.setOpaque(true);
-        nei.setBackground(new Color(151, 200, 185));
+            nei.setOpaque(true);
+            nei.setBackground(new Color(151, 200, 185));
+        }
     }
 
-    public boolean hit() {
+    boolean hit() {
         setEnabled(false);
         if (isShip()) {
             setHit(this);

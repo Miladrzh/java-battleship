@@ -25,7 +25,6 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         mNetworkHandlerList = new LinkedList<>();
         mServerSocketHandler = new ServerSocketHandler(port, this, this);
         mServerSocketHandler.start();
-
     }
 
     /**
@@ -52,7 +51,6 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
             System.out.println(i.getID());
             System.out.println();
             if (i.getID().equals(to)) {
-                System.out.println("ip is equal");
                 currentNetwork = i;
                 i.sendMessage(message);
                 break;
@@ -65,22 +63,22 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     }
 
     // type 1
-    void consumeRequestMessage(RequestGameMessage message) {
+    private void consumeRequestMessage(RequestGameMessage message) {
         gameInterface.addRequest(message.ip, message.name);
     }
 
     //type 3
-    void consumeHitMessage(HitMessage message) {
+    private void consumeHitMessage(HitMessage message) {
         gameInterface.hitResponse(message.getxCor(), message.getyCor());
     }
 
     //type 4
-    void consumeFeedbackMessage(FeedbackMessage message) {
+    private void consumeFeedbackMessage(FeedbackMessage message) {
         gameInterface.attackFeedback(message.xCor, message.yCor, message.status == 1);
     }
 
     // type 5
-    void consumeApplyStatusMessage(ApplyStatusMessage message) {
+    private void consumeApplyStatusMessage(ApplyStatusMessage message) {
         if (message.status == 0) {
             gameInterface.applyRejected();
         } else {
@@ -89,28 +87,14 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     }
 
     //type 6
-    void consumeReadyMessage(ReadyMessage readyMessage) {
+    private void consumeReadyMessage() {
         gameInterface.ready();
     }
 
     //type 7
-    void consumeYouLoseMessage(YouLoseMessage youLoseMessage) {
+    private void consumeYouLoseMessage() {
         gameInterface.youLose();
     }
-//    /**
-//     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
-//     * Create a RequestLoginMessage object and sent it through the appropriate network handler.
-//     */
-//    public void sendRequestLogin(String to, String username, String password) {
-//
-//    }
-//
-//    /**
-//     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
-//     * Use the message.
-//     */
-//    private void consumeRequestLogin(RequestLoginMessage message) {
-//    }
 
     /**
      * Add network handler to the list.
@@ -142,10 +126,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
                 consumeFeedbackMessage((FeedbackMessage) baseMessage);
                 break;
             case MessageTypes.READY:
-                consumeReadyMessage((ReadyMessage) baseMessage);
+                consumeReadyMessage();
                 break;
             case MessageTypes.YOU_LOSE:
-                consumeYouLoseMessage((YouLoseMessage) baseMessage);
+                consumeYouLoseMessage();
                 break;
         }
     }

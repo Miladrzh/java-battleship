@@ -13,11 +13,11 @@ import java.net.SocketTimeoutException;
  */
 
 public class TcpChannel {
-    public Socket mSocket;
+    Socket mSocket;
     private OutputStream mOutputStream;
     private InputStream mInputStream;
 
-    public TcpChannel(SocketAddress socketAddress, int timeout) {
+    TcpChannel(SocketAddress socketAddress, int timeout) {
         mSocket = new Socket();
         try {
             mSocket.connect(socketAddress, timeout);
@@ -41,7 +41,7 @@ public class TcpChannel {
         }
     }
 
-    public TcpChannel(Socket socket, int timeout) {
+    TcpChannel(Socket socket, int timeout) {
         mSocket = socket;
 
         try {
@@ -67,11 +67,11 @@ public class TcpChannel {
     /**
      * Try to read specific count from input stream.
      */
-    public byte[] read(final int count) {
+    byte[] read(final int count) {
         byte[] x = new byte[count];
         try {
             mInputStream.read(x);
-        } catch (SocketTimeoutException ste){
+        } catch (SocketTimeoutException ignored){
 
         }
         catch (IOException e) {
@@ -83,7 +83,7 @@ public class TcpChannel {
     /**
      * Write bytes on output stream.
      */
-    public void write(byte[] data) {
+    void write(byte[] data) {
         try {
             mOutputStream.write(data);
             mOutputStream.flush();
@@ -96,7 +96,7 @@ public class TcpChannel {
     /**
      * Check socket’s connectivity.
      */
-    public boolean isConnected() {
+    boolean isConnected() {
         return mSocket.isConnected();
     }
 

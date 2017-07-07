@@ -49,6 +49,6 @@ public class FeedbackMessage extends BaseMessage {
 
     @Override
     public byte getMessageType() {
-        return (byte) 4;
+        return MessageTypes.FEEDBACK;
     }
 }
