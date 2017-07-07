@@ -1,10 +1,7 @@
 package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
-import ir.aut.logic.messages.ApplyStatusMessage;
-import ir.aut.logic.messages.FeedbackMessage;
-import ir.aut.logic.messages.HitMessage;
-import ir.aut.logic.messages.RequestGameMessage;
+import ir.aut.logic.messages.*;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
@@ -12,10 +9,13 @@ import ir.aut.view.gameview.MasterGameFrame;
 import ir.aut.view.gameview.sea.EnemySeaCell;
 import ir.aut.view.gameview.sea.SeaCellCordinate;
 
+import javax.swing.*;
+
 /**
  * Created by Milad on 7/5/2017.
  */
 public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
+    boolean iAmReady, enemyIsReady;
     int hitShips;
     MasterGameFrame masterGameFrame;
     MessageManager messageManager;
@@ -53,6 +53,20 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     @Override
+    public void sendReady() {
+        iAmReady = true;
+        if (enemyIsReady) {
+            masterGameFrame.gameFrame.inGameBottomPanel.setVisible(true);
+            masterGameFrame.gameFrame.beforeGameBottomPanel.setVisible(false);
+        } else {
+            masterGameFrame.gameFrame.beforeGameBottomPanel.reset.setVisible(false);
+            masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setText("Waiting");
+            masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setEnabled(false);
+        }
+        messageManager.send(new ReadyMessage());
+    }
+
+    @Override
     public void setMessageManager(MessageManager messageManager) {
         this.messageManager = messageManager;
         messageManager.setGameInterface(this);
@@ -71,6 +85,11 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void applyAccepted() {
         masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
+    }
+
+    @Override
+    public void youLose() {
+
     }
 
     @Override
@@ -127,5 +146,14 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
             }
             masterGameFrame.gameFrame.changePanelStates();
         }
+    }
+
+    @Override
+    public void ready() {
+        System.out.println("hello my friend");
+        if (iAmReady)
+            masterGameFrame.gameFrame.changePanelStates();
+        else
+            JOptionPane.showMessageDialog(null, "Your opponent is ready!", "Notification", JOptionPane.PLAIN_MESSAGE);
     }
 }

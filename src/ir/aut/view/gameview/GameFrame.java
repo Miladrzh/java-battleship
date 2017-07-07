@@ -21,6 +21,7 @@ public class GameFrame extends JFrame {
     public GameChatPanel gameChatPanel;
     private GameFrameCallBack gameFrameCallBack;
 
+
     public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
         this.gameFrameCallBack = gameFrameCallBack;
@@ -51,6 +52,10 @@ public class GameFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
 
+    }
+
+    public void sendReady() {
+        gameFrameCallBack.sendReady();
     }
 
     public void changePanelStates() {

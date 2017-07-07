@@ -13,4 +13,8 @@ public interface GameInterface {
     void hitResponse(int i, int j);
 
     void attackFeedback(int i, int j, boolean isShip);
+
+    void ready();
+
+    void youLose();
 }

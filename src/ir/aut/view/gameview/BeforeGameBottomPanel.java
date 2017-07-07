@@ -1,5 +1,6 @@
 package ir.aut.view.gameview;
 
+import ir.aut.game.GuiInterface;
 import ir.aut.view.gameview.sea.SeaPanel;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.*;
  * Created by Milad on 6/15/2017.
  */
 public class BeforeGameBottomPanel extends JPanel {
+    GuiInterface guiInterface;
     public JButton reset, ready;
     public JLabel block4, block3, block2, block1;
     public JLabel fourLbl, threeLbl, twoLbl, oneLbl;
@@ -44,7 +46,7 @@ public class BeforeGameBottomPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 master.mySea.disableAllCells();
-                master.changePanelStates();
+                sendReady();
             }
         });
         this.add(ready);
@@ -98,11 +100,18 @@ public class BeforeGameBottomPanel extends JPanel {
         this.setVisible(true);
     }
 
+    public void setGuiInterface(GuiInterface guiInterface) {
+        this.guiInterface = guiInterface;
+    }
 
     void setMaster(GameFrame master) {
         if (master == null)
             return;
         this.master = master;
+    }
+
+    public void sendReady() {
+        master.sendReady();
     }
 
     private class MouseHandler extends MouseAdapter implements MouseListener, MouseMotionListener {

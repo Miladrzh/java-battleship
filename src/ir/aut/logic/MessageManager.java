@@ -81,7 +81,6 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     // type 5
     void consumeApplyStatusMessage(ApplyStatusMessage message) {
-        System.out.println("miad tu consume apply status");
         if (message.status == 0) {
             gameInterface.applyRejected();
         } else {
@@ -89,7 +88,15 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         }
     }
 
+    //type 6
+    void consumeReadyMessage(ReadyMessage readyMessage) {
+        gameInterface.ready();
+    }
 
+    //type 7
+    void consumeYouLoseMessage(YouLoseMessage youLoseMessage) {
+        gameInterface.youLose();
+    }
 //    /**
 //     * IMPORTANT: Request login is an example message and doesn’t relate to this project!
 //     * Create a RequestLoginMessage object and sent it through the appropriate network handler.
@@ -133,6 +140,12 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
                 break;
             case MessageTypes.FEEDBACK:
                 consumeFeedbackMessage((FeedbackMessage) baseMessage);
+                break;
+            case MessageTypes.READY:
+                consumeReadyMessage((ReadyMessage) baseMessage);
+                break;
+            case MessageTypes.YOU_LOSE:
+                consumeYouLoseMessage((YouLoseMessage) baseMessage);
                 break;
         }
     }

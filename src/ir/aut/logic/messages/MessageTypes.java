@@ -11,4 +11,6 @@ public class MessageTypes {
     public static final byte HIT = 3;
     public static final byte FEEDBACK = 4;
     public static final byte APPLY_STATUS = 5;
+    public static final byte READY = 6;
+    public static final byte YOU_LOSE = 7;
 }
