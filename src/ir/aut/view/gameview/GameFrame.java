@@ -53,12 +53,11 @@ public class GameFrame extends JFrame {
 
     }
 
-    public void changeBottomPanel() {
-        System.out.println("change");
+    public void changePanelStates() {
         inGameBottomPanel.setVisible(true);
         beforeGameBottomPanel.setVisible(false);
-        enemySea.setVisible(true);
-        mySea.setVisible(false);
+        enemySea.setVisible(!enemySea.isVisible());
+        mySea.setVisible(!mySea.isVisible());
     }
 
     public void resetBeforeBottomPanel() {

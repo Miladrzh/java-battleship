@@ -71,7 +71,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     //type 3
     void consumeHitMessage(HitMessage message) {
-        gameInterface.hit(message.getxCor(), message.getyCor());
+        gameInterface.hitResponse(message.getxCor(), message.getyCor());
     }
 
     //type 4

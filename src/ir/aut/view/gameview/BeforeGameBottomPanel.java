@@ -44,7 +44,7 @@ public class BeforeGameBottomPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 master.mySea.disableAllCells();
-                master.changeBottomPanel();
+                master.changePanelStates();
             }
         });
         this.add(ready);

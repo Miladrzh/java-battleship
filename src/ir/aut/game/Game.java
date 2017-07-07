@@ -3,6 +3,7 @@ package ir.aut.game;
 import ir.aut.logic.MessageManager;
 import ir.aut.logic.messages.ApplyStatusMessage;
 import ir.aut.logic.messages.FeedbackMessage;
+import ir.aut.logic.messages.HitMessage;
 import ir.aut.logic.messages.RequestGameMessage;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.PleaseWaitFrame;
@@ -13,7 +14,7 @@ import ir.aut.view.gameview.sea.SeaCellCordinate;
 /**
  * Created by Milad on 7/5/2017.
  */
-public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack {
+public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
     MasterGameFrame masterGameFrame;
     MessageManager messageManager;
     ConnectionModeFrame connectionModeFrame;
@@ -89,6 +90,11 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void hit(int i, int j) {
+        messageManager.send(new HitMessage(i, j));
+    }
+
+    @Override
+    public void hitResponse(int i, int j) {
         boolean isHit = masterGameFrame.gameFrame.mySea.hit(new SeaCellCordinate(i, j));
         if (isHit) {
             messageManager.send(new FeedbackMessage(i, j, 1));
@@ -107,7 +113,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        masterGameFrame.gameFrame.changePanelStates();
     }
 }
 

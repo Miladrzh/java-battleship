@@ -48,8 +48,8 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
 
                 if (guestButton.isSelected()) {
-                    modeFrameMaster.setMessageManager(new MessageManager(ipText.getText() , Integer.parseInt(portText2.getText())));
-                    modeFrameMaster.sendRequest(ipText.getText() , nameText.getText());
+                    modeFrameMaster.setMessageManager(new MessageManager(ipText.getText(), Integer.parseInt(portText2.getText())));
+                    modeFrameMaster.sendRequest(ipText.getText(), nameText.getText());
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
@@ -94,6 +94,7 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
         guestButton.addActionListener(this);
         hostButton.addActionListener(this);
         nameText.requestFocus();
+        startButton.requestFocus();
         setVisible(true);
     }
 
