@@ -12,6 +12,7 @@ public interface GameInterface {
 
     void addRequest(String ip, String name);
 
+
     void hitResponse(int i, int j);
 
     void attackFeedback(int i, int j, boolean isShip);
