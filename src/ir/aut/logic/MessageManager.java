@@ -67,6 +67,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         gameInterface.addRequest(message.ip, message.name);
     }
 
+    private void consumeChatMessage(ChatMessage chatMessage) {
+        gameInterface.addChatMessage(chatMessage);
+    }
+
     //type 3
     private void consumeHitMessage(HitMessage message) {
         gameInterface.hitResponse(message.getxCor(), message.getyCor());
@@ -118,6 +122,9 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
                 break;
             case MessageTypes.REQUEST_GAME:
                 consumeRequestMessage((RequestGameMessage) baseMessage);
+                break;
+            case MessageTypes.CHAT:
+                consumeChatMessage((ChatMessage) baseMessage);
                 break;
             case MessageTypes.HIT:
                 consumeHitMessage((HitMessage) baseMessage);

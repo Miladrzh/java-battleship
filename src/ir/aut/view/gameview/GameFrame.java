@@ -1,6 +1,7 @@
 package ir.aut.view.gameview;
 
 import ir.aut.game.GameFrameCallBack;
+import ir.aut.logic.messages.ChatMessage;
 import ir.aut.view.gameview.sea.EnemySeaPanel;
 import ir.aut.view.gameview.sea.MasterSeaPanel;
 import ir.aut.view.gameview.sea.MySeaPanel;
@@ -35,6 +36,7 @@ public class GameFrame extends JFrame {
         inGameBottomPanel = new InGameBottomPanel("reza", 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
         gameChatPanel = new GameChatPanel("reza", 667, 0, 332, 690);
+        gameChatPanel.setGameFrameCallBack(gameFrameCallBack);
         inGameBottomPanel.setVisible(false);
         beforeGameBottomPanel.setVisible(true);
 
@@ -56,6 +58,10 @@ public class GameFrame extends JFrame {
 
     public void sendReady() {
         gameFrameCallBack.sendReady();
+    }
+
+    public void sendChat(ChatMessage chatMessage) {
+        gameFrameCallBack.sendMessage(chatMessage);
     }
 
     public void changePanelStates() {
@@ -88,6 +94,7 @@ public class GameFrame extends JFrame {
         mySea.setVisible(false);
         enemySea.setVisible(true);
     }
+
 
     public BeforeGameBottomPanel getBeforeGameBottomPanel() {
         return beforeGameBottomPanel;

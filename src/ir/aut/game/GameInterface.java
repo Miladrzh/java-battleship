@@ -1,5 +1,7 @@
 package ir.aut.game;
 
+import ir.aut.logic.messages.ChatMessage;
+
 /**
  * Created by Milad on 7/5/2017.
  */
@@ -17,4 +19,6 @@ public interface GameInterface {
     void ready();
 
     void youLose();
+
+    void addChatMessage(ChatMessage chatMessage);
 }

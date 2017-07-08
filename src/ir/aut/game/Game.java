@@ -3,6 +3,7 @@ package ir.aut.game;
 import ir.aut.logic.MessageManager;
 import ir.aut.logic.messages.*;
 import ir.aut.view.ConnectionModeFrame;
+import ir.aut.view.MessagePanel;
 import ir.aut.view.PleaseWaitFrame;
 import ir.aut.view.WaitingForConnectionFrame;
 import ir.aut.view.gameview.MasterGameFrame;
@@ -10,6 +11,8 @@ import ir.aut.view.gameview.sea.EnemySeaCell;
 import ir.aut.view.gameview.sea.SeaCellCordinate;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -17,12 +20,12 @@ import javax.swing.*;
 public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
     boolean iAmReady, enemyIsReady;
     int hitShips = 0;
-    MasterGameFrame masterGameFrame;
-    MessageManager messageManager;
-    ConnectionModeFrame connectionModeFrame;
-    WaitingForConnectionFrame waitingForConnectionFrame;
-    PleaseWaitFrame pleaseWaitFrame;
-    String name = "";
+    private MasterGameFrame masterGameFrame;
+    private MessageManager messageManager;
+    private ConnectionModeFrame connectionModeFrame;
+    private WaitingForConnectionFrame waitingForConnectionFrame;
+    private PleaseWaitFrame pleaseWaitFrame;
+    private String name = "";
 
     public Game() {
         EnemySeaCell.guiInterface = this;
@@ -32,7 +35,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         startConnectionModeFrame();
     }
 
-    public void startConnectionModeFrame() {
+    private void startConnectionModeFrame() {
         connectionModeFrame = new ConnectionModeFrame(this);
     }
 
@@ -172,5 +175,17 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         messageManager.send(new YouLoseMessage());
         JOptionPane.showMessageDialog(null, "You Win !", "", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
+    }
+
+    @Override
+    public void sendMessage(ChatMessage chatMessage) {
+        messageManager.send(chatMessage);
+    }
+
+    @Override
+    public void addChatMessage(ChatMessage chatMessage) {
+        masterGameFrame.gameFrame.gameChatPanel.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ENEMY);
+        masterGameFrame.gameFrame.gameChatPanel.validate();
+
     }
 }

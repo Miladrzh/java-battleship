@@ -1,5 +1,7 @@
 package ir.aut.view.gameview;
 
+import ir.aut.game.GameFrameCallBack;
+import ir.aut.logic.messages.ChatMessage;
 import ir.aut.view.ChatPanel;
 import ir.aut.view.MessagePanel;
 
@@ -15,8 +17,9 @@ import java.util.Date;
  */
 public class GameChatPanel extends JPanel implements ActionListener {
     private JLabel chatToLbl;
-    private ChatPanel chatPanel;
+    public ChatPanel chatPanel;
     private JTextField typeTextField;
+    private GameFrameCallBack gameFrameCallBack;
 
     public GameChatPanel(String enemyName, int xCor, int yCor, int xSize, int ySize) {
 //        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -39,8 +42,15 @@ public class GameChatPanel extends JPanel implements ActionListener {
         setSize(xSize, ySize);
     }
 
+    public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {
+        this.gameFrameCallBack = gameFrameCallBack;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
+        gameFrameCallBack.sendMessage(new ChatMessage("milad", e.getActionCommand()));
+        //todo: ok beshe !
+        validate();
     }
 }

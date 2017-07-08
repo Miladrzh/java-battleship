@@ -6,8 +6,8 @@ import java.nio.ByteBuffer;
  * Created by Milad on 7/4/2017.
  */
 public class ChatMessage extends BaseMessage {
-    String name;
-    String textMessage;
+    private String name;
+    private String textMessage;
 
     public ChatMessage(String name, String messageText) {
         this.name = name;
@@ -18,6 +18,14 @@ public class ChatMessage extends BaseMessage {
     public ChatMessage(byte[] b) {
         mSerialized = b;
         deserialize();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTextMessage() {
+        return textMessage;
     }
 
     @Override
