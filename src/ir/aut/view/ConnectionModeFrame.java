@@ -6,6 +6,8 @@ import ir.aut.logic.MessageManager;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * Created by Lenovo on 6/14/2017.
@@ -49,7 +51,11 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
 
                 if (guestButton.isSelected()) {
                     modeFrameMaster.setMessageManager(new MessageManager(ipText.getText(), Integer.parseInt(portText2.getText())));
-                    modeFrameMaster.sendRequest(ipText.getText(), nameText.getText());
+                    try {
+                        modeFrameMaster.sendRequest(InetAddress.getLocalHost().getHostAddress(), nameText.getText());
+                    } catch (UnknownHostException e1) {
+                        e1.printStackTrace();
+                    }
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
