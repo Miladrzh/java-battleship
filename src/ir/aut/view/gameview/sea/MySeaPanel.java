@@ -30,13 +30,6 @@ public class MySeaPanel extends SeaPanel {
         addKeyListener(new KeyHandler());
     }
 
-    public void disableAllCells() {
-        for (int i = 1; i < 11; i++)
-            for (int j = 1; j < 11; j++) {
-                total.get(new SeaCellCordinate(i, j)).setEnabled(false);
-            }
-    }
-
     private class KeyHandler extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {

@@ -20,7 +20,7 @@ public abstract class SeaPanel extends JPanel {
 
     }
 
-    public SeaPanel(int xCor, int yCor, int xSize, int ySize) {
+    SeaPanel(int xCor, int yCor, int xSize, int ySize) {
         super();
         rectangles = new ArrayList<>();
         this.setBackground(new Color(228, 245, 240));
@@ -42,6 +42,15 @@ public abstract class SeaPanel extends JPanel {
     public boolean hit(SeaCellCordinate cor) {
         SeaCell now = total.get(cor);
         return now.hit();
+    }
+
+    public void setEnableAllCells(boolean enable) {
+        for (int i = 1; i < 11; i++)
+            for (int j = 1; j < 11; j++) {
+                SeaCell seaCell = total.get(new SeaCellCordinate(i, j));
+                if (seaCell.isEnabled())
+                    seaCell.setEnabled(enable);
+            }
     }
 
     @Override

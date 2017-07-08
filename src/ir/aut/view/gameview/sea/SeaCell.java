@@ -37,21 +37,20 @@ public abstract class SeaCell extends JLabel {
     }
 
     private boolean setHit(SeaCell source) {
-        setEnabled(false);
         source.setOpaque(true);
         source.setBackground(new Color(50, 124, 13));
+        setEnabled(false);
         return true;
     }
 
     private boolean setMiss(SeaCell source) {
-        setEnabled(false);
         source.setOpaque(true);
         source.setBackground(new Color(255, 0, 0));
+        setEnabled(false);
         return true;
     }
 
     private void setClean(int x, int y) {
-        setEnabled(false);
         if (!(x > 10 || x < 1 || y > 10 || y < 1)) {
             SeaCell nei = master.total.get(new SeaCellCordinate(x, y));
             if (nei == null)
@@ -59,6 +58,7 @@ public abstract class SeaCell extends JLabel {
 
             nei.setOpaque(true);
             nei.setBackground(new Color(151, 200, 185));
+            setEnabled(false);
         }
     }
 

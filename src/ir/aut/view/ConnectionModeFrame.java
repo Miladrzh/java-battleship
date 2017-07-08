@@ -59,7 +59,14 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
                 modeFrameMaster.closeModeFrame();
             }
         });
+
         exitButton = new JButton("Exit");
+        exitButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(guestButton);
         buttonGroup.add(hostButton);

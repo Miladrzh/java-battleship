@@ -30,20 +30,11 @@ public class EnemySeaCell extends SeaCell {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            SeaCellCordinate cor = ((SeaCell) e.getSource()).cor;
-            EnemySeaCell.guiInterface.hit(cor.xCor, cor.yCor);
-
-//            if (((SeaCell) e.getSource()).isShip()) {
-//                setHit((SeaCell) e.getSource());
-//                int x = ((SeaCell) e.getSource()).cor.xCor;
-//                int y = ((SeaCell) e.getSource()).cor.yCor;
-//                setClean(x + 1, y + 1);
-//                setClean(x + 1, y - 1);
-//                setClean(x - 1, y + 1);
-//                setClean(x - 1, y - 1);
-//            } else {
-//                setMiss((SeaCell) e.getSource());
-//            }
+            System.out.println(((SeaCell) e.getSource()).isEnabled());
+            if (((SeaCell) e.getSource()).isEnabled()) {
+                SeaCellCordinate cor = ((SeaCell) e.getSource()).cor;
+                EnemySeaCell.guiInterface.hit(cor.xCor, cor.yCor);
+            }
         }
     }
 }

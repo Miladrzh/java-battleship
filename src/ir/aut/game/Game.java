@@ -16,7 +16,7 @@ import javax.swing.*;
  */
 public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
     boolean iAmReady, enemyIsReady;
-    int hitShips;
+    int hitShips = 0;
     MasterGameFrame masterGameFrame;
     MessageManager messageManager;
     ConnectionModeFrame connectionModeFrame;
@@ -90,7 +90,8 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void youLose() {
-
+        JOptionPane.showMessageDialog(null, "You Win !", "", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
     }
 
     @Override
@@ -115,6 +116,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void hit(int i, int j) {
         messageManager.send(new HitMessage(i, j));
+        masterGameFrame.gameFrame.enemySea.setEnableAllCells(false);
     }
 
     @Override
@@ -135,9 +137,13 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void attackFeedback(int i, int j, boolean isShip) {
+        masterGameFrame.gameFrame.enemySea.setEnableAllCells(true);
         if (isShip) {
             masterGameFrame.gameFrame.enemySea.setShip(new SeaCellCordinate(i, j));
             hitShips++;
+        }
+        if (hitShips == 20) {
+            youWin();
         }
         masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
         //Todo: game wins method
@@ -159,5 +165,11 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
             JOptionPane.showMessageDialog(null, "Your opponent is ready!", "Notification", JOptionPane.PLAIN_MESSAGE);
             enemyIsReady = true;
         }
+    }
+
+    private void youWin() {
+        messageManager.send(new YouLoseMessage());
+        JOptionPane.showMessageDialog(null, "You Win !", "", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
     }
 }
