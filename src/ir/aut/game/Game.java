@@ -137,15 +137,16 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void attackFeedback(int i, int j, boolean isShip) {
-        masterGameFrame.gameFrame.enemySea.setEnableAllCells(true);
         if (isShip) {
             masterGameFrame.gameFrame.enemySea.setShip(new SeaCellCordinate(i, j));
             hitShips++;
         }
+
+        masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
+        masterGameFrame.gameFrame.enemySea.setEnableAllCells(true);
         if (hitShips == 20) {
             youWin();
         }
-        masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
         //Todo: game wins method
         if (!isShip) {
             try {

@@ -24,6 +24,7 @@ public class MySeaCell extends SeaCell {
 
         }
 
+
         @Override
         public void mouseClicked(MouseEvent e) {
             Rectangle rec = new Rectangle(master.mousePoint.x, master.mousePoint.y, master.rectWidth, master.rectHeight);

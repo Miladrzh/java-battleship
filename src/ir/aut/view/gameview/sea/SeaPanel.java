@@ -48,8 +48,7 @@ public abstract class SeaPanel extends JPanel {
         for (int i = 1; i < 11; i++)
             for (int j = 1; j < 11; j++) {
                 SeaCell seaCell = total.get(new SeaCellCordinate(i, j));
-                if (seaCell.isEnabled())
-                    seaCell.setEnabled(enable);
+                seaCell.setEnabled(!seaCell.isUnusable() && enable);
             }
     }
 

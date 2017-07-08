@@ -8,6 +8,7 @@ import java.awt.*;
  */
 public abstract class SeaCell extends JLabel {
     private boolean isShip = false;
+    private boolean isUnusable;
     SeaCellCordinate cor;
     SeaPanel master;
 
@@ -23,7 +24,7 @@ public abstract class SeaCell extends JLabel {
         return cor;
     }
 
-    public void setMaster(SeaPanel master) {
+    void setMaster(SeaPanel master) {
         this.master = master;
     }
 
@@ -36,17 +37,25 @@ public abstract class SeaCell extends JLabel {
         setBorder(BorderFactory.createLineBorder(Color.BLUE));
     }
 
+    public boolean isUnusable() {
+        return isUnusable;
+    }
+
+    private void setUnusable(boolean unusable) {
+        isUnusable = unusable;
+    }
+
     private boolean setHit(SeaCell source) {
         source.setOpaque(true);
         source.setBackground(new Color(50, 124, 13));
-        setEnabled(false);
+        setUnusable(true);
         return true;
     }
 
     private boolean setMiss(SeaCell source) {
         source.setOpaque(true);
         source.setBackground(new Color(255, 0, 0));
-        setEnabled(false);
+        setUnusable(true);
         return true;
     }
 
@@ -58,12 +67,12 @@ public abstract class SeaCell extends JLabel {
 
             nei.setOpaque(true);
             nei.setBackground(new Color(151, 200, 185));
-            setEnabled(false);
+            nei.setUnusable(true);
         }
     }
 
     boolean hit() {
-        setEnabled(false);
+//        setUnusable(true);
         if (isShip()) {
             setHit(this);
             int x = this.cor.xCor;

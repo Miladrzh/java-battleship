@@ -30,7 +30,6 @@ public class EnemySeaCell extends SeaCell {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println(((SeaCell) e.getSource()).isEnabled());
             if (((SeaCell) e.getSource()).isEnabled()) {
                 SeaCellCordinate cor = ((SeaCell) e.getSource()).cor;
                 EnemySeaCell.guiInterface.hit(cor.xCor, cor.yCor);
