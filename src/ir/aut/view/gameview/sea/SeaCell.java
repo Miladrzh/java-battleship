@@ -28,7 +28,7 @@ public abstract class SeaCell extends JLabel {
         this.master = master;
     }
 
-    private boolean isShip() {
+    public boolean isShip() {
         return isShip;
     }
 
