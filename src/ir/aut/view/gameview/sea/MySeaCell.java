@@ -39,9 +39,9 @@ public class MySeaCell extends SeaCell {
             boolean trueArranging = true;
             for (int i = 1; i <= size; i++) {
                 if (vertical) {
-                    trueArranging = trueArranging && notShip(x - 1, y + i - 1) && notShip(x + 1, y + i - 1);
+                    trueArranging = trueArranging && notShip(x, y + i - 1) && notShip(x - 1, y + i - 1) && notShip(x + 1, y + i - 1);
                 } else {
-                    trueArranging = trueArranging && notShip(x + i - 1, y + 1) && notShip(x + i - 1, y - 1);
+                    trueArranging = trueArranging && notShip(x + i - 1, y) && notShip(x + i - 1, y + 1) && notShip(x + i - 1, y - 1);
                 }
                 if (i == 1) {
                     if (vertical) {
