@@ -63,6 +63,11 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
                     modeFrameMaster.startWaitForConnectionFrame();
                 }
                 modeFrameMaster.setMyName(nameText.getText());
+                try {
+                    modeFrameMaster.setMyIP(InetAddress.getLocalHost().getHostAddress());
+                } catch (UnknownHostException e1) {
+                    e1.printStackTrace();
+                }
                 modeFrameMaster.closeModeFrame();
             }
         });
