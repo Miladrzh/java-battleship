@@ -44,6 +44,7 @@ public class RequestPanel extends JPanel {
             if (e.getSource() == accept) {
                 waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 1));
                 waitForConnectionCallBack.setEnemyName(nameLbl.getText());
+                waitForConnectionCallBack.setEnemyIp(ipLbl.getText());
             } else {
                 waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 0));
                 RequestPanel.this.setVisible(false);

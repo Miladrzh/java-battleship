@@ -127,6 +127,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         messageManager.send(ip, message);
         if (message.status == 1) {
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
+            messageManager.send(new ChatMessage(myName , MessageTypes.HAZLIAT));
             waitingForConnectionFrame.setVisible(false);
         }
         waitingForConnectionFrame.validate();
@@ -134,6 +135,8 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void hit(int i, int j) {
+        System.out.println(myIp + " " + myName);
+        System.out.println(enemyIp + " " + enemyName);
         messageManager.send(new HitMessage(i, j));
         masterGameFrame.gameFrame.enemySea.setEnableAllCells(false);
     }

@@ -56,6 +56,7 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
                     } catch (UnknownHostException e1) {
                         e1.printStackTrace();
                     }
+                    modeFrameMaster.setEnemyIp(ipText.getText());
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));

@@ -13,4 +13,5 @@ public class MessageTypes {
     public static final byte APPLY_STATUS = 5;
     public static final byte READY = 6;
     public static final byte YOU_LOSE = 7;
+    public static final String HAZLIAT = "hava bas najavan mardane garmast";
 }

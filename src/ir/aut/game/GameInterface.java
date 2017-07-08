@@ -22,4 +22,6 @@ public interface GameInterface {
     void youLose();
 
     void addChatMessage(ChatMessage chatMessage);
+
+    void setEnemyName(String name);
 }
