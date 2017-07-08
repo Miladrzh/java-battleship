@@ -8,8 +8,11 @@ import ir.aut.view.WaitingForConnectionFrame;
 import ir.aut.view.gameview.MasterGameFrame;
 import ir.aut.view.gameview.sea.EnemySeaCell;
 import ir.aut.view.gameview.sea.SeaCellCordinate;
+import org.json.JSONObject;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -22,10 +25,13 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     ConnectionModeFrame connectionModeFrame;
     WaitingForConnectionFrame waitingForConnectionFrame;
     PleaseWaitFrame pleaseWaitFrame;
+    String enemyIp;
     String name = "";
+    JSONObject chats;
 
     public Game() {
         EnemySeaCell.guiInterface = this;
+        chats = new JSONObject();
     }
 
     public void start() {
@@ -78,6 +84,13 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     @Override
+    public void setHostIP(String ip) {
+        enemyIp = ip;
+        chats.append("ip" , ip);
+        chats.append("time" , new SimpleDateFormat("HHmm").format(new Date()));
+    }
+
+    @Override
     public void addRequest(String ip, String name) {
         waitingForConnectionFrame.addToFrame(name, ip);
     }
@@ -85,6 +98,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void applyAccepted() {
         masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
+
         pleaseWaitFrame.setVisible(false);
     }
 
@@ -108,6 +122,9 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         messageManager.send(ip, message);
         if (message.status == 1) {
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
+            chats.append("ip" , ip);
+            chats.append("time" , new SimpleDateFormat("HHmm").format(new Date()));
+            enemyIp = ip;
             waitingForConnectionFrame.setVisible(false);
         }
         waitingForConnectionFrame.validate();
