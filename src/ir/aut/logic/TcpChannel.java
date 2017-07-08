@@ -43,7 +43,7 @@ public class TcpChannel {
 
     TcpChannel(Socket socket, int timeout) {
         mSocket = socket;
-
+        System.out.println(socket.getInetAddress());
         try {
             socket.setSoTimeout(timeout);
         } catch (SocketException e) {

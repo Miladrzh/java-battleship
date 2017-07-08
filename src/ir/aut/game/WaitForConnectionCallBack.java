@@ -7,4 +7,5 @@ import ir.aut.logic.messages.ApplyStatusMessage;
  */
 public interface WaitForConnectionCallBack {
     void hostResponse(String ip, ApplyStatusMessage applyStatusMessage);
+    void setEnemyName(String name);
 }

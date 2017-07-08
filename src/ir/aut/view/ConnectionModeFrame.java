@@ -50,13 +50,12 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
                 if (guestButton.isSelected()) {
                     modeFrameMaster.setMessageManager(new MessageManager(ipText.getText(), Integer.parseInt(portText2.getText())));
                     modeFrameMaster.sendRequest(ipText.getText(), nameText.getText());
-                    modeFrameMaster.setHostIP(ipText.getText());
                     modeFrameMaster.startPleaseWaitFrame();
                 } else {
                     modeFrameMaster.setMessageManager(new MessageManager(Integer.parseInt(portText.getText())));
                     modeFrameMaster.startWaitForConnectionFrame();
                 }
-                modeFrameMaster.setNameOfPlayer(nameText.getText());
+                modeFrameMaster.setMyName(nameText.getText());
                 modeFrameMaster.closeModeFrame();
             }
         });

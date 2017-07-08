@@ -2,6 +2,7 @@ package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
 import ir.aut.logic.messages.*;
+import ir.aut.model.ChatJSON;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.MessagePanel;
 import ir.aut.view.PleaseWaitFrame;
@@ -25,7 +26,8 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     private ConnectionModeFrame connectionModeFrame;
     private WaitingForConnectionFrame waitingForConnectionFrame;
     private PleaseWaitFrame pleaseWaitFrame;
-    private String name = "";
+    private ChatJSON chatJSON;
+    String myName , enemyName , myIp , enemyIp;
 
     public Game() {
         EnemySeaCell.guiInterface = this;
@@ -103,8 +105,22 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     @Override
-    public void setNameOfPlayer(String x) {
-        name = x;
+    public void setMyName(String x) {
+        myName = x;
+    }
+
+    @Override
+    public void setEnemyName(String enemyName) {
+        this.enemyName = enemyName;
+    }
+
+    public void setEnemyIp(String enemyIp) {
+        this.enemyIp = enemyIp;
+    }
+
+    @Override
+    public void setMyIP(String ip) {
+        this.myIp = ip;
     }
 
     public void hostResponse(String ip, ApplyStatusMessage message) {
@@ -185,6 +201,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void addChatMessage(ChatMessage chatMessage) {
         masterGameFrame.gameFrame.gameChatPanel.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ENEMY);
+
         masterGameFrame.gameFrame.gameChatPanel.validate();
     }
 }

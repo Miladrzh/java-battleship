@@ -10,7 +10,10 @@ public interface ModeFrameCallback {
     void closeModeFrame();
     void startWaitForConnectionFrame();
     void startPleaseWaitFrame();
-    void setNameOfPlayer(String x);
+    void setMyName(String name);
+    void setEnemyName(String name);
+    void setMyIP(String ip);
+    void setEnemyIp(String ip);
     void sendRequest(String ip , String name);
 //    void setHostIP(String ip);
 }
