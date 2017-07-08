@@ -186,6 +186,5 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     public void addChatMessage(ChatMessage chatMessage) {
         masterGameFrame.gameFrame.gameChatPanel.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ENEMY);
         masterGameFrame.gameFrame.gameChatPanel.validate();
-
     }
 }

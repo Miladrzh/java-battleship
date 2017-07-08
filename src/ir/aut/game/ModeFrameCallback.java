@@ -1,7 +1,6 @@
 package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
-import ir.aut.logic.messages.MessageTypes;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -13,5 +12,5 @@ public interface ModeFrameCallback {
     void startPleaseWaitFrame();
     void setNameOfPlayer(String x);
     void sendRequest(String ip , String name);
-    void setHostIP(String ip);
+//    void setHostIP(String ip);
 }
