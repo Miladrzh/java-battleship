@@ -147,6 +147,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         messageManager.send(ip, message);
         if (message.status == 1) {
             messageManager.send(new ChatMessage(myName , MessageTypes.HAZLIAT));
+            System.out.println("my name is " + myName);
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
             masterGameFrame.gameFrame.chatToLbl.setText("Chat to -> " + enemyName);
             waitingForConnectionFrame.setVisible(false);

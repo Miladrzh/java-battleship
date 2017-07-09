@@ -68,8 +68,11 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     }
 
     private void consumeChatMessage(ChatMessage chatMessage) {
-        if (chatMessage.getTextMessage().equals(MessageTypes.HAZLIAT))
+        if (chatMessage.getTextMessage().equals(MessageTypes.HAZLIAT)) {
             gameInterface.setEnemyName(chatMessage.getName());
+            System.out.println("woww!");
+            System.out.println(chatMessage.getName());
+        }
         else
             gameInterface.addChatMessage(chatMessage);
     }
