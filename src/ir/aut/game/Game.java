@@ -132,7 +132,6 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void setEnemyName(String enemyName) {
         this.enemyName = enemyName;
-        masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
     }
 
     public void setEnemyIp(String enemyIp) {
@@ -149,6 +148,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         if (message.status == 1) {
             messageManager.send(new ChatMessage(myName , MessageTypes.HAZLIAT));
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
+            masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
             waitingForConnectionFrame.setVisible(false);
         }
         waitingForConnectionFrame.validate();
