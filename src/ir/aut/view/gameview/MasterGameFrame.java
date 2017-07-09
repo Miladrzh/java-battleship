@@ -2,6 +2,9 @@ package ir.aut.view.gameview;
 
 import ir.aut.game.GameFrameCallBack;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by Milad on 6/15/2017.
  */
@@ -14,5 +17,6 @@ public class MasterGameFrame {
         gameFrame = new GameFrame(gameFrameCallBack, xCor, yCor, xSize, ySize);
         gameFrame.getBeforeGameBottomPanel().setMaster(gameFrame);
         gameFrame.getInGameBottomPanel().setMaster(gameFrame);
+
     }
 }

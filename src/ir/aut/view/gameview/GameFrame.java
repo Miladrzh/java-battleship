@@ -2,11 +2,17 @@ package ir.aut.view.gameview;
 
 import ir.aut.game.GameFrameCallBack;
 import ir.aut.logic.messages.ChatMessage;
+import ir.aut.view.ChatPanel;
+import ir.aut.view.MessagePanel;
 import ir.aut.view.gameview.sea.EnemySeaPanel;
 import ir.aut.view.gameview.sea.MasterSeaPanel;
 import ir.aut.view.gameview.sea.MySeaPanel;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Milad on 6/14/2017.
@@ -19,9 +25,10 @@ public class GameFrame extends JFrame {
     public MenuBar menuBar;
     public InGameBottomPanel inGameBottomPanel;
     public BeforeGameBottomPanel beforeGameBottomPanel;
-    public GameChatPanel gameChatPanel;
     private GameFrameCallBack gameFrameCallBack;
-
+    private JLabel chatToLbl;
+    public ChatPanel chatPanel;
+    private JTextField typeTextField;
 
     public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
@@ -35,11 +42,32 @@ public class GameFrame extends JFrame {
         menuBar = new MenuBar(0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel("reza", 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
-        gameChatPanel = new GameChatPanel("reza", 667, 0, 332, 690);
-        gameChatPanel.setGameFrameCallBack(gameFrameCallBack);
+
         inGameBottomPanel.setVisible(false);
         beforeGameBottomPanel.setVisible(true);
 
+        chatToLbl = new JLabel("  Chat to: " + "Reza");
+        chatToLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        chatToLbl.setBounds(667, 0, 332, 660 / 12);
+        add(chatToLbl);
+
+        typeTextField = new JTextField("Type here ...", 50);
+        typeTextField.setBounds(667, 660 * 5 / 6 + 30, 332, 660 / 12);
+        typeTextField.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
+                gameFrameCallBack.sendMessage(new ChatMessage("milad", e.getActionCommand()));
+                //todo: ok beshe !
+                chatPanel.validate();
+            }
+        });
+        add(typeTextField);
+
+        chatPanel = new ChatPanel(1, 1 , "reza");
+        chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
+        chatPanel.setInitialBounds(332 ,660 * 3 / 4);
+        add(chatPanel);
 
         this.setLayout(null);
         this.setLocation(xCor, yCor);
@@ -50,10 +78,16 @@ public class GameFrame extends JFrame {
         this.add(menuBar);
         this.add(inGameBottomPanel);
         this.add(beforeGameBottomPanel);
-        this.add(gameChatPanel);
+//        this.add(gameChatPanel);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
 
+        chatPanel.setPreferredSize(new Dimension(600, 600));
+        JScrollPane scrollPane = new JScrollPane(chatPanel , ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS , ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        scrollPane.setLocation(667, 60 );
+        scrollPane.setSize(332, 520);
+        this.add(scrollPane);
     }
 
     public void sendReady() {

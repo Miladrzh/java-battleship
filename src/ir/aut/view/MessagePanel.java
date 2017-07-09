@@ -9,19 +9,26 @@ import java.awt.*;
 public class MessagePanel extends JPanel {
     public static final int ME = 0;
     public static final int ENEMY = 1;
+    public static final int LEFT = 10;
+    public static final int RIGHT = 120;
     private JLabel titleLbl;
     private JLabel messageLbl;
     private JLabel timeLbl;
 
-    public MessagePanel(String title, String message, String time, int type) {
+    public MessagePanel(String title, String message, String time, int type , int yCor) {
         setLayout(new GridLayout(3, 1, 5, 5));
         titleLbl = new JLabel(title, SwingConstants.RIGHT);
         messageLbl = new JLabel(message);
         timeLbl = new JLabel(time, SwingConstants.RIGHT);
         if (type == 0) {
-            setBackground(Color.GREEN);
+            setBackground(new Color(132, 178, 152));
+            setLocation(LEFT , yCor);
+        }
+        else {
+            setBackground(new Color(178, 130, 170));
+            setLocation(RIGHT , yCor);
         }
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        setSize(60, 40);
+        setSize(180, 40);
     }
 }
