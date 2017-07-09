@@ -25,6 +25,4 @@ public interface GameInterface {
 
     void setEnemyName(String name);
 
-    void meStart();
-    void enemyStart();
 }

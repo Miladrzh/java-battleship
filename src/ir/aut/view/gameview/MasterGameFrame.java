@@ -13,6 +13,7 @@ public class MasterGameFrame {
     private GameFrameCallBack gameFrameCallBack;
 
     public MasterGameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
+        System.out.println("S");
         this.gameFrameCallBack = gameFrameCallBack;
         gameFrame = new GameFrame(gameFrameCallBack, xCor, yCor, xSize, ySize);
         gameFrame.getBeforeGameBottomPanel().setMaster(gameFrame);
