@@ -132,8 +132,13 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void setEnemyName(String enemyName) {
         this.enemyName = enemyName;
-        masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
-        masterGameFrame.gameFrame.chatPanel.setEnemyName(enemyName);
+        try {
+            masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
+            masterGameFrame.gameFrame.chatPanel.setEnemyName(enemyName);
+        }
+        catch (Exception e){
+            
+        }
     }
 
     public void setEnemyIp(String enemyIp) {
