@@ -65,7 +65,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
             public void actionPerformed(ActionEvent e) {
                 if (e.getActionCommand() != "") {
                     typeTextField.setText("");
-                    chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ME);
+                    chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date()), MessagePanel.ME);
                     gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
                     chatPanel.validate();
                 }

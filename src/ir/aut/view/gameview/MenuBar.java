@@ -18,7 +18,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
     private JMenuItem wikiPedia;
     private JMenuItem saveChat;
     private MenuBarCallBack menuBarCallBack;
-
+    public ConversationsHistory conversationsHistory;
     public MenuBar(MenuBarCallBack menuBarCallBack, int xCor, int yCor, int xSize, int ySize) {
         super();
         this.menuBarCallBack = menuBarCallBack;
@@ -44,7 +44,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chatHistory) {
-
+            conversationsHistory = new ConversationsHistory(300 , 300 , 300 , 600);
         } else if (e.getSource() == saveChat) {
             menuBarCallBack.saveChatHistory();
             System.out.println("menubar action listener");
