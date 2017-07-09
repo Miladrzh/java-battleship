@@ -42,11 +42,11 @@ public class RequestPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == accept) {
-                waitForConnectionCallBack.setEnemyName(nameLbl.getText());
-                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 1));
-                waitForConnectionCallBack.setEnemyIp(ipLbl.getText());
+                waitForConnectionCallBack.setEnemyName(RequestPanel.this.nameLbl.getText());
+                waitForConnectionCallBack.hostResponse(RequestPanel.this.ipLbl.getText(), new ApplyStatusMessage((byte) 1));
+                waitForConnectionCallBack.setEnemyIp(RequestPanel.this.ipLbl.getText());
             } else {
-                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 0));
+                waitForConnectionCallBack.hostResponse(RequestPanel.this.ipLbl.getText(), new ApplyStatusMessage((byte) 0));
                 RequestPanel.this.setVisible(false);
             }
         }
