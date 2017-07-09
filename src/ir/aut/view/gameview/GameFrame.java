@@ -3,6 +3,7 @@ package ir.aut.view.gameview;
 import ir.aut.game.GameFrameCallBack;
 import ir.aut.logic.messages.ChatMessage;
 import ir.aut.model.ChatJSON;
+import ir.aut.model.IOTool;
 import ir.aut.model.MessageJSON;
 import ir.aut.view.ChatPanel;
 import ir.aut.view.MessagePanel;
@@ -21,7 +22,7 @@ import java.util.Date;
 /**
  * Created by Milad on 6/14/2017.
  */
-public class GameFrame extends JFrame implements ChatPanelCallBack{
+public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBack{
     public MasterSeaPanel enemyMasterSea;
     public EnemySeaPanel enemySea;
     public MasterSeaPanel myMasterSea;
@@ -45,7 +46,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack{
         enemySea = (EnemySeaPanel) enemyMasterSea.seaPanel;
         enemySea.setVisible(false);
 
-        menuBar = new MenuBar(0, 0, 666, 30);
+        menuBar = new MenuBar(this , 0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel(gameFrameCallBack.getEnemyName(), 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
 
@@ -129,6 +130,11 @@ public class GameFrame extends JFrame implements ChatPanelCallBack{
 
     public void sendChat(ChatMessage chatMessage) {
         gameFrameCallBack.sendMessage(chatMessage);
+    }
+
+    @Override
+    public void saveChatHistory() {
+        IOTool.writeChatJSON(chatJSON.getForWrite(gameFrameCallBack.getEnemyName() , gameFrameCallBack.getEnemyIp() ,new SimpleDateFormat("HH:mm:ss").format(new Date())));
     }
 
     public void changePanelStates() {

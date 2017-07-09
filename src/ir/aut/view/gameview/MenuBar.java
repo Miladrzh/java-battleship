@@ -16,13 +16,18 @@ public class MenuBar extends JMenuBar implements ActionListener {
     private JMenu help;
     private JMenuItem chatHistory;
     private JMenuItem wikiPedia;
-
-    public MenuBar(int xCor, int yCor, int xSize, int ySize) {
+    private JMenuItem saveChat;
+    private MenuBarCallBack menuBarCallBack;
+    public MenuBar(MenuBarCallBack menuBarCallBack , int xCor, int yCor, int xSize, int ySize) {
+        super();
+        this.menuBarCallBack = menuBarCallBack;
         file = new JMenu("File");
         help = new JMenu("Help");
         chatHistory = new JMenuItem("Chat History");
         wikiPedia = new JMenuItem("Wikipedia");
+        saveChat= new JMenuItem("Save Chat");
         this.setBackground(new Color(102, 158, 200));
+        file.add(saveChat);
         file.add(chatHistory);
         help.add(wikiPedia);
         add(file);
@@ -37,7 +42,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chatHistory) {
 
-        } else {
+        } else if (e.getSource() == saveChat ) {
+            menuBarCallBack.saveChatHistory();
+
             try {
                 java.awt.Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Battleship_(game)"));
             } catch (IOException e1) {
