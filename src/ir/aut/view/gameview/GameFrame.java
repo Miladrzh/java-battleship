@@ -62,10 +62,12 @@ public class GameFrame extends JFrame implements ChatPanelCallBack {
         typeTextField.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                typeTextField.setText("");
-                chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ME);
-                gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
-                chatPanel.validate();
+                if (e.getActionCommand() != "") {
+                    typeTextField.setText("");
+                    chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ME);
+                    gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
+                    chatPanel.validate();
+                }
             }
         });
 
