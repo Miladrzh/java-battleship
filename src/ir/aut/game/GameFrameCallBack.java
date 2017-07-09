@@ -13,6 +13,7 @@ public interface GameFrameCallBack {
     String getEnemyName();
 
     String getMyName();
+
     String getEnemyIp();
 
     String getMyIp();

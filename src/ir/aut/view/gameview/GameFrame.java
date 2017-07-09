@@ -2,6 +2,8 @@ package ir.aut.view.gameview;
 
 import ir.aut.game.GameFrameCallBack;
 import ir.aut.logic.messages.ChatMessage;
+import ir.aut.model.ChatJSON;
+import ir.aut.model.MessageJSON;
 import ir.aut.view.ChatPanel;
 import ir.aut.view.MessagePanel;
 import ir.aut.view.gameview.sea.EnemySeaPanel;
@@ -19,7 +21,7 @@ import java.util.Date;
 /**
  * Created by Milad on 6/14/2017.
  */
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements ChatPanelCallBack{
     public MasterSeaPanel enemyMasterSea;
     public EnemySeaPanel enemySea;
     public MasterSeaPanel myMasterSea;
@@ -31,9 +33,11 @@ public class GameFrame extends JFrame {
     public JLabel chatToLbl;
     public ChatPanel chatPanel;
     private JTextField typeTextField;
+    public ChatJSON chatJSON;
 
     public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
+        chatJSON = new ChatJSON();
         this.gameFrameCallBack = gameFrameCallBack;
         myMasterSea = new MasterSeaPanel(92, 65, 438, 438, false);
         enemyMasterSea = new MasterSeaPanel(92, 65, 438, 438, true);
@@ -93,7 +97,7 @@ public class GameFrame extends JFrame {
         });
         add(typeTextField);
 
-        chatPanel = new ChatPanel(1, 1 , gameFrameCallBack.getEnemyName());
+        chatPanel = new ChatPanel(this, 1, 1 , gameFrameCallBack.getEnemyName());
         chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
         add(chatPanel);
 
@@ -150,6 +154,9 @@ public class GameFrame extends JFrame {
         mySea.setVisible(true);
     }
 
+    public void addMessageJSON(MessageJSON x){
+        chatJSON.addMessage(x);
+    }
 
     public void showEnemySea() {
         mySea.setVisible(false);

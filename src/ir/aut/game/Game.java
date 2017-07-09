@@ -14,6 +14,7 @@ import ir.aut.view.gameview.sea.SeaCellCordinate;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -26,8 +27,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     private ConnectionModeFrame connectionModeFrame;
     private WaitingForConnectionFrame waitingForConnectionFrame;
     private PleaseWaitFrame pleaseWaitFrame;
-    private ChatJSON chatJSON;
-    String myName , enemyName , myIp , enemyIp;
+    String myName, enemyName, myIp, enemyIp;
 
     public Game() {
         EnemySeaCell.guiInterface = this;
@@ -60,14 +60,11 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void sendReady() {
         iAmReady = true;
-        if (enemyIsReady) {
-            masterGameFrame.gameFrame.inGameBottomPanel.setVisible(true);
-            masterGameFrame.gameFrame.beforeGameBottomPanel.setVisible(false);
-        } else {
-            masterGameFrame.gameFrame.beforeGameBottomPanel.reset.setVisible(false);
-            masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setText("Waiting");
-            masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setEnabled(false);
-        }
+
+        masterGameFrame.gameFrame.beforeGameBottomPanel.reset.setVisible(false);
+        masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setText("Waiting");
+        masterGameFrame.gameFrame.beforeGameBottomPanel.ready.setEnabled(false);
+
         messageManager.send(new ReadyMessage());
     }
 
@@ -135,8 +132,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         try {
             masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
             masterGameFrame.gameFrame.chatPanel.setEnemyName(enemyName);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
@@ -153,7 +149,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     public void hostResponse(String ip, ApplyStatusMessage message) {
         messageManager.send(ip, message);
         if (message.status == 1) {
-            messageManager.send(new ChatMessage(myName , MessageTypes.HAZLIAT));
+            messageManager.send(new ChatMessage(myName, MessageTypes.HAZLIAT));
             messageManager.send(ip, message);
             System.out.println("my name is " + myName);
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
@@ -199,7 +195,6 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         if (hitShips == 20) {
             youWin();
         }
-        //Todo: game wins method
         if (!isShip) {
             try {
                 Thread.sleep(3000);
@@ -212,12 +207,31 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void ready() {
-        if (iAmReady)
-            masterGameFrame.gameFrame.changePanelStates();
-        else {
+        if (iAmReady) {
+            int x = (int) Math.random();
+            if (x % 2 == 1) {
+                masterGameFrame.gameFrame.changePanelStates();
+                messageManager.send(new ChatMessage("you" , MessageTypes.WHO_START));
+            } else {
+                masterGameFrame.gameFrame.inGameBottomPanel.setVisible(true);
+                masterGameFrame.gameFrame.beforeGameBottomPanel.setVisible(false);
+                messageManager.send(new ChatMessage("me" , MessageTypes.WHO_START));
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Your opponent is ready!", "Notification", JOptionPane.PLAIN_MESSAGE);
             enemyIsReady = true;
         }
+    }
+
+    @Override
+    public void meStart() {
+        masterGameFrame.gameFrame.changePanelStates();
+    }
+
+    @Override
+    public void enemyStart() {
+        masterGameFrame.gameFrame.inGameBottomPanel.setVisible(true);
+        masterGameFrame.gameFrame.beforeGameBottomPanel.setVisible(false);
     }
 
     private void youWin() {

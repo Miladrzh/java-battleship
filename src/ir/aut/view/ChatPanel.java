@@ -1,5 +1,7 @@
 package ir.aut.view;
 
+import ir.aut.model.MessageJSON;
+import ir.aut.view.gameview.ChatPanelCallBack;
 import ir.aut.view.gameview.MasterGameFrame;
 
 import javax.swing.*;
@@ -11,8 +13,10 @@ import java.awt.*;
 public class ChatPanel extends JPanel {
     String enemyName;
     int lastYcor , baseStep;
-    public ChatPanel(int xCor , int yCor , String enemyName) {
+    ChatPanelCallBack chatPanelCallBack;
+    public ChatPanel(ChatPanelCallBack chatPanelCallBack , int xCor , int yCor , String enemyName) {
         super();
+        this.chatPanelCallBack = chatPanelCallBack;
         this.enemyName = enemyName;
         this.setLayout(null);
         this.setLocation(xCor , yCor);
@@ -29,8 +33,10 @@ public class ChatPanel extends JPanel {
 
         if (type == 0) {
             add(new MessagePanel("You:", message, time, MessagePanel.ME , lastYcor));
+            chatPanelCallBack.addMessageJSON(new MessageJSON(message , time , MessageJSON.MY_MESSAGE));
         } else {
             add(new MessagePanel(enemyName + ":", message, time, MessagePanel.ENEMY  , lastYcor));
+            chatPanelCallBack.addMessageJSON(new MessageJSON(message , time ,MessageJSON.ENEMY_MESSAGE ));
         }
         lastYcor += baseStep;
         add(Box.createRigidArea(new Dimension(0, 10)));

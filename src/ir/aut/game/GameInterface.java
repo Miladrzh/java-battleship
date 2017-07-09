@@ -24,4 +24,7 @@ public interface GameInterface {
     void addChatMessage(ChatMessage chatMessage);
 
     void setEnemyName(String name);
+
+    void meStart();
+    void enemyStart();
 }

@@ -6,6 +6,8 @@ import org.json.JSONObject;
  * Created by Milad on 7/8/2017.
  */
 public class MessageJSON extends JSONObject{
+    public static final String MY_MESSAGE = "mine";
+    public static final String ENEMY_MESSAGE = "enemy";
     String text , time , type;
     public MessageJSON(String text , String time , String type){
         super();

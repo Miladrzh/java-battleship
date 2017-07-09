@@ -7,31 +7,39 @@ import org.json.JSONObject;
  * Created by Milad on 7/8/2017.
  */
 public class ChatJSON extends JSONObject {
-    String fileName , name , ip , id;
+    String name , ip , id;
     int messageCounter;
     JSONArray messages;
-    public ChatJSON (String fileName , String name , String ip , String id){
+
+    public ChatJSON (){
         super();
-        this.fileName = fileName;
-        this.name = name;
-        this.ip = ip;
-        this.id = id;
-        this.append("name" , name);
-        this.append("ip" , ip);
-        this.append("id" , id);
+        ip = "";
+        name = "";
+        id = "";
         messages = new JSONArray();
     }
 
-    public String getFileName() {
-        return fileName;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addMessage(MessageJSON x){
         messages.put(x);
     }
 
-    public JSONObject getForWrite(){
+    public JSONObject getForWrite(String name , String ip , String id){
         JSONObject ret = this;
+        ret.put("id" , id);
+        ret.put("ip", ip);
+        ret.put("name" , name);
         ret.put("messages" , messages);
         return ret;
     }
