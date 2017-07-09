@@ -220,7 +220,6 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void sendMessage(ChatMessage chatMessage) {
         messageManager.send(chatMessage);
-        masterGameFrame.gameFrame.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
     }
 
     @Override

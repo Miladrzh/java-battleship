@@ -56,6 +56,7 @@ public class GameFrame extends JFrame {
         typeTextField.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                typeTextField.setText("");
                 chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
                 gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
                 chatPanel.validate();

@@ -22,6 +22,7 @@ public class ChatPanel extends JPanel {
     }
 
     public void addMessage(String message, String time, int type) {
+
         if (type == 0) {
             add(new MessagePanel("You:", message, time, MessagePanel.ME , lastYcor));
         } else {
