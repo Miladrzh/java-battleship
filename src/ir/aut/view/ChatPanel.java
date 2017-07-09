@@ -21,6 +21,10 @@ public class ChatPanel extends JPanel {
         baseStep = 60;
     }
 
+    public void setEnemyName(String enemyName) {
+        this.enemyName = enemyName;
+    }
+
     public void addMessage(String message, String time, int type) {
 
         if (type == 0) {
