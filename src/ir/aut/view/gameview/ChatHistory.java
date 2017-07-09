@@ -17,6 +17,7 @@ public class ChatHistory extends JFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setBounds(xCor, yCor, xSize, ySize);
         chatPanel = new ChatPanel(0, 0, enemyName);
+        this.add(chatPanel);
         setVisible(false);
     }
 
