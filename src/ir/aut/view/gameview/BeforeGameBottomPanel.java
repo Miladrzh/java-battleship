@@ -15,7 +15,7 @@ public class BeforeGameBottomPanel extends JPanel {
     public JButton reset, ready;
     public JLabel block4, block3, block2, block1;
     public JLabel fourLbl, threeLbl, twoLbl, oneLbl;
-
+    public static boolean isClicked = false;
     private GameFrame master;
 
     public BeforeGameBottomPanel(int xCor, int yCor, int xSize, int ySize) {
@@ -117,6 +117,11 @@ public class BeforeGameBottomPanel extends JPanel {
     private class MouseHandler extends MouseAdapter implements MouseListener, MouseMotionListener {
         @Override
         public void mousePressed(MouseEvent e) {
+            if (isClicked == true) {
+                JOptionPane.showMessageDialog(null , "Please Set Already Selected One!");
+                return;
+            }
+            isClicked = true;
             if (e.getSource() == fourLbl) {
                 SeaPanel.rectSize = 4;
                 block4.setText("x" + (Character.getNumericValue(block4.getText().charAt(1)) - 1));
