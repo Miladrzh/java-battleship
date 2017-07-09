@@ -25,6 +25,15 @@ public class ChatPanel extends JPanel {
         baseStep = 60;
     }
 
+    public ChatPanel( int xCor , int yCor , String enemyName) {
+        super();
+        this.enemyName = enemyName;
+        this.setLayout(null);
+        this.setLocation(xCor , yCor);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        lastYcor = 10;
+        baseStep = 60;
+    }
     public void setEnemyName(String enemyName) {
         this.enemyName = enemyName;
     }
