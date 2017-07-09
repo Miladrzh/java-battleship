@@ -13,9 +13,9 @@ public interface GameFrameCallBack {
     String getEnemyName();
 
     String getMyName();
-    String getEnemyIP();
+    String getEnemyIp();
 
-    String getMyIP();
+    String getMyIp();
 
 
 }

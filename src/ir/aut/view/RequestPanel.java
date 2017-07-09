@@ -42,8 +42,8 @@ public class RequestPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == accept) {
-                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 1));
                 waitForConnectionCallBack.setEnemyName(nameLbl.getText());
+                waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 1));
                 waitForConnectionCallBack.setEnemyIp(ipLbl.getText());
             } else {
                 waitForConnectionCallBack.hostResponse(ipLbl.getText(), new ApplyStatusMessage((byte) 0));

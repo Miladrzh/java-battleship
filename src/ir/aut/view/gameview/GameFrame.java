@@ -25,8 +25,8 @@ public class GameFrame extends JFrame {
     public MenuBar menuBar;
     public InGameBottomPanel inGameBottomPanel;
     public BeforeGameBottomPanel beforeGameBottomPanel;
-    private GameFrameCallBack gameFrameCallBack;
-    private JLabel chatToLbl;
+    public GameFrameCallBack gameFrameCallBack;
+    public JLabel chatToLbl;
     public ChatPanel chatPanel;
     private JTextField typeTextField;
 
@@ -63,7 +63,7 @@ public class GameFrame extends JFrame {
         });
         add(typeTextField);
 
-        chatPanel = new ChatPanel(1, 1 , gameFrameCallBack.getEnemyName());
+        chatPanel = new ChatPanel(1, 1);
         chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
         add(chatPanel);
 

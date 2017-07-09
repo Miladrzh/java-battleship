@@ -11,9 +11,9 @@ import java.awt.*;
 public class ChatPanel extends JPanel {
     String enemyName;
     int lastYcor , baseStep;
-    public ChatPanel(int xCor , int yCor , String enemyName) {
+    public ChatPanel(int xCor , int yCor) {
         super();
-        this.enemyName = "!23";
+        this.enemyName = enemyName;
         this.setLayout(null);
         this.setLocation(xCor , yCor);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));

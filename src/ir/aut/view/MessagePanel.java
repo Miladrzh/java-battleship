@@ -21,12 +21,12 @@ public class MessagePanel extends JPanel {
         messageLbl = new JLabel(message);
         timeLbl = new JLabel(time, SwingConstants.RIGHT);
         if (type == 0) {
-            setBackground(new Color(143, 178, 153));
-            setLocation(LEFT , yCor);
+            setBackground(new Color(188, 229, 200));
+            setLocation(RIGHT , yCor);
         }
         else {
-            setBackground(new Color(178, 147, 170));
-            setLocation(RIGHT , yCor);
+            setBackground(new Color(198, 166, 190));
+            setLocation(LEFT , yCor);
         }
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setSize(180, 40);
