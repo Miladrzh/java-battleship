@@ -115,7 +115,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack{
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
 
-        chatPanel.setPreferredSize(new Dimension(600, 600));
+        chatPanel.setPreferredSize(new Dimension(1800, 3800));
         JScrollPane scrollPane = new JScrollPane(chatPanel , ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS , ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         scrollPane.setLocation(667, 60 );
