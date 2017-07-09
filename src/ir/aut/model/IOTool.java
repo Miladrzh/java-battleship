@@ -15,6 +15,7 @@ public class IOTool {
     public static String readJSON(){
         BufferedReader reader = null;
         String ret = "";
+        System.out.println("huuuuuy");
         try {
             reader = new BufferedReader(new FileReader(PATH));
             System.out.println(PATH);

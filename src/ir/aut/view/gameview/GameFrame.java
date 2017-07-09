@@ -135,6 +135,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
     @Override
     public void saveChatHistory() {
         IOTool.writeChatJSON(chatJSON.getForWrite(gameFrameCallBack.getEnemyName() , gameFrameCallBack.getEnemyIp() ,new SimpleDateFormat("HH:mm:ss").format(new Date())));
+        System.out.println("save chat history");
     }
 
     public void changePanelStates() {
