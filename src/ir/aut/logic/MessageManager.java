@@ -52,6 +52,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
             System.out.println();
             if (i.getID().equals(to)) {
                 currentNetwork = i;
+                System.out.println("current network = i");
                 i.sendMessage(message);
                 break;
             }
@@ -59,6 +60,8 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     }
 
     public void send(BaseMessage message) {
+        if (currentNetwork == null)
+            System.out.println("current network null");
         currentNetwork.sendMessage(message);
     }
 

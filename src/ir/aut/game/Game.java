@@ -130,7 +130,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     public void setEnemyName(String enemyName) {
         this.enemyName = enemyName;
         try {
-            masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
+            masterGameFrame.gameFrame.chatToLbl.setText("Chat to: " + enemyName);
             masterGameFrame.gameFrame.chatPanel.setEnemyName(enemyName);
         } catch (Exception e) {
 
@@ -147,9 +147,9 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     public void hostResponse(String ip, ApplyStatusMessage message) {
+        messageManager.send(ip, message);
         if (message.status == 1) {
             messageManager.send(new ChatMessage(myName, MessageTypes.HAZLIAT));
-            messageManager.send(ip, message);
             System.out.println("my name is " + myName);
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
             masterGameFrame.gameFrame.chatToLbl.setText("Chat to: " + enemyName);
