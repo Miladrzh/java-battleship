@@ -11,6 +11,8 @@ import ir.aut.view.gameview.sea.MySeaPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -60,6 +62,33 @@ public class GameFrame extends JFrame {
                 chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ME);
                 gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
                 chatPanel.validate();
+            }
+        });
+
+        typeTextField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                typeTextField.setText("");
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
             }
         });
         add(typeTextField);
