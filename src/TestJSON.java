@@ -1,7 +1,6 @@
 import ir.aut.model.ChatJSON;
 import ir.aut.model.IOTool;
 import ir.aut.model.MessageJSON;
-import ir.aut.view.gameview.MasterGameFrame;
 
 /**
  * Created by Milad on 7/8/2017.
