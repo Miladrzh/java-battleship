@@ -57,14 +57,14 @@ public class GameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 typeTextField.setText("");
-                chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
+                chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ME);
                 gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
                 chatPanel.validate();
             }
         });
         add(typeTextField);
 
-        chatPanel = new ChatPanel(1, 1);
+        chatPanel = new ChatPanel(1, 1 , gameFrameCallBack.getEnemyName());
         chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
         add(chatPanel);
 

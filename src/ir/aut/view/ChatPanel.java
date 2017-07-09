@@ -11,7 +11,7 @@ import java.awt.*;
 public class ChatPanel extends JPanel {
     String enemyName;
     int lastYcor , baseStep;
-    public ChatPanel(int xCor , int yCor) {
+    public ChatPanel(int xCor , int yCor , String enemyName) {
         super();
         this.enemyName = enemyName;
         this.setLayout(null);

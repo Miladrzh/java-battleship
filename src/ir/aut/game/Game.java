@@ -148,7 +148,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         if (message.status == 1) {
             messageManager.send(new ChatMessage(myName , MessageTypes.HAZLIAT));
             masterGameFrame = new MasterGameFrame(this, 50, 50, 1000, 700);
-            masterGameFrame.gameFrame.chatToLbl.setText(enemyName);
+            masterGameFrame.gameFrame.chatToLbl.setText("Chat to -> " + enemyName);
             waitingForConnectionFrame.setVisible(false);
         }
         waitingForConnectionFrame.validate();
@@ -224,6 +224,6 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
 
     @Override
     public void addChatMessage(ChatMessage chatMessage) {
-        masterGameFrame.gameFrame.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ENEMY);
+        masterGameFrame.gameFrame.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("HH:mm").format(new Date()), MessagePanel.ENEMY);
     }
 }
