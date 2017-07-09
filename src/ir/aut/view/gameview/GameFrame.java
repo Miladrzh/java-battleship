@@ -40,13 +40,13 @@ public class GameFrame extends JFrame {
         enemySea.setVisible(false);
 
         menuBar = new MenuBar(0, 0, 666, 30);
-        inGameBottomPanel = new InGameBottomPanel("reza", 0, 550, 666, 150);
+        inGameBottomPanel = new InGameBottomPanel(gameFrameCallBack.getEnemyName(), 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
 
         inGameBottomPanel.setVisible(false);
         beforeGameBottomPanel.setVisible(true);
 
-        chatToLbl = new JLabel("  Chat to: " + "Reza");
+        chatToLbl = new JLabel("  Chat to: " + gameFrameCallBack.getEnemyName());
         chatToLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         chatToLbl.setBounds(667, 0, 332, 660 / 12);
         add(chatToLbl);
@@ -57,16 +57,14 @@ public class GameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chatPanel.addMessage(e.getActionCommand(), new SimpleDateFormat("HHmm").format(new Date()), MessagePanel.ME);
-                gameFrameCallBack.sendMessage(new ChatMessage("milad", e.getActionCommand()));
-                //todo: ok beshe !
+                gameFrameCallBack.sendMessage(new ChatMessage(gameFrameCallBack.getMyName(), e.getActionCommand()));
                 chatPanel.validate();
             }
         });
         add(typeTextField);
 
-        chatPanel = new ChatPanel(1, 1 , "reza");
+        chatPanel = new ChatPanel(1, 1 , gameFrameCallBack.getEnemyName());
         chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
-        chatPanel.setInitialBounds(332 ,660 * 3 / 4);
         add(chatPanel);
 
         this.setLayout(null);
@@ -78,7 +76,6 @@ public class GameFrame extends JFrame {
         this.add(menuBar);
         this.add(inGameBottomPanel);
         this.add(beforeGameBottomPanel);
-//        this.add(gameChatPanel);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
 

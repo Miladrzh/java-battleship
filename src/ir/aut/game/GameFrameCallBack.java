@@ -9,4 +9,13 @@ public interface GameFrameCallBack {
     void sendReady();
 
     void sendMessage(ChatMessage chatMessage);
+
+    String getEnemyName();
+
+    String getMyName();
+    String getEnemyIP();
+
+    String getMyIP();
+
+
 }

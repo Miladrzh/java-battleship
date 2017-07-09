@@ -105,6 +105,26 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     @Override
+    public String getEnemyIP() {
+        return null;
+    }
+
+    @Override
+    public String getMyIP() {
+        return null;
+    }
+
+    @Override
+    public String getEnemyName() {
+        return enemyName;
+    }
+
+    @Override
+    public String getMyName() {
+        return myName;
+    }
+
+    @Override
     public void setMyName(String x) {
         myName = x;
     }

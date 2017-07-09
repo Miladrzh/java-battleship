@@ -7,7 +7,7 @@ import ir.aut.view.gameview.MasterGameFrame;
  */
 public class TestJSON {
     public static void main(String[] args) {
-        MasterGameFrame x = new MasterGameFrame(null , 50 ,50 ,1000 , 700 );
+//        MasterGameFrame x = new MasterGameFrame(null , 50 ,50 ,1000 , 700 );
 //        ChatJSON x = new ChatJSON("jafar" , "milad" , "192.168.1.1" , "12");
 //        x.addMessage(new MessageJSON("boro gomsho" , "12:30" , "mine"));
 //        x.addMessage(new MessageJSON("wear" , "12:34" , "inver"));
