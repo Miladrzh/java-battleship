@@ -22,7 +22,7 @@ import java.util.Date;
 /**
  * Created by Milad on 6/14/2017.
  */
-public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBack{
+public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallBack {
     public MasterSeaPanel enemyMasterSea;
     public EnemySeaPanel enemySea;
     public MasterSeaPanel myMasterSea;
@@ -38,6 +38,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
 
     public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         chatJSON = new ChatJSON();
         this.gameFrameCallBack = gameFrameCallBack;
         myMasterSea = new MasterSeaPanel(92, 65, 438, 438, false);
@@ -46,7 +47,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
         enemySea = (EnemySeaPanel) enemyMasterSea.seaPanel;
         enemySea.setVisible(false);
 
-        menuBar = new MenuBar(this , 0, 0, 666, 30);
+        menuBar = new MenuBar(this, 0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel(gameFrameCallBack.getEnemyName(), 0, 550, 666, 150);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
 
@@ -100,7 +101,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
         });
         add(typeTextField);
 
-        chatPanel = new ChatPanel(this, 1, 1 , gameFrameCallBack.getEnemyName());
+        chatPanel = new ChatPanel(this, 1, 1, gameFrameCallBack.getEnemyName());
         chatPanel.setBounds(667, 660 / 12, 332, 660 * 3 / 4);
         add(chatPanel);
 
@@ -117,9 +118,9 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
         this.setVisible(true);
 
         chatPanel.setPreferredSize(new Dimension(1800, 3800));
-        JScrollPane scrollPane = new JScrollPane(chatPanel , ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS , ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollPane = new JScrollPane(chatPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        scrollPane.setLocation(667, 60 );
+        scrollPane.setLocation(667, 60);
         scrollPane.setSize(332, 520);
         this.add(scrollPane);
     }
@@ -134,7 +135,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
 
     @Override
     public void saveChatHistory() {
-        IOTool.writeChatJSON(chatJSON.getForWrite(gameFrameCallBack.getEnemyName() , gameFrameCallBack.getEnemyIp() ,new SimpleDateFormat("HH:mm:ss").format(new Date())));
+        IOTool.writeChatJSON(chatJSON.getForWrite(gameFrameCallBack.getEnemyName(), gameFrameCallBack.getEnemyIp(), new SimpleDateFormat("HH:mm:ss").format(new Date())));
         System.out.println("save chat history");
     }
 
@@ -163,7 +164,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack,MenuBarCallBa
         mySea.setVisible(true);
     }
 
-    public void addMessageJSON(MessageJSON x){
+    public void addMessageJSON(MessageJSON x) {
         chatJSON.addMessage(x);
     }
 

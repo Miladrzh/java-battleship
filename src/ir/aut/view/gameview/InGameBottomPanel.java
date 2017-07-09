@@ -3,6 +3,7 @@ package ir.aut.view.gameview;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by Lenovo on 6/15/2017.
@@ -28,6 +29,12 @@ public class InGameBottomPanel extends JPanel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLocation(xCor, yCor);
         setSize(xSize, ySize);
+        leaveButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public void setMaster(GameFrame master) {
