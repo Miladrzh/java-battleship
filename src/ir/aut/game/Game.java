@@ -147,7 +147,6 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     }
 
     public void hostResponse(String ip, ApplyStatusMessage message) {
-        messageManager.send(ip, message);
         if (message.status == 1) {
             messageManager.send(new ChatMessage(myName, MessageTypes.HAZLIAT));
             messageManager.send(ip, message);
