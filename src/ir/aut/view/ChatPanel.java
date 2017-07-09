@@ -29,6 +29,7 @@ public class ChatPanel extends JPanel {
         }
         lastYcor += baseStep;
         add(Box.createRigidArea(new Dimension(0, 10)));
+        validate();
     }
 
 }
