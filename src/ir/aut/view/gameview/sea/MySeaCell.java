@@ -1,5 +1,7 @@
 package ir.aut.view.gameview.sea;
 
+import ir.aut.view.gameview.BeforeGameBottomPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -63,6 +65,7 @@ public class MySeaCell extends SeaCell {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            BeforeGameBottomPanel.isClicked = false;
             Rectangle rec = new Rectangle(master.mousePoint.x, master.mousePoint.y, master.rectWidth, master.rectHeight);
             if (trueArranging(((SeaCell) e.getSource()).cor, SeaPanel.rectSize, rec.height < rec.width)) {
                 master.rectangles.add(rec);
