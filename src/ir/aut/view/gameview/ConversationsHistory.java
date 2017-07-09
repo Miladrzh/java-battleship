@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class ConversationsHistory extends JFrame {
     private static int lastYCor = 0;
-    private static final int Y_SIZE = 30;
+    private static final int Y_SIZE = 50;
     private int xSize, ySize;
 
     public ConversationsHistory(int xCor, int yCor, int xSize, int ySize) {
@@ -21,6 +21,7 @@ public class ConversationsHistory extends JFrame {
         JScrollPane jScrollPane = new JScrollPane(this, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane.setBounds(xSize - 20, 0, xSize, ySize);
         add(jScrollPane);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
         setVisible(true);
     }
