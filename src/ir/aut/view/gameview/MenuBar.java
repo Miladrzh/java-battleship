@@ -44,6 +44,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chatHistory) {
+            if (conversationsHistory != null)
+                conversationsHistory.setVisible(false);
             conversationsHistory = new ConversationsHistory(300 , 300 , 300 , 600);
         } else if (e.getSource() == saveChat) {
             menuBarCallBack.saveChatHistory();

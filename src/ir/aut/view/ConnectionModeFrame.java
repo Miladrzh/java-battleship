@@ -44,7 +44,7 @@ public class ConnectionModeFrame extends JFrame implements ActionListener {
         portText = new JTextField(20);
         portText2 = new JTextField(20);
         ipText = new JTextField(20);
-        startButton = new JButton("start");
+        startButton = new JButton("Start");
         startButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
