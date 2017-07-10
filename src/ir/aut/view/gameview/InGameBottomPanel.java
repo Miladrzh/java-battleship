@@ -20,7 +20,7 @@ public class InGameBottomPanel extends JPanel {
     public InGameBottomPanel(String enemyName, int xCor, int yCor, int xSize, int ySize) {
         you = new JLabel("You");
         enemy = new JLabel(enemyName);
-        this.setBackground(new Color(229, 110, 53));
+        this.setBackground(new Color(229, 176, 140));
         leaveButton = new JButton("leave");
         setLayout(null);
         you.setBounds(5, 15, 40, 15);
