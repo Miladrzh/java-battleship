@@ -4,6 +4,7 @@ import ir.aut.logic.messages.*;
 
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -68,7 +69,7 @@ public class NetworkHandler extends Thread {
                         mReceivedQueue.add(x);
                     }
                 } catch (Throwable throwable) {
-                    throwable.printStackTrace();
+
                 }
             }
         }
