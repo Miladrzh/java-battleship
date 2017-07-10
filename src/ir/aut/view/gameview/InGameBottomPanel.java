@@ -53,10 +53,12 @@ public class InGameBottomPanel extends JPanel {
 
     public void setYourHits(int i) {
         yourHits.setText("" + i);
+        enemy.setText(gameFrameCallBack.getEnemyName());
     }
 
     public void setEnemyHits(int i) {
         enemyHits.setText( "" +i);
+        enemy.setText(gameFrameCallBack.getEnemyName());
     }
 
     public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {

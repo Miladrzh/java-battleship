@@ -26,6 +26,7 @@ public class RequestPanel extends JPanel {
         accept = new JButton("Accept");
         ipLbl.setForeground(Color.DARK_GRAY);
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2, 10, 0));
+        this.setBackground(new Color(108, 125, 143));
         buttonPanel.add(reject);
         buttonPanel.add(accept);
         add(nameLbl);

@@ -56,6 +56,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
 
         menuBar = new MenuBar(this, 0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel(gameFrameCallBack.getEnemyName(), 0, 550, 666, 150);
+        inGameBottomPanel.setGameFrameCallBack(gameFrameCallBack);
         beforeGameBottomPanel = new BeforeGameBottomPanel(0, 550, 666, 150);
 
         inGameBottomPanel.setVisible(false);
