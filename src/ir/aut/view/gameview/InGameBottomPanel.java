@@ -31,11 +31,13 @@ public class InGameBottomPanel extends JPanel {
         add(you);
         add(enemy);
         add(leaveButton);
-        yourHits = new JLabel("Your Hits: 0");
-        enemyHits = new JLabel("Enemy Hits: 0");
+        yourHits = new JLabel("0");
+        enemyHits = new JLabel("0");
 
-        yourHits.setBounds(6, 30, 50, 30);
-        enemyHits.setBounds(xSize / 2, 30, 50, 30);
+        yourHits.setBounds(6, 30, 100, 100);
+        yourHits.setFont(new Font("Arial" , Font.BOLD , 20));
+        enemyHits.setBounds(xSize / 2, 30, 100, 100);
+        enemyHits.setFont(new Font("Arial" , Font.BOLD , 20));
         add(yourHits);
         add(enemyHits);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -50,11 +52,11 @@ public class InGameBottomPanel extends JPanel {
     }
 
     public void setYourHits(int i) {
-        yourHits.setText("your Hits: " + i);
+        yourHits.setText("" + i);
     }
 
     public void setEnemyHits(int i) {
-        enemyHits.setText("Enemy Hits: " + i);
+        enemyHits.setText( "" +i);
     }
 
     public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {
