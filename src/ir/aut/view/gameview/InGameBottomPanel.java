@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 public class InGameBottomPanel extends JPanel {
     private JLabel you;
     private JLabel enemy;
+    private JLabel yourHits;
+    private JLabel enemyHits;
     private JButton leaveButton;
     private GameFrame master;
     private GameFrameCallBack gameFrameCallBack;
@@ -29,6 +31,13 @@ public class InGameBottomPanel extends JPanel {
         add(you);
         add(enemy);
         add(leaveButton);
+        yourHits = new JLabel("Your Hits: 0");
+        enemyHits = new JLabel("Enemy Hits: 0");
+
+        yourHits.setBounds(6, 30, 50, 30);
+        enemyHits.setBounds(xSize / 2, 30, 50, 30);
+        add(yourHits);
+        add(enemyHits);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLocation(xCor, yCor);
         setSize(xSize, ySize);
@@ -38,6 +47,14 @@ public class InGameBottomPanel extends JPanel {
                 gameFrameCallBack.sendConnectionLostMessage();
             }
         });
+    }
+
+    public void setYourHits(int i) {
+        yourHits.setText("your Hits: " + i);
+    }
+
+    public void setEnemyHits(int i) {
+        enemyHits.setText("Enemy Hits: " + i);
     }
 
     public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {

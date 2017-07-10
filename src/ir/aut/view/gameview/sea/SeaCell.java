@@ -60,7 +60,7 @@ public abstract class SeaCell extends JLabel {
     }
 
     private void setClean(int x, int y) {
-        if (!(x > 10 || x < 1 || y > 10 || y < 1)) {
+        if (!(x > 10 || x < 1 || y > 10 || y < 1) && isEnabled()) {
             SeaCell nei = master.total.get(new SeaCellCordinate(x, y));
             if (nei == null)
                 return;
