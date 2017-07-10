@@ -6,7 +6,7 @@ import ir.aut.logic.messages.ChatMessage;
  * Created by Milad on 7/5/2017.
  */
 public interface GameInterface {
-    void start ();
+    void start();
 
     void applyAccepted();
 
