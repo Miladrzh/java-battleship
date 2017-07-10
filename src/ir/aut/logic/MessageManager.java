@@ -2,6 +2,7 @@ package ir.aut.logic;
 
 import ir.aut.game.GameInterface;
 import ir.aut.logic.messages.*;
+import ir.aut.view.gameview.GameFrame;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -85,8 +86,10 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         } else if (chatMessage.getTextMessage().equals((MessageTypes.WHO_START))) {
             if (chatMessage.getName().equals("you")) {
                 gameInterface.enemyStart();
+                GameFrame.turn.setText("Enemy Turn : ");
             } else {
                 gameInterface.meStart();
+                GameFrame.turn.setText("Your Turn : ");
             }
         } else
             gameInterface.addChatMessage(chatMessage);

@@ -35,10 +35,11 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
     public ChatPanel chatPanel;
     private JTextField typeTextField;
     public ChatJSON chatJSON;
+    public static JLabel turn;
 
     public GameFrame(GameFrameCallBack gameFrameCallBack, int xCor, int yCor, int xSize, int ySize) {
         super("Battle Ship :)");
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         chatJSON = new ChatJSON();
         this.gameFrameCallBack = gameFrameCallBack;
         myMasterSea = new MasterSeaPanel(92, 65, 438, 438, false);
@@ -46,6 +47,12 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
         mySea = (MySeaPanel) myMasterSea.seaPanel;
         enemySea = (EnemySeaPanel) enemyMasterSea.seaPanel;
         enemySea.setVisible(false);
+
+        turn = new JLabel("Your Turn");
+        turn.setSize(30 , 30);
+        turn.setLocation(10 , 30);
+        turn.setFont(new Font("Arial" , 0 , 12));
+        this.add(turn);
 
         menuBar = new MenuBar(this, 0, 0, 666, 30);
         inGameBottomPanel = new InGameBottomPanel(gameFrameCallBack.getEnemyName(), 0, 550, 666, 150);
@@ -141,6 +148,10 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
     }
 
     public void changePanelStates() {
+        if (turn.getText().equals("Your Turn : "))
+            turn.setText("Enemy Turn : ");
+        else
+            turn.setText("Your Turn : ");
         inGameBottomPanel.setVisible(true);
         beforeGameBottomPanel.setVisible(false);
         enemySea.setVisible(!enemySea.isVisible());
