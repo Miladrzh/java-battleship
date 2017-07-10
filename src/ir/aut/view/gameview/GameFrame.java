@@ -49,9 +49,9 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
         enemySea.setVisible(false);
 
         turn = new JLabel("Your Turn");
-        turn.setSize(30 , 30);
+        turn.setSize(100 , 30);
         turn.setLocation(10 , 30);
-        turn.setFont(new Font("Arial" , 0 , 12));
+        turn.setFont(new Font("Arial" , 0 , 14));
         this.add(turn);
 
         menuBar = new MenuBar(this, 0, 0, 666, 30);
