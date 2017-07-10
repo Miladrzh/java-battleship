@@ -20,6 +20,7 @@ import java.util.Date;
 public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitForConnectionCallBack, GameInterface, GameFrameCallBack, GuiInterface {
     boolean iAmReady, enemyIsReady;
     int hitShips = 0;
+    int enemyHitShips = 0;
     private MasterGameFrame masterGameFrame;
     private MessageManager messageManager;
     private ConnectionModeFrame connectionModeFrame;
@@ -169,6 +170,8 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         boolean isHit = masterGameFrame.gameFrame.mySea.hit(new SeaCellCordinate(i, j));
         if (isHit) {
             messageManager.send(new FeedbackMessage(i, j, 1));
+            enemyHitShips++;
+            masterGameFrame.gameFrame.inGameBottomPanel.setEnemyHits(enemyHitShips);
         } else {
             messageManager.send(new FeedbackMessage(i, j, 0));
             try {
@@ -185,6 +188,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         if (isShip) {
             masterGameFrame.gameFrame.enemySea.setShip(new SeaCellCordinate(i, j));
             hitShips++;
+            masterGameFrame.gameFrame.inGameBottomPanel.setYourHits(hitShips);
         }
 
         masterGameFrame.gameFrame.enemySea.hit(new SeaCellCordinate(i, j));
