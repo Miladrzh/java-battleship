@@ -22,7 +22,7 @@ public class TcpChannel {
         try {
             mSocket.connect(socketAddress, timeout);
         } catch (IOException e) {
-            e.printStackTrace();
+            
         }
         try {
             mSocket.setSoTimeout(timeout);
@@ -32,12 +32,12 @@ public class TcpChannel {
         try {
             mInputStream = mSocket.getInputStream();
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         try {
             mOutputStream = mSocket.getOutputStream();
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -47,7 +47,7 @@ public class TcpChannel {
         try {
             socket.setSoTimeout(timeout);
         } catch (SocketException e) {
-            e.printStackTrace();
+
         }
 
         try {
@@ -55,12 +55,11 @@ public class TcpChannel {
                 mInputStream = mSocket.getInputStream();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         try {
             mOutputStream = mSocket.getOutputStream();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -74,7 +73,7 @@ public class TcpChannel {
         } catch (SocketTimeoutException ignored) {
 
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         return x;
     }
@@ -87,7 +86,7 @@ public class TcpChannel {
             mOutputStream.write(data);
             mOutputStream.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -108,7 +107,6 @@ public class TcpChannel {
             mSocket.close();
             mOutputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

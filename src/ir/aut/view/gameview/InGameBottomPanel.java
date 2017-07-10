@@ -61,6 +61,7 @@ public class InGameBottomPanel extends JPanel {
 
     public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {
         this.gameFrameCallBack = gameFrameCallBack;
+        enemy.setText(gameFrameCallBack.getEnemyName());
     }
 
     public void setMaster(GameFrame master) {
