@@ -191,6 +191,7 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
         masterGameFrame.gameFrame.enemySea.setEnableAllCells(true);
         if (hitShips == 20) {
             youWin();
+            messageManager.send(new YouLoseMessage());
         }
         if (!isShip) {
             try {
