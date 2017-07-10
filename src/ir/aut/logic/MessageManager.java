@@ -126,6 +126,7 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     //type 8
     private void consumeConnectionLostMessage(ConnectionLostMessage connectionLostMessage) {
+        gameInterface.start();
         onSocketClosed();
         gameInterface.connectionLostEffect(connectionLostMessage.getiAmServer() == 1);
         System.exit(0);

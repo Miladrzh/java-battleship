@@ -12,6 +12,8 @@ public interface GameFrameCallBack {
 
     void sendConnectionLostMessage();
 
+    void start();
+
     String getEnemyName();
 
     String getMyName();
