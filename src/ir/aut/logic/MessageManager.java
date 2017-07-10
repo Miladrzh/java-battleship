@@ -175,6 +175,6 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
 
     @Override
     public void onSocketClosed() {
-// TODO : implement !!
+        currentNetwork.stopSelf();
     }
 }
