@@ -23,7 +23,7 @@ public class InGameBottomPanel extends JPanel {
         you = new JLabel("You");
         enemy = new JLabel(enemyName);
         this.setBackground(new Color(229, 176, 140));
-        leaveButton = new JButton("leave");
+        leaveButton = new JButton("Leave");
         setLayout(null);
         you.setBounds(5, 15, 40, 15);
         enemy.setBounds(xSize / 2, 15, 70, 15);
@@ -35,9 +35,9 @@ public class InGameBottomPanel extends JPanel {
         enemyHits = new JLabel("0");
 
         yourHits.setBounds(6, 30, 100, 100);
-        yourHits.setFont(new Font("Arial" , Font.BOLD , 20));
+        yourHits.setFont(new Font("Arial" , Font.BOLD , 22));
         enemyHits.setBounds(xSize / 2, 30, 100, 100);
-        enemyHits.setFont(new Font("Arial" , Font.BOLD , 20));
+        enemyHits.setFont(new Font("Arial" , Font.BOLD , 22));
         add(yourHits);
         add(enemyHits);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
