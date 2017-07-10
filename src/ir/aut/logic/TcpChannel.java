@@ -51,7 +51,7 @@ public class TcpChannel {
         }
 
         try {
-            if(mSocket.isConnected()) {
+            if (mSocket.isConnected()) {
                 mInputStream = mSocket.getInputStream();
             }
         } catch (IOException e) {
@@ -71,10 +71,9 @@ public class TcpChannel {
         byte[] x = new byte[count];
         try {
             mInputStream.read(x);
-        } catch (SocketTimeoutException ignored){
+        } catch (SocketTimeoutException ignored) {
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return x;
@@ -106,16 +105,8 @@ public class TcpChannel {
     public void closeChannel() {
         try {
             mInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            mOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             mSocket.close();
+            mOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

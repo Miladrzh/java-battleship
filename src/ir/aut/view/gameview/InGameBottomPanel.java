@@ -1,6 +1,8 @@
 package ir.aut.view.gameview;
 
 
+import ir.aut.game.GameFrameCallBack;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ public class InGameBottomPanel extends JPanel {
     private JLabel enemy;
     private JButton leaveButton;
     private GameFrame master;
+    private GameFrameCallBack gameFrameCallBack;
 
     public InGameBottomPanel(String enemyName, int xCor, int yCor, int xSize, int ySize) {
         you = new JLabel("You");
@@ -32,9 +35,13 @@ public class InGameBottomPanel extends JPanel {
         leaveButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                gameFrameCallBack.sendConnectionLostMessage();
             }
         });
+    }
+
+    public void setGameFrameCallBack(GameFrameCallBack gameFrameCallBack) {
+        this.gameFrameCallBack = gameFrameCallBack;
     }
 
     public void setMaster(GameFrame master) {

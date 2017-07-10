@@ -78,7 +78,7 @@ public class NetworkHandler extends Thread {
      * Kill the thread and close the channel.
      */
     public void stopSelf() {
-        //todo: what is this ?
+        mTcpChannel.closeChannel();
         this.interrupt();
     }
 
@@ -136,6 +136,9 @@ public class NetworkHandler extends Thread {
                             break;
                         case 7:
                             iNetworkHandlerCallback.onMessageReceived(new YouLoseMessage());
+                            break;
+                        case 8:
+                            iNetworkHandlerCallback.onMessageReceived(new ConnectionLostMessage(message));
                             break;
                     }
                 } else {

@@ -18,6 +18,10 @@ public class ConnectionLostMessage extends BaseMessage {
         deserialize();
     }
 
+    public byte getiAmServer() {
+        return iAmServer;
+    }
+
     @Override
     protected void serialize() {
         int messageLength = 4 + 1 + 1 + 1;

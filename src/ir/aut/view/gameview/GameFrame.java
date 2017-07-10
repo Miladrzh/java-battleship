@@ -123,6 +123,7 @@ public class GameFrame extends JFrame implements ChatPanelCallBack, MenuBarCallB
         scrollPane.setLocation(667, 60);
         scrollPane.setSize(332, 520);
         this.add(scrollPane);
+        inGameBottomPanel.setGameFrameCallBack(gameFrameCallBack);
     }
 
     public void sendReady() {

@@ -40,6 +40,14 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         }
     }
 
+    public NetworkHandler getCurrentNetwork() {
+        return currentNetwork;
+    }
+
+    public ServerSocketHandler getmServerSocketHandler() {
+        return mServerSocketHandler;
+    }
+
     public void setGameInterface(GameInterface gameInterface) {
         this.gameInterface = gameInterface;
     }
@@ -74,16 +82,13 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
         if (chatMessage.getTextMessage().equals(MessageTypes.HAZLIAT)) {
             gameInterface.setEnemyName(chatMessage.getName());
             System.out.println(chatMessage.getName());
-        }
-        else if (chatMessage.getTextMessage().equals((MessageTypes.WHO_START))){
-            if (chatMessage.getName().equals("you")){
+        } else if (chatMessage.getTextMessage().equals((MessageTypes.WHO_START))) {
+            if (chatMessage.getName().equals("you")) {
                 gameInterface.enemyStart();
-            }
-            else {
+            } else {
                 gameInterface.meStart();
             }
-        }
-        else
+        } else
             gameInterface.addChatMessage(chatMessage);
     }
 
@@ -114,6 +119,11 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
     //type 7
     private void consumeYouLoseMessage() {
         gameInterface.youLose();
+    }
+
+    //type 8
+    private void consumeConnectionLostMessage(ConnectionLostMessage connectionLostMessage) {
+        gameInterface.connectionLostEffect(connectionLostMessage.getiAmServer() == 1);
     }
 
     /**
@@ -153,6 +163,9 @@ public class MessageManager implements INetworkHandlerCallback, IServerSocketHan
                 break;
             case MessageTypes.YOU_LOSE:
                 consumeYouLoseMessage();
+                break;
+            case MessageTypes.CONNECTION_LOST:
+                consumeConnectionLostMessage((ConnectionLostMessage) baseMessage);
                 break;
         }
     }

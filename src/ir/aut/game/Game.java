@@ -2,7 +2,6 @@ package ir.aut.game;
 
 import ir.aut.logic.MessageManager;
 import ir.aut.logic.messages.*;
-import ir.aut.model.ChatJSON;
 import ir.aut.view.ConnectionModeFrame;
 import ir.aut.view.MessagePanel;
 import ir.aut.view.PleaseWaitFrame;
@@ -14,7 +13,6 @@ import ir.aut.view.gameview.sea.SeaCellCordinate;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by Milad on 7/5/2017.
@@ -210,11 +208,11 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
             int x = (int) Math.random();
             if (x % 2 == 1) {
                 masterGameFrame.gameFrame.changePanelStates();
-                messageManager.send(new ChatMessage("you" , MessageTypes.WHO_START));
+                messageManager.send(new ChatMessage("you", MessageTypes.WHO_START));
             } else {
                 masterGameFrame.gameFrame.inGameBottomPanel.setVisible(true);
                 masterGameFrame.gameFrame.beforeGameBottomPanel.setVisible(false);
-                messageManager.send(new ChatMessage("me" , MessageTypes.WHO_START));
+                messageManager.send(new ChatMessage("me", MessageTypes.WHO_START));
             }
         } else {
             JOptionPane.showMessageDialog(null, "Your opponent is ready!", "Notification", JOptionPane.PLAIN_MESSAGE);
@@ -247,5 +245,27 @@ public class Game implements ModeFrameCallback, PleaseWaitFrameCallBack, WaitFor
     @Override
     public void addChatMessage(ChatMessage chatMessage) {
         masterGameFrame.gameFrame.chatPanel.addMessage(chatMessage.getTextMessage(), new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date()), MessagePanel.ENEMY);
+    }
+
+    @Override
+    public void connectionLostEffect(boolean opponentIsServer) {
+        JOptionPane.showMessageDialog(null, "Connection is lost :(", "Notification", JOptionPane.ERROR_MESSAGE);
+        messageManager.getCurrentNetwork().stopSelf();
+        if (opponentIsServer) {
+            startConnectionModeFrame();
+        } else {
+            masterGameFrame.gameFrame.setVisible(false);
+            waitingForConnectionFrame.setVisible(true);
+        }
+    }
+
+    @Override
+    public void sendConnectionLostMessage() {
+        if (messageManager.getmServerSocketHandler() == null) {
+            messageManager.send(new ConnectionLostMessage((byte) 0));
+        } else {
+            messageManager.send(new ConnectionLostMessage((byte) 1));
+        }
+        messageManager.getCurrentNetwork().stopSelf();
     }
 }

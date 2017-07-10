@@ -10,6 +10,8 @@ public interface GameFrameCallBack {
 
     void sendMessage(ChatMessage chatMessage);
 
+    void sendConnectionLostMessage();
+
     String getEnemyName();
 
     String getMyName();
