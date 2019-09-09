@@ -5,7 +5,7 @@
 It is my final project in Advanced Programming course.
 
 
-We implemented multiplayer [Battleship](https://en.wikipedia.org/wiki/Battleship) game with chat functionality.
+We implemented multiplayer [Battleship](https://en.wikipedia.org/wiki/Battleship_(game)) game with chat functionality.
 It is good example if you wanted to learn socket programming, or UI programming with java.
 
 
